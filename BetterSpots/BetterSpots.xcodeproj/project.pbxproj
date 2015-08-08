@@ -45,7 +45,6 @@
 		A91C58971B2E12F4009179E5 /* EnabledspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnabledspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C58981B2E12F5009179E5 /* EnabledspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = EnabledspotEU.plist; path = /Users/andi/IOS/BetterSpots/EnabledspotEU.plist; sourceTree = "<absolute>"; };
 		A9345E591B25E3CA00EB682C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
-		A948EE4A1B25D620007B108F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A948EE4B1B25D620007B108F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A948EE4D1B25D620007B108F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A948EE4E1B25D620007B108F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,7 +170,6 @@
 		A948EE491B25D620007B108F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A948EE4A1B25D620007B108F /* Info.plist */,
 				A948EE4B1B25D620007B108F /* main.m */,
 			);
 			name = "Supporting Files";

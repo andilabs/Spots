@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A97DF5701B76A9CC004D0906"
-               BuildableName = "EnabledspotEU copy.app"
+               BuildableName = "DogspotEU.app"
                BlueprintName = "DogspotEU"
                ReferencedContainer = "container:BetterSpots.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A97DF5701B76A9CC004D0906"
-            BuildableName = "EnabledspotEU copy.app"
+            BuildableName = "DogspotEU.app"
             BlueprintName = "DogspotEU"
             ReferencedContainer = "container:BetterSpots.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A97DF5701B76A9CC004D0906"
-            BuildableName = "EnabledspotEU copy.app"
+            BuildableName = "DogspotEU.app"
             BlueprintName = "DogspotEU"
             ReferencedContainer = "container:BetterSpots.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A97DF5701B76A9CC004D0906"
-            BuildableName = "EnabledspotEU copy.app"
+            BuildableName = "DogspotEU.app"
             BlueprintName = "DogspotEU"
             ReferencedContainer = "container:BetterSpots.xcodeproj">
          </BuildableReference>

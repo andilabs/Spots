@@ -22,6 +22,7 @@
 		A97DF5791B76A9CC004D0906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A948EE531B25D620007B108F /* Main.storyboard */; };
 		A97DF57A1B76A9CC004D0906 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9345E591B25E3CA00EB682C /* Media.xcassets */; };
 		A97DF57B1B76A9CC004D0906 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A948EE6F1B25D818007B108F /* Podfile */; };
+		A9840EA61B76BF3A0034E115 /* MyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A9840EA51B76BF3A0034E115 /* MyUtils.m */; };
 		A99124551B2F1FF400BF9259 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE511B25D620007B108F /* ViewController.m */; };
 		A99124561B2F1FF400BF9259 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4E1B25D620007B108F /* AppDelegate.m */; };
 		A99124571B2F1FF400BF9259 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4B1B25D620007B108F /* main.m */; };
@@ -57,6 +58,8 @@
 		A948EE6F1B25D818007B108F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A97DF5801B76A9CC004D0906 /* DogspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A97DF5811B76A9CC004D0906 /* DogspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DogspotEU.plist; path = /Users/andi/Spots/BetterSpots/DogspotEU.plist; sourceTree = "<absolute>"; };
+		A9840EA51B76BF3A0034E115 /* MyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUtils.m; sourceTree = "<group>"; };
+		A9840EA71B76BF490034E115 /* MyUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyUtils.h; sourceTree = "<group>"; };
 		A99124621B2F1FF400BF9259 /* VeganspotORG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeganspotORG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99124631B2F1FF400BF9259 /* VeganspotORG.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = VeganspotORG.plist; path = /Users/andi/IOS/BetterSpots/VeganspotORG.plist; sourceTree = "<absolute>"; };
 		A99124741B2F20C900BF9259 /* MomspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +166,8 @@
 				A948EE511B25D620007B108F /* ViewController.m */,
 				A948EE531B25D620007B108F /* Main.storyboard */,
 				A948EE491B25D620007B108F /* Supporting Files */,
+				A9840EA51B76BF3A0034E115 /* MyUtils.m */,
+				A9840EA71B76BF490034E115 /* MyUtils.h */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
+				A9840EA61B76BF3A0034E115 /* MyUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

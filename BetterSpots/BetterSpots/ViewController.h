@@ -17,6 +17,6 @@ extern NSString * const SpotsEmoji;
 @interface ViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 @property (nonatomic,retain) CLLocationManager *locationManager;
 -(NSMutableArray*)getLocalMarkers: (float)lat andLon: (float) lon withRadius: (int) radius;
-
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 @end
 

@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-//#import "MyUtils.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 NSString * const SpotsEndpointURL = @"com.andilabs.SpotsEndpointURL";
@@ -22,24 +21,38 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSString *emojiString;
     NSString *appName;
     NSString *urlString;
-
-//    NSDate *startTime;
     NSUserDefaults *defaults;
     NSMutableArray * currentMarkers;
 }
 
 -(NSMutableArray*)getLocalMarkers: (float)lat andLon: (float) lon withRadius: (int) radius
 {
-    NSString * locaticonBasedUrl =[NSString stringWithFormat:@"%@nearby/%.5f/%.5f/%.d",urlString, lat, lon,radius];
+    NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
+                                   urlString,
+                                   lat,
+                                   lon,
+                                   radius];
     NSLog(@"ADDRESS IN USE IS: %@",locaticonBasedUrl);
     NSURL * myUrl = [NSURL URLWithString:locaticonBasedUrl];
     NSData *data = [NSData dataWithContentsOfURL:myUrl];
     NSError * myErr;
-    NSMutableArray *localMarkers= [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&myErr];
+    NSMutableArray *localMarkers= [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:kNilOptions
+                                                                    error:&myErr];
     NSLog(@"markers: %@", localMarkers);
     return localMarkers;
 }
 
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 -(void)drawMarkersOnMap:(NSMutableArray*)acctual
 {
@@ -52,17 +65,28 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             spotMarker.userData = marker;
             
             
-//            switch ([marker[@"is_enabled"] intValue]){
-//                case 0:
-//                    spotMarker.icon = [MyUtils imageWithImage:[UIImage imageNamed:@"marker-bad"] scaledToSize:CGSizeMake(20, 20)];
-//                    break;
-//                case 1:
-//                    spotMarker.icon = [MyUtils imageWithImage:[UIImage imageNamed:@"marker-ok"] scaledToSize:CGSizeMake(20, 20)];
-//                    break;
-//            }
-            spotMarker.snippet =[NSString stringWithFormat:@"%@ %@ \nabout %.0f meters away. \nRating: %.2f%% postive",marker[@"address_street"], marker[@"address_number"],[marker[@"distance"]doubleValue]*1000, ([marker[@"friendly_rate"]doubleValue]/5.0*100)];
+            switch ([marker[@"is_enabled"] intValue]){
+                case 0:
+                    spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-bad-kopia"]
+                                              scaledToSize:CGSizeMake(25, 25)];
+                    break;
+                case 1:
+                    spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-ok-kopia"]
+                                              scaledToSize:CGSizeMake(25, 25)];
+                    break;
+            }
             
-            
+            int ratingValue = roundf([marker[@"friendly_rate"]floatValue]);
+            if (ratingValue < 0){
+                ratingValue = 0;
+            }
+            spotMarker.snippet = [NSString stringWithFormat:@"%@ %@\n%@\n\n%.0f meters away.",
+                                  marker[@"address_street"],
+                                  marker[@"address_number"],
+                                  [@"" stringByPaddingToLength:[@"⭐️" length]*ratingValue
+                                                    withString: @"⭐️" startingAtIndex:0],
+                                  [marker[@"distance"]doubleValue]*1000
+                                  ];
             spotMarker.map = mapView_;
             
         }
@@ -73,24 +97,29 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 }
 
 -(void)promptUserAboutGeolocationDisabled{
-    NSString * geoDisabledWarrning = [NSString  stringWithFormat:@"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location", emojiString, appName];
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:@"Geolocation disabled!"
-                                          message:geoDisabledWarrning
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:@"Cancel"
-                                   style:UIAlertActionStyleCancel
-                                   handler:nil];
-    UIAlertAction *okAction = [UIAlertAction
-                               actionWithTitle:@"OK, take me there!"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action){
-                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                               }];
+    NSString * geoDisabledWarrning = [NSString  stringWithFormat:
+                                      @"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location",
+                                      emojiString,
+                                      appName];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Geolocation disabled!"
+                                                                             message:geoDisabledWarrning
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK, take me there!"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action){
+                                                         [[UIApplication sharedApplication] openURL:
+                                                          [NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                     }];
     [alertController addAction:cancelAction];
     [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -211,27 +240,29 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         [defaults synchronize];
  
         
-        NSLog(@"obj for key: starLatitude, starLongitude: %@, %@",
-              [defaults objectForKey:@"starLatitude"],
-              [defaults objectForKey:@"starLongitude"]);
-        
+//        NSLog(@"obj for key: starLatitude, starLongitude: %@, %@",
+//              [defaults objectForKey:@"starLatitude"],
+//              [defaults objectForKey:@"starLongitude"]);
+//        
         
         currentMarkers = [NSMutableArray arrayWithArray:[self getLocalMarkers: [defaults floatForKey:@"starLatitude"]
                                                                        andLon: [defaults floatForKey:@"starLongitude"]
                                                                    withRadius: 8000]];
         
-        NSLog(@"%@", currentMarkers);
+//        NSLog(@"%@", currentMarkers);
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[defaults floatForKey:@"starLatitude"]
                                                                 longitude:[defaults floatForKey:@"starLongitude"]
                                                                      zoom:13];
-        mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+        mapView_ = [GMSMapView mapWithFrame:CGRectZero
+                                     camera:camera];
         mapView_.myLocationEnabled = YES;
         mapView_.settings.compassButton = YES;
         mapView_.settings.myLocationButton = YES;
         mapView_.settings.scrollGestures = YES;
         mapView_.settings.zoomGestures = YES;
-        
+        mapView_.settings.rotateGestures = NO;
+        mapView_.settings.tiltGestures = NO;
         
         self.view = mapView_;
         [self drawMarkersOnMap: currentMarkers];

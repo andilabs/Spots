@@ -23,6 +23,8 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSString *urlString;
     NSUserDefaults *defaults;
     NSMutableArray * currentMarkers;
+    UIActionSheet *takieMenu;
+    NSDictionary * infoOfCurrentlySelectedSpot;
 }
 
 -(NSMutableArray*)getLocalMarkers: (float)lat andLon: (float) lon withRadius: (int) radius
@@ -133,6 +135,11 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 }
 
 - (void)viewDidLoad {
+    takieMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                            delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                              destructiveButtonTitle:nil
+                                   otherButtonTitles:@"Call",@"Add as a Contact",@"Show details...",nil];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     urlString = [infoDictionary objectForKey:SpotsEndpointURL];
     emojiString = [infoDictionary objectForKey:SpotsEmoji];
@@ -265,6 +272,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         mapView_.settings.tiltGestures = NO;
         
         self.view = mapView_;
+        mapView_.delegate = self;
         [self drawMarkersOnMap: currentMarkers];
         
         [self stopLocationManager]; // naive version, satisfy yourself with first result
@@ -280,6 +288,107 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     _lastLocationError = nil;
     _location = newLocation;
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString * what_action = [actionSheet buttonTitleAtIndex:buttonIndex];
+    NSLog(@"The %@ button was tapped.", what_action);
+    if ([what_action isEqualToString:@"Call"])
+    {
+        NSString *phoneNumber = [[NSString alloc]
+                                 initWithString:
+                                 
+                                 [NSString stringWithFormat:@"telprompt:%@",[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""]]];
+        NSLog(@"I am calling %@", phoneNumber);
+        [[UIApplication sharedApplication]
+         openURL:[NSURL URLWithString:phoneNumber]];
+        
+    }
+    else if([what_action isEqualToString:@"Add as a Contact"]){
+        // create person record
+        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+            if (!granted){
+                //4
+                NSLog(@"Just denied");
+                return;
+            }
+            //5
+            ABRecordRef person = ABPersonCreate();
+            
+            // set name and other string values
+            NSString * venueName=[infoOfCurrentlySelectedSpot valueForKey:@"name"];
+            NSString * venuePhone=[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSString * venueAddress1=[infoOfCurrentlySelectedSpot valueForKey:@"address_street"];
+            NSString * venueAddress2 =[infoOfCurrentlySelectedSpot valueForKey:@"address_number"];
+            NSString * venueCity=[infoOfCurrentlySelectedSpot valueForKey:@"address_city"];
+            NSString * venueCountry=[infoOfCurrentlySelectedSpot valueForKey:@"address_country"];
+            NSString * venueUrl = [infoOfCurrentlySelectedSpot valueForKey:@"www"];
+            
+            
+            ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge CFStringRef) venueName, NULL);
+            
+            if (venueUrl)
+            {
+                ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+                ABMultiValueAddValueAndLabel(urlMultiValue, (__bridge CFStringRef) venueUrl, kABPersonHomePageLabel, NULL);
+                ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
+                CFRelease(urlMultiValue);
+            }
+            
+            if (venuePhone)
+            {
+                ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+                NSArray *venuePhoneNumbers = [venuePhone componentsSeparatedByString:@" or "];
+                for (NSString *venuePhoneNumberString in venuePhoneNumbers)
+                    ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFStringRef) venuePhoneNumberString, kABPersonPhoneMainLabel, NULL);
+                ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);
+                CFRelease(phoneNumberMultiValue);
+            }
+            
+            // add address
+            
+            ABMutableMultiValueRef multiAddress = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
+            NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];
+            
+            if (venueAddress1)
+            {
+                if (venueAddress2)
+                    addressDictionary[(NSString *) kABPersonAddressStreetKey] = [NSString stringWithFormat:@"%@\n%@", venueAddress1, venueAddress2];
+                else
+                    addressDictionary[(NSString *) kABPersonAddressStreetKey] = venueAddress1;
+            }
+            if (venueCity)
+                addressDictionary[(NSString *)kABPersonAddressCityKey] = venueCity;
+            if (venueCountry)
+                addressDictionary[(NSString *)kABPersonAddressCountryKey] = venueCountry;
+            
+            ABMultiValueAddValueAndLabel(multiAddress, (__bridge CFDictionaryRef) addressDictionary, kABWorkLabel, NULL);
+            ABRecordSetValue(person, kABPersonAddressProperty, multiAddress, NULL);
+            CFRelease(multiAddress);
+            NSLog(@"we are here adding contact");
+            // let's show view controller
+            
+            ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
+            
+            controller.displayedPerson = person;
+            controller.allowsAddingToAddressBook = YES;
+            
+            // current view must have a navigation controller
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            
+            CFRelease(person);
+        });
+        
+    }
+}
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    NSLog(@"Tapped was %@",[marker.userData valueForKey:@"name"]);
+    infoOfCurrentlySelectedSpot = marker.userData;
+    [takieMenu showInView:mapView_];
+}
+
 
 
 

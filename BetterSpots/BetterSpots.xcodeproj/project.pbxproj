@@ -24,6 +24,8 @@
 		A96FA4D01B7747D100BB5BBA /* DogspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */; };
 		A96FA4D21B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */; };
 		A96FA4D31B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */; };
+		A96FA4D61B77698000BB5BBA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96FA4D41B77698000BB5BBA /* AddressBook.framework */; };
+		A96FA4D71B77698000BB5BBA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96FA4D51B77698000BB5BBA /* AddressBookUI.framework */; };
 		A97DF5731B76A9CC004D0906 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE511B25D620007B108F /* ViewController.m */; };
 		A97DF5741B76A9CC004D0906 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4E1B25D620007B108F /* AppDelegate.m */; };
 		A97DF5751B76A9CC004D0906 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4B1B25D620007B108F /* main.m */; };
@@ -77,6 +79,8 @@
 		A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MomspotEUMedia.xcassets; sourceTree = "<group>"; };
 		A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DogspotEUMedia.xcassets; sourceTree = "<group>"; };
 		A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EnabledspotEUMedia.xcassets; sourceTree = "<group>"; };
+		A96FA4D41B77698000BB5BBA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A96FA4D51B77698000BB5BBA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A97DF5801B76A9CC004D0906 /* DogspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A97DF5811B76A9CC004D0906 /* DogspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DogspotEU.plist; path = /Users/andi/Spots/BetterSpots/DogspotEU.plist; sourceTree = "<absolute>"; };
 		A99124621B2F1FF400BF9259 /* VeganspotORG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeganspotORG.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A96FA4D61B77698000BB5BBA /* AddressBook.framework in Frameworks */,
+				A96FA4D71B77698000BB5BBA /* AddressBookUI.framework in Frameworks */,
 				A97DF5771B76A9CC004D0906 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +149,8 @@
 		175B526FF794203C62EFB31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A96FA4D41B77698000BB5BBA /* AddressBook.framework */,
+				A96FA4D51B77698000BB5BBA /* AddressBookUI.framework */,
 				A96FA4C31B7746FA00BB5BBA /* QuartzCore.framework */,
 				A96FA4C11B7746EF00BB5BBA /* libz.dylib */,
 				A96FA4BF1B7746E800BB5BBA /* libicucore.dylib */,

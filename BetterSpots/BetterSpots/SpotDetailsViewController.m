@@ -16,9 +16,11 @@
 
 @synthesize dataModel;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"anything happens here");
+
+    NSLog(@"anything happens here SpotDetailsViewController viewDidLoad");
     NSString * name = [self.dataModel objectForKey:@"name"];
     self.dateLabel.text = name;// [self.dataModel objectForKey:@"name"];
     // Uncomment the following line to preserve selection between presentations.

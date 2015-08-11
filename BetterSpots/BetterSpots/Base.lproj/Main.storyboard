@@ -19,14 +19,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="XzA-rk-UMv"/>
                     <connections>
-                        <segue destination="36h-7E-qhW" kind="push" identifier="ShowSpotDetail" id="eCi-bU-uTS"/>
+                        <segue destination="36h-7E-qhW" kind="showDetail" identifier="ShowSpotDetail" id="eCi-bU-uTS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2023" y="143"/>
         </scene>
-        <!--Spot Details View Controller-->
+        <!--Spot Detail-->
         <scene sceneID="byL-ZN-Guw">
             <objects>
                 <tableViewController storyboardIdentifier="SpotDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wiI-Bp-bVN" customClass="SpotDetailsViewController" sceneMemberID="viewController">
@@ -81,7 +81,13 @@
                             <outlet property="delegate" destination="wiI-Bp-bVN" id="zmB-4l-8w4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="b9X-Mq-OXH"/>
+                    <navigationItem key="navigationItem" title="Spot Detail" id="b9X-Mq-OXH">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="ZKI-Cr-BK0">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" id="Z5G-1Z-fLw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="OmB-es-2iI" id="D7F-SK-FIB"/>
                     </connections>
@@ -113,7 +119,6 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36h-7E-qhW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="hsU-Cq-jbF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eTl-U6-cy6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -128,4 +133,7 @@
             <point key="canvasLocation" x="2030" y="963"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Z5G-1Z-fLw"/>
+    </inferredMetricsTieBreakers>
 </document>

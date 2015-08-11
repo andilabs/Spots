@@ -447,14 +447,23 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 //        SpotDetailsViewController *myNewVC = [[SpotDetailsViewController alloc] init];
 //        [self.navigationController pushViewController:myNewVC animated:YES];
     
-        //[self performSegueWithIdentifier:@"ShowSpotDetail" sender:self.navigationController];
-        SpotDetailsViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotDetail"];
-        myController.dataModel = infoOfCurrentlySelectedSpot;
-        [self.navigationController pushViewController: myController animated:YES];
+        [self performSegueWithIdentifier:@"ShowSpotDetail" sender:self];
+
+//        SpotDetailsViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotDetail"];
+//        myController.dataModel = infoOfCurrentlySelectedSpot;
+//        [self.navigationController pushViewController: myController animated:YES];
     
     }
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
+        NSLog(@"to sie dzieje!");
+        UINavigationController *navigationController = segue.destinationViewController;
+        SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
+                controller.dataModel = infoOfCurrentlySelectedSpot;
+    }
+}
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //    NSLog(@"cos sie dzieje!");
 //    if([segue.identifier isEqualToString:@"ShowSpotDetail"]) {

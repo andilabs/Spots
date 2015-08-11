@@ -11,6 +11,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import <MapKit/MapKit.h>
 
 extern NSString * const SpotsEndpointURL;
 extern NSString * const SpotsEmoji;

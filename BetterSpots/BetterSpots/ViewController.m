@@ -23,7 +23,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSString *urlString;
     NSUserDefaults *defaults;
     NSMutableArray * currentMarkers;
-    UIActionSheet *takieMenu;
+    UIActionSheet *markerActionsMenu;
     NSDictionary * infoOfCurrentlySelectedSpot;
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,11 +39,11 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 }
 
 - (void)viewDidLoad {
-    takieMenu = [[UIActionSheet alloc] initWithTitle:nil
+    markerActionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                             delegate:self
                                    cancelButtonTitle:@"Cancel"
                               destructiveButtonTitle:nil
-                                   otherButtonTitles:@"Call",@"Add as a Contact",nil];
+                                   otherButtonTitles:@"Call", @"Add as a Contact", @"Share...", @"Navigate me there...", nil];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     urlString = [infoDictionary objectForKey:SpotsEndpointURL];
     emojiString = [infoDictionary objectForKey:SpotsEmoji];
@@ -68,6 +68,117 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 
 #pragma mark - utils
+- (void)addNewAddresBookContact: (NSDictionary *) theSpotInfoDict {
+    // create person record
+    ABRecordRef person = ABPersonCreate();
+    // set name and other string values
+    NSString * venueName=[theSpotInfoDict valueForKey:@"name"];
+    NSString * venuePhone=[[theSpotInfoDict valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString * venueAddress1=[theSpotInfoDict valueForKey:@"address_street"];
+    NSString * venueAddress2 =[theSpotInfoDict valueForKey:@"address_number"];
+    NSString * venueCity=[theSpotInfoDict valueForKey:@"address_city"];
+    NSString * venueCountry=[theSpotInfoDict valueForKey:@"address_country"];
+    NSString * venueUrl = [theSpotInfoDict valueForKey:@"www"];
+    NSString * venueFacebook = [theSpotInfoDict valueForKey:@"facebook"];
+    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge CFStringRef) venueName, NULL);
+    // url
+    if (venueUrl)
+    {
+        ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+        ABMultiValueAddValueAndLabel(urlMultiValue, (__bridge CFStringRef) venueUrl, kABPersonHomePageLabel, NULL);
+        ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
+        CFRelease(urlMultiValue);
+    }
+    // facebook
+    if (venueFacebook)
+    {
+        ABMultiValueRef multiSocial = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
+        ABMultiValueAddValueAndLabel(multiSocial, (__bridge CFTypeRef)([NSDictionary dictionaryWithObjectsAndKeys:(NSString *)kABPersonSocialProfileServiceFacebook, kABPersonSocialProfileServiceKey, venueFacebook, kABPersonSocialProfileUsernameKey,nil]), kABPersonSocialProfileServiceFacebook, NULL);
+        ABRecordSetValue(person, kABPersonSocialProfileProperty, multiSocial, NULL);
+        CFRelease(multiSocial);
+    }
+    // phone
+    if (venuePhone)
+    {
+        ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+        NSArray *venuePhoneNumbers = [venuePhone componentsSeparatedByString:@" or "];
+        for (NSString *venuePhoneNumberString in venuePhoneNumbers)
+            ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFStringRef) venuePhoneNumberString, kABPersonPhoneMainLabel, NULL);
+        ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);
+        CFRelease(phoneNumberMultiValue);
+    }
+    // add address
+    ABMutableMultiValueRef multiAddress = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
+    NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];
+    if (venueAddress1)
+    {
+        if (venueAddress2)
+            addressDictionary[(NSString *) kABPersonAddressStreetKey] = [NSString stringWithFormat:@"%@\n%@", venueAddress1, venueAddress2];
+        else
+            addressDictionary[(NSString *) kABPersonAddressStreetKey] = venueAddress1;
+    }
+    if (venueCity)
+        addressDictionary[(NSString *)kABPersonAddressCityKey] = venueCity;
+    if (venueCountry)
+        addressDictionary[(NSString *)kABPersonAddressCountryKey] = venueCountry;
+    ABMultiValueAddValueAndLabel(multiAddress, (__bridge CFDictionaryRef) addressDictionary, kABWorkLabel, NULL);
+    ABRecordSetValue(person, kABPersonAddressProperty, multiAddress, NULL);
+    CFRelease(multiAddress);
+    // let's show view controller
+    ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
+    controller.displayedPerson = person;
+    controller.allowsAddingToAddressBook = YES;
+    // current view must have a navigation controller
+    [self.navigationController pushViewController:controller animated:YES];
+    UIImage *img = [UIImage imageNamed:@"marker-bad-kopia.png"];
+    if ([[theSpotInfoDict valueForKey:@"is_enabled"] intValue] == 1){
+        img = [UIImage imageNamed:@"marker-ok-kopia.png"];
+    }
+
+
+    NSData *dataRef = UIImagePNGRepresentation(img);
+    ABPersonSetImageData(person, (__bridge CFDataRef)dataRef, nil);
+    CFRelease(person);
+}
+
+- (void)navigateUserToSpot: (NSDictionary *) theSpotInfoDict {
+    double lat = [theSpotInfoDict[@"location"][@"latitude"] doubleValue];
+    double lng = [theSpotInfoDict[@"location"][@"longitude"] doubleValue];
+    NSDictionary *addressDict = @{
+                                  (NSString *) kABPersonAddressStreetKey : [theSpotInfoDict valueForKey:@"address_street"],
+                                  (NSString *) kABPersonAddressCityKey : [theSpotInfoDict valueForKey:@"address_city"],
+                                  (NSString *) kABPersonAddressCountryCodeKey : [theSpotInfoDict valueForKey:@"address_country"]
+                                  };
+    CLLocationCoordinate2D endingCoord = CLLocationCoordinate2DMake(lat, lng);
+    MKPlacemark *endLocation = [[MKPlacemark alloc] initWithCoordinate:endingCoord addressDictionary:addressDict];
+    MKMapItem *endingItem = [[MKMapItem alloc] initWithPlacemark:endLocation];
+    NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
+    [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
+    [endingItem openInMapsWithLaunchOptions:launchOptions];
+}
+- (void)makePhoneCall: (NSString *) phoneNumber {
+    NSString *cleanedPhoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",
+                                                                      [phoneNumber stringByReplacingOccurrencesOfString:@" "
+                                                                                                             withString:@""]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:cleanedPhoneNumber]];
+}
+
+- (void)shareTheSpot: (NSDictionary *) theSpotInfoDict
+//(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
+{
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    NSString * composeMessage = [NSString stringWithFormat:@"Hi I found cool spot using #%@ Check it out!", appName];
+    [sharingItems addObject:composeMessage];
+    [sharingItems addObject:[NSURL URLWithString:[theSpotInfoDict valueForKey: @"www_url"]]];
+    NSString * venuePhotoURL = [theSpotInfoDict valueForKey: @"thumbnail_venue_photo"];
+    if (venuePhotoURL) {
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:venuePhotoURL]]];
+        [sharingItems addObject:image];
+    }
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
+
 -(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
@@ -121,13 +232,10 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 {
     if ([markers count] > 0){
         for (NSDictionary * marker in markers){
-            
             GMSMarker *spotMarker = [[GMSMarker alloc] init];
             spotMarker.title = marker[@"name"];
             spotMarker.position = CLLocationCoordinate2DMake([marker[@"location"][@"latitude"] doubleValue], [marker[@"location"][@"longitude"]doubleValue]);
             spotMarker.userData = marker;
-            
-            
             switch ([marker[@"is_enabled"] intValue]){
                 case 0:
                     spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-bad-kopia"]
@@ -138,7 +246,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                                               scaledToSize:CGSizeMake(25, 25)];
                     break;
             }
-            
             int ratingValue = roundf([marker[@"friendly_rate"]floatValue]);
             if (ratingValue < 0){
                 ratingValue = 0;
@@ -148,8 +255,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                                   marker[@"address_number"],
                                   [@"" stringByPaddingToLength:[@"⭐️" length]*ratingValue
                                                     withString: @"⭐️" startingAtIndex:0],
-                                  [marker[@"distance"]doubleValue]*1000
-                                  ];
+                                  [marker[@"distance"]doubleValue]*1000];
             spotMarker.map = mapView_;
             
         }
@@ -157,25 +263,19 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 }
 
 
-
-
 #pragma mark - geolocation stuff
 
 -(void)promptUserAboutGeolocationDisabled{
-
     NSString * geoDisabledWarrning = [NSString  stringWithFormat:
                                       @"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location",
                                       emojiString,
                                       appName];
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Geolocation disabled!"
                                                                              message:geoDisabledWarrning
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
-
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK, take me there!"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action){
@@ -191,7 +291,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-
     if ([error domain] == kCLErrorDomain) {
         switch ([error code]) {
             case kCLErrorDenied: {
@@ -204,7 +303,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                 // but that doesn’t mean all is lost. It might just need another
                 // second or so to get an uplink to the GPS satellite
                 // keep trying
-                [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
                 return;
             }
             default: {
@@ -250,14 +348,11 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations lastObject];
-
 //    NSLog(@"horizontal acc: %f", newLocation.horizontalAccuracy);
 //    NSLog(@" %@", locations);
 //    NSLog(@"did Update Locations %@", newLocation);
 //    NSLog(@"new location timestamp timeIntervalSinceNow: %f", [newLocation.timestamp timeIntervalSinceNow]);
-
     if ([newLocation.timestamp timeIntervalSinceNow] < -5.0){
-//         NSLog(@"CACHED RESULT - IGNORE");
         // If the time at which the location object was determined is too long ago (5 seconds in this case), then this is a so-called cached result. Instead of returning a new location fix, the location manager may initially give you the most recently found location under the assumption that you might not have moved much since last time (obviously this does not take into consideration people with jet packs). You’ll simply ignore these cached locations if they are too old.
         return;
     }
@@ -317,103 +412,30 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 #pragma mark - user interactions with map
 
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString * what_action = [actionSheet buttonTitleAtIndex:buttonIndex];
 
     if ([what_action isEqualToString:@"Call"])
     {
-        NSString *phoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""]]];
-
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        [self makePhoneCall:[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"]];
     }
     else if([what_action isEqualToString:@"Add as a Contact"]){
-        // create person record
-
-            ABRecordRef person = ABPersonCreate();
-            
-            // set name and other string values
-            NSString * venueName=[infoOfCurrentlySelectedSpot valueForKey:@"name"];
-            NSString * venuePhone=[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSString * venueAddress1=[infoOfCurrentlySelectedSpot valueForKey:@"address_street"];
-            NSString * venueAddress2 =[infoOfCurrentlySelectedSpot valueForKey:@"address_number"];
-            NSString * venueCity=[infoOfCurrentlySelectedSpot valueForKey:@"address_city"];
-            NSString * venueCountry=[infoOfCurrentlySelectedSpot valueForKey:@"address_country"];
-            NSString * venueUrl = [infoOfCurrentlySelectedSpot valueForKey:@"www"];
-            NSString * venueFacebook = [infoOfCurrentlySelectedSpot valueForKey:@"facebook"];
-        
-            ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge CFStringRef) venueName, NULL);
-            // url
-            if (venueUrl)
-            {
-                ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-                ABMultiValueAddValueAndLabel(urlMultiValue, (__bridge CFStringRef) venueUrl, kABPersonHomePageLabel, NULL);
-                ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
-                CFRelease(urlMultiValue);
-            }
-            // facebook
-            if (venueFacebook)
-            {
-                ABMultiValueRef multiSocial = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
-                
-                ABMultiValueAddValueAndLabel(multiSocial, (__bridge CFTypeRef)([NSDictionary dictionaryWithObjectsAndKeys:(NSString *)kABPersonSocialProfileServiceFacebook, kABPersonSocialProfileServiceKey, venueFacebook, kABPersonSocialProfileUsernameKey,nil]), kABPersonSocialProfileServiceFacebook, NULL);
-                
-                ABRecordSetValue(person, kABPersonSocialProfileProperty, multiSocial, NULL);
-                CFRelease(multiSocial);
-            }
-        
-        
-            // phone
-            if (venuePhone)
-            {
-                ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-                NSArray *venuePhoneNumbers = [venuePhone componentsSeparatedByString:@" or "];
-                for (NSString *venuePhoneNumberString in venuePhoneNumbers)
-                    ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFStringRef) venuePhoneNumberString, kABPersonPhoneMainLabel, NULL);
-                ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);
-                CFRelease(phoneNumberMultiValue);
-            }
-            
-            // add address
-            ABMutableMultiValueRef multiAddress = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
-            NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];
-            if (venueAddress1)
-            {
-                if (venueAddress2)
-                    addressDictionary[(NSString *) kABPersonAddressStreetKey] = [NSString stringWithFormat:@"%@\n%@", venueAddress1, venueAddress2];
-                else
-                    addressDictionary[(NSString *) kABPersonAddressStreetKey] = venueAddress1;
-            }
-            if (venueCity)
-                addressDictionary[(NSString *)kABPersonAddressCityKey] = venueCity;
-            if (venueCountry)
-                addressDictionary[(NSString *)kABPersonAddressCountryKey] = venueCountry;
-            
-            ABMultiValueAddValueAndLabel(multiAddress, (__bridge CFDictionaryRef) addressDictionary, kABWorkLabel, NULL);
-            ABRecordSetValue(person, kABPersonAddressProperty, multiAddress, NULL);
-            CFRelease(multiAddress);
-            NSLog(@"we are here adding contact");
-            // let's show view controller
-            ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
-            controller.displayedPerson = person;
-            controller.allowsAddingToAddressBook = YES;
-            // current view must have a navigation controller
-            [self.navigationController pushViewController:controller animated:YES];
-            UIImage *img = [UIImage imageNamed:@"marker-bad-kopia.png"];
-
-            if ([[infoOfCurrentlySelectedSpot valueForKey:@"is_enabled"] intValue] == 1){
-               img = [UIImage imageNamed:@"marker-ok-kopia.png"];
-            }
-
-            NSData *dataRef = UIImagePNGRepresentation(img);
-            ABPersonSetImageData(person, (__bridge CFDataRef)dataRef, nil);
-            CFRelease(person);
+        [self addNewAddresBookContact: infoOfCurrentlySelectedSpot];
+    }
+    else if([what_action isEqualToString:@"Share..."]){
+        [self shareTheSpot: infoOfCurrentlySelectedSpot];
+    }
+    else if([what_action isEqualToString:@"Navigate me there..."]){
+        [self navigateUserToSpot: infoOfCurrentlySelectedSpot];
     }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     infoOfCurrentlySelectedSpot = marker.userData;
-    [takieMenu showInView:mapView_];
+    [markerActionsMenu showInView:mapView_];
 }
 
 @end

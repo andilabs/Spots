@@ -195,12 +195,18 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 - (void)shareTheSpot: (NSDictionary *) theSpotInfoDict
 {
     NSMutableArray *sharingItems = [NSMutableArray new];
-    NSString * composeMessage = [NSString stringWithFormat:@"Hi I found cool spot using #%@ Check it out!", appName];
+    NSString *positiveAdjective = @"";
+    if ([[theSpotInfoDict valueForKey:@"is_enabled"] intValue] == 1){
+        positiveAdjective = @"cool";
+    }
+    NSString * composeMessage = [NSString stringWithFormat:@"Hi! I found %@ spot using #%@ Check it out!",
+                                 positiveAdjective,
+                                 appName];
     [sharingItems addObject:composeMessage];
     [sharingItems addObject:[NSURL URLWithString:[theSpotInfoDict valueForKey: @"www_url"]]];
-    NSString * venuePhotoURL = [theSpotInfoDict valueForKey: @"thumbnail_venue_photo"];
-    if (venuePhotoURL) {
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:venuePhotoURL]]];
+
+    if ([theSpotInfoDict valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[theSpotInfoDict valueForKey: @"thumbnail_venue_photo"]]]];
         [sharingItems addObject:image];
     }
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];

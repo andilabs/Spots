@@ -215,6 +215,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 
 #pragma mark - fetching markers, drawing markers
+
 -(NSMutableArray*)getNearbylSpotsWithLat:(float)lat andLon:(float)lon withinRadius:(int)radius
 {
     NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
@@ -235,8 +236,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     }
 
 }
-
-
 
 - (void)drawMarkersOnMap:(NSMutableArray*)spots
 {

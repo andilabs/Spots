@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
+@import AddressBook;
 
 NSString * const SpotsEndpointURL = @"com.andilabs.SpotsEndpointURL";
 NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
@@ -26,23 +26,59 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     UIActionSheet *takieMenu;
     NSDictionary * infoOfCurrentlySelectedSpot;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES
+                                             animated:animated];
+    [super viewWillAppear:animated];
+}
 
--(NSMutableArray*)getLocalMarkers: (float)lat andLon: (float) lon withRadius: (int) radius
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO
+                                             animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidLoad {
+    takieMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                            delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                              destructiveButtonTitle:nil
+                                   otherButtonTitles:@"Call",@"Add as a Contact",nil];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    urlString = [infoDictionary objectForKey:SpotsEndpointURL];
+    emojiString = [infoDictionary objectForKey:SpotsEmoji];
+    appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    [self startLocationManager];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
-                                   urlString,
-                                   lat,
-                                   lon,
-                                   radius];
-    NSLog(@"ADDRESS IN USE IS: %@",locaticonBasedUrl);
-    NSURL * myUrl = [NSURL URLWithString:locaticonBasedUrl];
-    NSData *data = [NSData dataWithContentsOfURL:myUrl];
-    NSError * myErr;
-    NSMutableArray *localMarkers= [NSJSONSerialization JSONObjectWithData:data
-                                                                  options:kNilOptions
-                                                                    error:&myErr];
-    NSLog(@"markers: %@", localMarkers);
-    return localMarkers;
+    if ((self = [super initWithCoder:aDecoder])){
+        defaults = [NSUserDefaults standardUserDefaults];
+        _locationManager = [[CLLocationManager alloc] init];
+        
+    }
+    return self;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - utils
+-(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -56,10 +92,35 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     return newImage;
 }
 
--(void)drawMarkersOnMap:(NSMutableArray*)acctual
+
+#pragma mark - fetching markers, drawing markers
+-(NSMutableArray*)getLocalMarkers:(float)lat andLon:(float)lon withRadius:(int)radius
 {
-    if ([acctual count] > 0){
-        for (NSDictionary * marker in acctual){
+    NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
+                                   urlString,
+                                   lat,
+                                   lon,
+                                   radius];
+    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:locaticonBasedUrl]];
+    if (data) {
+        NSError * myErr;
+        NSMutableArray * markers = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:kNilOptions
+                                                                     error:&myErr];
+        return markers;
+    }
+    else {
+        return nil;
+    }
+
+}
+
+
+
+- (void)drawMarkersOnMap:(NSMutableArray*)markers
+{
+    if ([markers count] > 0){
+        for (NSDictionary * marker in markers){
             
             GMSMarker *spotMarker = [[GMSMarker alloc] init];
             spotMarker.title = marker[@"name"];
@@ -93,12 +154,15 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             
         }
     }
-    else{
-        NSLog(@"No results for such location");
-    }
 }
 
+
+
+
+#pragma mark - geolocation stuff
+
 -(void)promptUserAboutGeolocationDisabled{
+
     NSString * geoDisabledWarrning = [NSString  stringWithFormat:
                                       @"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location",
                                       emojiString,
@@ -107,6 +171,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Geolocation disabled!"
                                                                              message:geoDisabledWarrning
                                                                       preferredStyle:UIAlertControllerStyleAlert];
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
@@ -124,43 +189,8 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                      completion:nil];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    if ((self = [super initWithCoder:aDecoder])){
-        defaults = [NSUserDefaults standardUserDefaults];
-        _locationManager = [[CLLocationManager alloc] init];
-
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
-    takieMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                            delegate:self
-                                   cancelButtonTitle:@"Cancel"
-                              destructiveButtonTitle:nil
-                                   otherButtonTitles:@"Call",@"Add as a Contact",@"Show details...",nil];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    urlString = [infoDictionary objectForKey:SpotsEndpointURL];
-    emojiString = [infoDictionary objectForKey:SpotsEmoji];
-    appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-
-//    startTime = [NSDate date];
-    [self startLocationManager];
-
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-    NSLog(@"did Fail With Error: domain: %@ code: %ld", error.domain, (long)error.code);
 
     if ([error domain] == kCLErrorDomain) {
         switch ([error code]) {
@@ -174,16 +204,16 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                 // but that doesn’t mean all is lost. It might just need another
                 // second or so to get an uplink to the GPS satellite
                 // keep trying
-                NSLog(@" another shit happens, but keep trying");
+                [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
                 return;
             }
             default: {
-                //...
+                [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
                 break;
             }
         }
     } else {
-        // We handle all non-CoreLocation errors here
+        [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
     }
     [self stopLocationManager];
     _lastLocationError = error;
@@ -232,31 +262,21 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         return;
     }
     if (newLocation.horizontalAccuracy < 0){
-//        NSLog(@"BAD ACCURACY - IGNORE");
         // this is case of very bad accuracy meassurment which should be IGNORED
         return;
     }
 
     if (_location == nil || _location.horizontalAccuracy >= newLocation.horizontalAccuracy) {
-//        NSLog(@"the _location was EMPTY or newLocation accuracy is BETTER (smaller) than existin _location");
+
         _lastLocationError = nil;
         _location = newLocation;
-        
         [defaults setFloat: newLocation.coordinate.latitude forKey:@"starLatitude"];
         [defaults setFloat: newLocation.coordinate.longitude forKey:@"starLongitude"];
         [defaults synchronize];
- 
-        
-//        NSLog(@"obj for key: starLatitude, starLongitude: %@, %@",
-//              [defaults objectForKey:@"starLatitude"],
-//              [defaults objectForKey:@"starLongitude"]);
-//        
-        
-        currentMarkers = [NSMutableArray arrayWithArray:[self getLocalMarkers: [defaults floatForKey:@"starLatitude"]
-                                                                       andLon: [defaults floatForKey:@"starLongitude"]
-                                                                   withRadius: 8000]];
-        
-//        NSLog(@"%@", currentMarkers);
+
+        currentMarkers = [NSMutableArray arrayWithArray:[self getLocalMarkers:[defaults floatForKey:@"starLatitude"]
+                                                                       andLon:[defaults floatForKey:@"starLongitude"]
+                                                                   withRadius:8000]];
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[defaults floatForKey:@"starLatitude"]
                                                                 longitude:[defaults floatForKey:@"starLongitude"]
@@ -273,13 +293,19 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         
         self.view = mapView_;
         mapView_.delegate = self;
-        [self drawMarkersOnMap: currentMarkers];
-        
+        if (currentMarkers && [currentMarkers count] > 0){
+            [self drawMarkersOnMap: currentMarkers];
+        }
+        else if (currentMarkers && [currentMarkers count] == 0){
+            [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we have no results for your current location"];
+        }
+        else {
+            [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not fetch spots for you. Try again later."];
+        }
         [self stopLocationManager]; // naive version, satisfy yourself with first result
-
+        
 //       better version will try getting better result for certain amount of time
 //        if (newLocation.horizontalAccuracy <= _locationManager.desiredAccuracy){
-//            NSLog(@"*** Yay we're done!");
 //            [self stopLocationManager];
 //        }
 
@@ -289,30 +315,21 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     _location = newLocation;
 }
 
+#pragma mark - user interactions with map
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString * what_action = [actionSheet buttonTitleAtIndex:buttonIndex];
-    NSLog(@"The %@ button was tapped.", what_action);
+
     if ([what_action isEqualToString:@"Call"])
     {
-        NSString *phoneNumber = [[NSString alloc]
-                                 initWithString:
-                                 
-                                 [NSString stringWithFormat:@"telprompt:%@",[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""]]];
-        NSLog(@"I am calling %@", phoneNumber);
-        [[UIApplication sharedApplication]
-         openURL:[NSURL URLWithString:phoneNumber]];
-        
+        NSString *phoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",[[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""]]];
+
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
     }
     else if([what_action isEqualToString:@"Add as a Contact"]){
         // create person record
-        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-            if (!granted){
-                //4
-                NSLog(@"Just denied");
-                return;
-            }
-            //5
+
             ABRecordRef person = ABPersonCreate();
             
             // set name and other string values
@@ -323,10 +340,10 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             NSString * venueCity=[infoOfCurrentlySelectedSpot valueForKey:@"address_city"];
             NSString * venueCountry=[infoOfCurrentlySelectedSpot valueForKey:@"address_country"];
             NSString * venueUrl = [infoOfCurrentlySelectedSpot valueForKey:@"www"];
-            
-            
+            NSString * venueFacebook = [infoOfCurrentlySelectedSpot valueForKey:@"facebook"];
+        
             ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge CFStringRef) venueName, NULL);
-            
+            // url
             if (venueUrl)
             {
                 ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
@@ -334,7 +351,19 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                 ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
                 CFRelease(urlMultiValue);
             }
-            
+            // facebook
+            if (venueFacebook)
+            {
+                ABMultiValueRef multiSocial = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
+                
+                ABMultiValueAddValueAndLabel(multiSocial, (__bridge CFTypeRef)([NSDictionary dictionaryWithObjectsAndKeys:(NSString *)kABPersonSocialProfileServiceFacebook, kABPersonSocialProfileServiceKey, venueFacebook, kABPersonSocialProfileUsernameKey,nil]), kABPersonSocialProfileServiceFacebook, NULL);
+                
+                ABRecordSetValue(person, kABPersonSocialProfileProperty, multiSocial, NULL);
+                CFRelease(multiSocial);
+            }
+        
+        
+            // phone
             if (venuePhone)
             {
                 ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
@@ -346,10 +375,8 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             }
             
             // add address
-            
             ABMutableMultiValueRef multiAddress = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
             NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];
-            
             if (venueAddress1)
             {
                 if (venueAddress2)
@@ -367,29 +394,26 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             CFRelease(multiAddress);
             NSLog(@"we are here adding contact");
             // let's show view controller
-            
             ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
-            
             controller.displayedPerson = person;
             controller.allowsAddingToAddressBook = YES;
-            
             // current view must have a navigation controller
-            
             [self.navigationController pushViewController:controller animated:YES];
-            
+            UIImage *img = [UIImage imageNamed:@"marker-bad-kopia.png"];
+
+            if ([[infoOfCurrentlySelectedSpot valueForKey:@"is_enabled"] intValue] == 1){
+               img = [UIImage imageNamed:@"marker-ok-kopia.png"];
+            }
+
+            NSData *dataRef = UIImagePNGRepresentation(img);
+            ABPersonSetImageData(person, (__bridge CFDataRef)dataRef, nil);
             CFRelease(person);
-        });
-        
     }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
-    NSLog(@"Tapped was %@",[marker.userData valueForKey:@"name"]);
     infoOfCurrentlySelectedSpot = marker.userData;
     [takieMenu showInView:mapView_];
 }
-
-
-
 
 @end

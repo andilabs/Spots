@@ -16,7 +16,7 @@
 extern NSString * const SpotsEndpointURL;
 extern NSString * const SpotsEmoji;
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
+@interface ViewController :  UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate, UINavigationControllerDelegate>
 @property (nonatomic,retain) CLLocationManager *locationManager;
 
 -(NSMutableArray*)getNearbylSpotsWithLat: (float)lat andLon: (float) lon withinRadius: (int) radius;

@@ -47,6 +47,11 @@
 		A991246D1B2F20C900BF9259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A948EE531B25D620007B108F /* Main.storyboard */; };
 		A991246E1B2F20C900BF9259 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9345E591B25E3CA00EB682C /* Media.xcassets */; };
 		A991246F1B2F20C900BF9259 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A948EE6F1B25D818007B108F /* Podfile */; };
+		A995A3011B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
+		A995A3021B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
+		A995A3031B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
+		A995A3041B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
+		A995A3051B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +91,8 @@
 		A99124621B2F1FF400BF9259 /* VeganspotORG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeganspotORG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99124631B2F1FF400BF9259 /* VeganspotORG.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = VeganspotORG.plist; path = /Users/andi/IOS/BetterSpots/VeganspotORG.plist; sourceTree = "<absolute>"; };
 		A99124741B2F20C900BF9259 /* MomspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A995A2FF1B7A950C00CC50BB /* SpotDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotDetailsViewController.h; sourceTree = "<group>"; };
+		A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotDetailsViewController.m; sourceTree = "<group>"; };
 		A9D25A3F1B2B807000AF8DAE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		A9D25A521B2D74CE00AF8DAE /* MomspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = MomspotEU.plist; path = /Users/andi/IOS/BetterSpots/MomspotEU.plist; sourceTree = "<absolute>"; };
 		A9DBBE041B77427000F1BE57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -209,6 +216,8 @@
 				A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */,
 				A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */,
 				A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */,
+				A995A2FF1B7A950C00CC50BB /* SpotDetailsViewController.h */,
+				A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -590,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91C588A1B2E12F4009179E5 /* ViewController.m in Sources */,
+				A995A3021B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */,
 				A91C588C1B2E12F4009179E5 /* main.m in Sources */,
 			);
@@ -600,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
+				A995A3011B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A97DF5731B76A9CC004D0906 /* ViewController.m in Sources */,
+				A995A3051B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A97DF5741B76A9CC004D0906 /* AppDelegate.m in Sources */,
 				A97DF5751B76A9CC004D0906 /* main.m in Sources */,
 			);
@@ -618,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99124551B2F1FF400BF9259 /* ViewController.m in Sources */,
+				A995A3031B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124561B2F1FF400BF9259 /* AppDelegate.m in Sources */,
 				A99124571B2F1FF400BF9259 /* main.m in Sources */,
 			);
@@ -628,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99124671B2F20C900BF9259 /* ViewController.m in Sources */,
+				A995A3041B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124681B2F20C900BF9259 /* AppDelegate.m in Sources */,
 				A99124691B2F20C900BF9259 /* main.m in Sources */,
 			);

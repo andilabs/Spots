@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SpotDetailsViewController.h"
 @import AddressBook;
 
 NSString * const SpotsEndpointURL = @"com.andilabs.SpotsEndpointURL";
@@ -43,7 +44,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                                             delegate:self
                                    cancelButtonTitle:@"Cancel"
                               destructiveButtonTitle:nil
-                                   otherButtonTitles:@"Call", @"Add as a Contact", @"Share...", @"Navigate me there...", nil];
+                                   otherButtonTitles:@"Call", @"Add as a Contact", @"Share...", @"Navigate me there...", @"Details...", nil];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     urlString = [infoDictionary objectForKey:SpotsEndpointURL];
     emojiString = [infoDictionary objectForKey:SpotsEmoji];
@@ -440,7 +441,35 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     else if([what_action isEqualToString:@"Navigate me there..."]){
         [self navigateUserToTheSpot: infoOfCurrentlySelectedSpot];
     }
+    else if([what_action isEqualToString:@"Details..."]){
+//        SpotDetailsViewController *myNewVC = [[SpotDetailsViewController alloc] init];
+//       [self presentModalViewController:myNewVC animated:YES];
+//        SpotDetailsViewController *myNewVC = [[SpotDetailsViewController alloc] init];
+//        [self.navigationController pushViewController:myNewVC animated:YES];
+    
+        //[self performSegueWithIdentifier:@"ShowSpotDetail" sender:self.navigationController];
+        SpotDetailsViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotDetail"];
+        myController.dataModel = infoOfCurrentlySelectedSpot;
+        [self.navigationController pushViewController: myController animated:YES];
+    
+    }
 }
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    NSLog(@"cos sie dzieje!");
+//    if([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
+//        NSLog(@"to sie dzieje!");
+////        UITableViewCell *cell = (UITableViewCell *) sender;
+////        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+////        NSDictionary *storiesDict =[topStories objectAtIndex:[indexPath row]];
+////        StoryModel *storyModel = [[StoryModel alloc] init];
+////        storyModel = storiesDict;
+//
+//        SpotDetailsViewController *controller = (SpotDetailsViewController *)segue.destinationViewController;
+//        NSLog(@"to wysylam: %@",infoOfCurrentlySelectedSpot);
+//          controller.dataModel = infoOfCurrentlySelectedSpot;
+//    }
+//}
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     infoOfCurrentlySelectedSpot = marker.userData;

@@ -458,7 +458,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
-        NSLog(@"to sie dzieje!");
+        NSLog(@"prepareForSegue in ViewController");
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
                 controller.dataModel = infoOfCurrentlySelectedSpot;

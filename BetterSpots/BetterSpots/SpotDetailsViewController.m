@@ -10,6 +10,7 @@
 
 @interface SpotDetailsViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *thumnail;
 @end
 
 @implementation SpotDetailsViewController
@@ -23,6 +24,8 @@
     NSLog(@"anything happens here SpotDetailsViewController viewDidLoad");
     NSString * name = [self.dataModel objectForKey:@"name"];
     self.dateLabel.text = name;// [self.dataModel objectForKey:@"name"];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.dataModel valueForKey: @"thumbnail_venue_photo"]]]];
+    self.thumnail.image = image;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

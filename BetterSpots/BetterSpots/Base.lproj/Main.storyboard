@@ -34,6 +34,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="UYc-SO-0NG">
+                            <rect key="frame" x="0.0" y="64" width="600" height="150"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection headerTitle="Section-1" id="PIB-Sy-Hvi">
                                 <cells>
@@ -75,6 +79,16 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Photo" id="5VT-hw-AVd">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" rowHeight="175" id="VcP-Lw-aX9">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="VcP-Lw-aX9" id="gec-zE-5Qa">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="wiI-Bp-bVN" id="4FQ-qU-Mim"/>
@@ -84,11 +98,12 @@
                     <navigationItem key="navigationItem" id="b9X-Mq-OXH"/>
                     <connections>
                         <outlet property="dateLabel" destination="OmB-es-2iI" id="D7F-SK-FIB"/>
+                        <outlet property="thumnail" destination="UYc-SO-0NG" id="zZB-ip-BeN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUW-Dx-Wzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2842" y="963"/>
+            <point key="canvasLocation" x="2692" y="899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nvi-qV-cQE">

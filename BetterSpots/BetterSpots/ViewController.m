@@ -22,7 +22,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSString *appName;
     NSString *urlString;
     NSUserDefaults *defaults;
-    NSMutableArray * currentMarkers;
+    NSMutableArray * currentSpots;
     UIActionSheet *markerActionsMenu;
     NSDictionary * infoOfCurrentlySelectedSpot;
 }
@@ -68,7 +68,42 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 
 #pragma mark - utils
-- (void)addNewAddresBookContact: (NSDictionary *) theSpotInfoDict {
+
+-(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (void)makePhoneCall: (NSString *) phoneNumber {
+    NSString *cleanedPhoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",
+                                                                      [phoneNumber stringByReplacingOccurrencesOfString:@" "
+                                                                                                             withString:@""]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:cleanedPhoneNumber]];
+}
+
+
+#pragma mark - spots actions
+
+- (void)addNewAddresBookContactWithContentOfTheSpot: (NSDictionary *) theSpotInfoDict {
     // create person record
     ABRecordRef person = ABPersonCreate();
     // set name and other string values
@@ -141,7 +176,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     CFRelease(person);
 }
 
-- (void)navigateUserToSpot: (NSDictionary *) theSpotInfoDict {
+- (void)navigateUserToTheSpot: (NSDictionary *) theSpotInfoDict {
     double lat = [theSpotInfoDict[@"location"][@"latitude"] doubleValue];
     double lng = [theSpotInfoDict[@"location"][@"longitude"] doubleValue];
     NSDictionary *addressDict = @{
@@ -156,15 +191,8 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
     [endingItem openInMapsWithLaunchOptions:launchOptions];
 }
-- (void)makePhoneCall: (NSString *) phoneNumber {
-    NSString *cleanedPhoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",
-                                                                      [phoneNumber stringByReplacingOccurrencesOfString:@" "
-                                                                                                             withString:@""]]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:cleanedPhoneNumber]];
-}
 
 - (void)shareTheSpot: (NSDictionary *) theSpotInfoDict
-//(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
 {
     NSMutableArray *sharingItems = [NSMutableArray new];
     NSString * composeMessage = [NSString stringWithFormat:@"Hi I found cool spot using #%@ Check it out!", appName];
@@ -179,33 +207,9 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     [self presentViewController:activityController animated:YES completion:nil];
 }
 
--(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
-                                                                             message:message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    
-    [self presentViewController:alertController
-                       animated:YES
-                     completion:nil];
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
 
 #pragma mark - fetching markers, drawing markers
--(NSMutableArray*)getLocalMarkers:(float)lat andLon:(float)lon withRadius:(int)radius
+-(NSMutableArray*)getNearbylSpotsWithLat:(float)lat andLon:(float)lon withinRadius:(int)radius
 {
     NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
                                    urlString,
@@ -215,10 +219,10 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:locaticonBasedUrl]];
     if (data) {
         NSError * myErr;
-        NSMutableArray * markers = [NSJSONSerialization JSONObjectWithData:data
+        NSMutableArray * spots = [NSJSONSerialization JSONObjectWithData:data
                                                                    options:kNilOptions
                                                                      error:&myErr];
-        return markers;
+        return spots;
     }
     else {
         return nil;
@@ -228,15 +232,15 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
 
 
-- (void)drawMarkersOnMap:(NSMutableArray*)markers
+- (void)drawMarkersOnMap:(NSMutableArray*)spots
 {
-    if ([markers count] > 0){
-        for (NSDictionary * marker in markers){
+    if ([spots count] > 0){
+        for (NSDictionary * spot in spots){
             GMSMarker *spotMarker = [[GMSMarker alloc] init];
-            spotMarker.title = marker[@"name"];
-            spotMarker.position = CLLocationCoordinate2DMake([marker[@"location"][@"latitude"] doubleValue], [marker[@"location"][@"longitude"]doubleValue]);
-            spotMarker.userData = marker;
-            switch ([marker[@"is_enabled"] intValue]){
+            spotMarker.title = spot[@"name"];
+            spotMarker.position = CLLocationCoordinate2DMake([spot[@"location"][@"latitude"] doubleValue], [spot[@"location"][@"longitude"]doubleValue]);
+            spotMarker.userData = spot;
+            switch ([spot[@"is_enabled"] intValue]){
                 case 0:
                     spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-bad-kopia"]
                                               scaledToSize:CGSizeMake(25, 25)];
@@ -246,16 +250,16 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                                               scaledToSize:CGSizeMake(25, 25)];
                     break;
             }
-            int ratingValue = roundf([marker[@"friendly_rate"]floatValue]);
+            int ratingValue = roundf([spot[@"friendly_rate"]floatValue]);
             if (ratingValue < 0){
                 ratingValue = 0;
             }
             spotMarker.snippet = [NSString stringWithFormat:@"%@ %@\n%@\n\n%.0f meters away.",
-                                  marker[@"address_street"],
-                                  marker[@"address_number"],
+                                  spot[@"address_street"],
+                                  spot[@"address_number"],
                                   [@"" stringByPaddingToLength:[@"⭐️" length]*ratingValue
                                                     withString: @"⭐️" startingAtIndex:0],
-                                  [marker[@"distance"]doubleValue]*1000];
+                                  [spot[@"distance"]doubleValue]*1000];
             spotMarker.map = mapView_;
             
         }
@@ -369,9 +373,9 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         [defaults setFloat: newLocation.coordinate.longitude forKey:@"starLongitude"];
         [defaults synchronize];
 
-        currentMarkers = [NSMutableArray arrayWithArray:[self getLocalMarkers:[defaults floatForKey:@"starLatitude"]
+        currentSpots = [NSMutableArray arrayWithArray:[self getNearbylSpotsWithLat:[defaults floatForKey:@"starLatitude"]
                                                                        andLon:[defaults floatForKey:@"starLongitude"]
-                                                                   withRadius:8000]];
+                                                                   withinRadius:8000]];
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[defaults floatForKey:@"starLatitude"]
                                                                 longitude:[defaults floatForKey:@"starLongitude"]
@@ -388,10 +392,10 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         
         self.view = mapView_;
         mapView_.delegate = self;
-        if (currentMarkers && [currentMarkers count] > 0){
-            [self drawMarkersOnMap: currentMarkers];
+        if (currentSpots && [currentSpots count] > 0){
+            [self drawMarkersOnMap: currentSpots];
         }
-        else if (currentMarkers && [currentMarkers count] == 0){
+        else if (currentSpots && [currentSpots count] == 0){
             [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we have no results for your current location"];
         }
         else {
@@ -423,13 +427,13 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
         [self makePhoneCall:[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"]];
     }
     else if([what_action isEqualToString:@"Add as a Contact"]){
-        [self addNewAddresBookContact: infoOfCurrentlySelectedSpot];
+        [self addNewAddresBookContactWithContentOfTheSpot: infoOfCurrentlySelectedSpot];
     }
     else if([what_action isEqualToString:@"Share..."]){
         [self shareTheSpot: infoOfCurrentlySelectedSpot];
     }
     else if([what_action isEqualToString:@"Navigate me there..."]){
-        [self navigateUserToSpot: infoOfCurrentlySelectedSpot];
+        [self navigateUserToTheSpot: infoOfCurrentlySelectedSpot];
     }
 }
 

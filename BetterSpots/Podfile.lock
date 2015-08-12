@@ -1,10 +1,18 @@
 PODS:
   - GoogleMaps (1.10.0)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
 
 DEPENDENCIES:
   - GoogleMaps
+  - UIActivityIndicator-for-SDWebImage
 
 SPEC CHECKSUMS:
   GoogleMaps: 8eafd25b658a6401ca45a185700716c4a9e9edf2
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
 COCOAPODS: 0.38.2

@@ -7,11 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "SpotDetailsViewController.h"
-@import AddressBook;
+#import "MyActivityIndicatorView.h"
 
-NSString * const SpotsEndpointURL = @"com.andilabs.SpotsEndpointURL";
-NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
+@interface ViewController()
+@property (nonatomic) Reachability *hostReachability;
+@property (nonatomic) Reachability *internetReachability;
+@property (nonatomic) Reachability *wifiReachability;
+
+@end
 
 @implementation ViewController {
     GMSMapView *mapView_;
@@ -26,6 +29,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     NSMutableArray * currentSpots;
     UIActionSheet *markerActionsMenu;
     NSDictionary * infoOfCurrentlySelectedSpot;
+    UIActivityIndicatorView * spinner;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES
@@ -40,16 +44,41 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 }
 
 - (void)viewDidLoad {
+    
+    
+
+
+    
     markerActionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                             delegate:self
                                    cancelButtonTitle:@"Cancel"
                               destructiveButtonTitle:nil
-                                   otherButtonTitles:@"Call", @"Add as a Contact", @"Share...", @"Navigate me there...", @"Details...", nil];
+                                   otherButtonTitles:@"Show detail", @"Call", @"Share", @"Directions", @"Add as a Contact", nil];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     urlString = [infoDictionary objectForKey:SpotsEndpointURL];
     emojiString = [infoDictionary objectForKey:SpotsEmoji];
-    appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-    [self startLocationManager];
+    appName = [infoDictionary objectForKey:AppName];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    
+    if(status == NotReachable)
+    {
+        [BetterSpotsUtils showAlertInfoWithTitle: @"No internet connection 😢"
+                                      andMessage: @"We need internet to fetch spots for you."
+                       inContextOfViewController: self];
+    }
+    else {
+        MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(
+                                                                                                                    0,
+                                                                                                                    0,
+                                                                                                                    self.view.frame.size.width,
+                                                                                                                    self.view.frame.size.height
+                                                                                                                    )];
+        self.view = activityIndicatorView;
+        [self startLocationManager];
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -57,7 +86,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
     if ((self = [super initWithCoder:aDecoder])){
         defaults = [NSUserDefaults standardUserDefaults];
         _locationManager = [[CLLocationManager alloc] init];
-        
     }
     return self;
 }
@@ -65,153 +93,6 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark - utils
-
--(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
-                                                                             message:message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    
-    [self presentViewController:alertController
-                       animated:YES
-                     completion:nil];
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-- (void)makePhoneCall: (NSString *) phoneNumber {
-    NSString *cleanedPhoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",
-                                                                      [phoneNumber stringByReplacingOccurrencesOfString:@" "
-                                                                                                             withString:@""]]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:cleanedPhoneNumber]];
-}
-
-
-#pragma mark - spots actions
-
-- (void)addNewAddresBookContactWithContentOfTheSpot: (NSDictionary *) theSpotInfoDict {
-    // create person record
-    ABRecordRef person = ABPersonCreate();
-    // set name and other string values
-    NSString * venueName=[theSpotInfoDict valueForKey:@"name"];
-    NSString * venuePhone=[[theSpotInfoDict valueForKey:@"phone_number"] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString * venueAddress1=[theSpotInfoDict valueForKey:@"address_street"];
-    NSString * venueAddress2 =[theSpotInfoDict valueForKey:@"address_number"];
-    NSString * venueCity=[theSpotInfoDict valueForKey:@"address_city"];
-    NSString * venueCountry=[theSpotInfoDict valueForKey:@"address_country"];
-    NSString * venueUrl = [theSpotInfoDict valueForKey:@"www"];
-    NSString * venueFacebook = [theSpotInfoDict valueForKey:@"facebook"];
-    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge CFStringRef) venueName, NULL);
-    // url
-    if (venueUrl)
-    {
-        ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-        ABMultiValueAddValueAndLabel(urlMultiValue, (__bridge CFStringRef) venueUrl, kABPersonHomePageLabel, NULL);
-        ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
-        CFRelease(urlMultiValue);
-    }
-    // facebook
-    if (venueFacebook)
-    {
-        ABMultiValueRef multiSocial = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
-        ABMultiValueAddValueAndLabel(multiSocial, (__bridge CFTypeRef)([NSDictionary dictionaryWithObjectsAndKeys:(NSString *)kABPersonSocialProfileServiceFacebook, kABPersonSocialProfileServiceKey, venueFacebook, kABPersonSocialProfileUsernameKey,nil]), kABPersonSocialProfileServiceFacebook, NULL);
-        ABRecordSetValue(person, kABPersonSocialProfileProperty, multiSocial, NULL);
-        CFRelease(multiSocial);
-    }
-    // phone
-    if (venuePhone)
-    {
-        ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-        NSArray *venuePhoneNumbers = [venuePhone componentsSeparatedByString:@" or "];
-        for (NSString *venuePhoneNumberString in venuePhoneNumbers)
-            ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFStringRef) venuePhoneNumberString, kABPersonPhoneMainLabel, NULL);
-        ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);
-        CFRelease(phoneNumberMultiValue);
-    }
-    // add address
-    ABMutableMultiValueRef multiAddress = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
-    NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];
-    if (venueAddress1)
-    {
-        if (venueAddress2)
-            addressDictionary[(NSString *) kABPersonAddressStreetKey] = [NSString stringWithFormat:@"%@\n%@", venueAddress1, venueAddress2];
-        else
-            addressDictionary[(NSString *) kABPersonAddressStreetKey] = venueAddress1;
-    }
-    if (venueCity)
-        addressDictionary[(NSString *)kABPersonAddressCityKey] = venueCity;
-    if (venueCountry)
-        addressDictionary[(NSString *)kABPersonAddressCountryKey] = venueCountry;
-    ABMultiValueAddValueAndLabel(multiAddress, (__bridge CFDictionaryRef) addressDictionary, kABWorkLabel, NULL);
-    ABRecordSetValue(person, kABPersonAddressProperty, multiAddress, NULL);
-    CFRelease(multiAddress);
-    // let's show view controller
-    ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
-    controller.displayedPerson = person;
-    controller.allowsAddingToAddressBook = YES;
-    // current view must have a navigation controller
-    [self.navigationController pushViewController:controller animated:YES];
-    UIImage *img = [UIImage imageNamed:@"marker-bad-kopia.png"];
-    if ([[theSpotInfoDict valueForKey:@"is_enabled"] intValue] == 1){
-        img = [UIImage imageNamed:@"marker-ok-kopia.png"];
-    }
-
-
-    NSData *dataRef = UIImagePNGRepresentation(img);
-    ABPersonSetImageData(person, (__bridge CFDataRef)dataRef, nil);
-    CFRelease(person);
-}
-
-- (void)navigateUserToTheSpot: (NSDictionary *) theSpotInfoDict {
-    double lat = [theSpotInfoDict[@"location"][@"latitude"] doubleValue];
-    double lng = [theSpotInfoDict[@"location"][@"longitude"] doubleValue];
-    NSDictionary *addressDict = @{
-                                  (NSString *) kABPersonAddressStreetKey : [theSpotInfoDict valueForKey:@"address_street"],
-                                  (NSString *) kABPersonAddressCityKey : [theSpotInfoDict valueForKey:@"address_city"],
-                                  (NSString *) kABPersonAddressCountryCodeKey : [theSpotInfoDict valueForKey:@"address_country"]
-                                  };
-    CLLocationCoordinate2D endingCoord = CLLocationCoordinate2DMake(lat, lng);
-    MKPlacemark *endLocation = [[MKPlacemark alloc] initWithCoordinate:endingCoord addressDictionary:addressDict];
-    MKMapItem *endingItem = [[MKMapItem alloc] initWithPlacemark:endLocation];
-    NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
-    [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
-    [endingItem openInMapsWithLaunchOptions:launchOptions];
-}
-
-- (void)shareTheSpot: (NSDictionary *) theSpotInfoDict
-{
-    NSMutableArray *sharingItems = [NSMutableArray new];
-    NSString *positiveAdjective = @"";
-    if ([[theSpotInfoDict valueForKey:@"is_enabled"] intValue] == 1){
-        positiveAdjective = @"cool";
-    }
-    NSString * composeMessage = [NSString stringWithFormat:@"Hi! I found %@ spot using #%@ Check it out!",
-                                 positiveAdjective,
-                                 appName];
-    [sharingItems addObject:composeMessage];
-    [sharingItems addObject:[NSURL URLWithString:[theSpotInfoDict valueForKey: @"www_url"]]];
-
-    if ([theSpotInfoDict valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[theSpotInfoDict valueForKey: @"thumbnail_venue_photo"]]]];
-        [sharingItems addObject:image];
-    }
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 
@@ -248,15 +129,23 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             spotMarker.userData = spot;
             switch ([spot[@"is_enabled"] intValue]){
                 case 0:
-                    spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-bad-kopia"]
-                                              scaledToSize:CGSizeMake(25, 25)];
+                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad-kopia-v2"]
+                                              scaledToSize:CGSizeMake(18, 45)];
                     break;
                 case 1:
-                    spotMarker.icon = [self imageWithImage:[UIImage imageNamed:@"marker-ok-kopia"]
-                                              scaledToSize:CGSizeMake(25, 25)];
+                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok-kopia-v2"]
+                                              scaledToSize:CGSizeMake(18, 45)];
                     break;
             }
+            spotMarker.groundAnchor = CGPointMake(0.5, 1.0);
             int ratingValue = roundf([spot[@"friendly_rate"]floatValue]);
+            NSString *numberString = [NSString stringWithFormat:@"%f", roundf([spot[@"friendly_rate"]floatValue])];
+            NSLog(@"%@ %d %.2f",
+                  spot[@"friendly_rate"],
+                  (int)roundf([spot[@"friendly_rate"]floatValue]),
+                  ((roundf([spot[@"friendly_rate"]floatValue])-[spot[@"friendly_rate"]floatValue]))
+                  );
+            NSLog(@"%@", numberString);
             if (ratingValue < 0){
                 ratingValue = 0;
             }
@@ -316,12 +205,16 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                 return;
             }
             default: {
-                [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
+                [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                              andMessage: @"But we can not geolocate you. Try again later."
+                               inContextOfViewController: self];
                 break;
             }
         }
     } else {
-        [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not geolocate you. Try again later."];
+        [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                      andMessage: @"But we can not geolocate you. Try again later."
+                       inContextOfViewController: self];
     }
     [self stopLocationManager];
     _lastLocationError = error;
@@ -336,6 +229,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
     if ([CLLocationManager locationServicesEnabled]) {
         NSLog(@"starting updating location....");
+        [spinner startAnimating];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         [_locationManager startUpdatingLocation];
@@ -348,6 +242,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 {
     if (_updatingLocation) {
         NSLog(@"stoping update of loc");
+        [spinner stopAnimating];
         [_locationManager stopUpdatingLocation];
         _locationManager.delegate = nil;
         _updatingLocation = NO;
@@ -358,10 +253,7 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations lastObject];
-//    NSLog(@"horizontal acc: %f", newLocation.horizontalAccuracy);
-//    NSLog(@" %@", locations);
-//    NSLog(@"did Update Locations %@", newLocation);
-//    NSLog(@"new location timestamp timeIntervalSinceNow: %f", [newLocation.timestamp timeIntervalSinceNow]);
+
     if ([newLocation.timestamp timeIntervalSinceNow] < -5.0){
         // If the time at which the location object was determined is too long ago (5 seconds in this case), then this is a so-called cached result. Instead of returning a new location fix, the location manager may initially give you the most recently found location under the assumption that you might not have moved much since last time (obviously this does not take into consideration people with jet packs). You’ll simply ignore these cached locations if they are too old.
         return;
@@ -402,10 +294,14 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
             [self drawMarkersOnMap: currentSpots];
         }
         else if (currentSpots && [currentSpots count] == 0){
-            [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we have no results for your current location"];
+            [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                          andMessage: @"But we have no results for your current location"
+                           inContextOfViewController: self];
         }
         else {
-            [self showAlertInfoWithTitle: @"We are very sad 😢" andMessage: @"But we can not fetch spots for you. Try again later."];
+            [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                          andMessage: @"But we can not fetch spots for you. Try again later."
+                           inContextOfViewController: self];
         }
         [self stopLocationManager]; // naive version, satisfy yourself with first result
         
@@ -430,31 +326,28 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
 
     if ([what_action isEqualToString:@"Call"])
     {
-        [self makePhoneCall:[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"]];
+        [BetterSpotsUtils makePhoneCall:[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"]];
     }
     else if([what_action isEqualToString:@"Add as a Contact"]){
-        [self addNewAddresBookContactWithContentOfTheSpot: infoOfCurrentlySelectedSpot];
+        [SpotActions addNewAddresBookContactWithContentOfTheSpot: infoOfCurrentlySelectedSpot
+                                       inContextOfViewController: self];
     }
-    else if([what_action isEqualToString:@"Share..."]){
-        [self shareTheSpot: infoOfCurrentlySelectedSpot];
+    else if([what_action isEqualToString:@"Share"]){
+//        [SpotActions shareTheSpot: infoOfCurrentlySelectedSpot
+//        inContextOfViewController: self
+//                       forAppName: appName
+//                        withImage: nil];
     }
-    else if([what_action isEqualToString:@"Navigate me there..."]){
-        [self navigateUserToTheSpot: infoOfCurrentlySelectedSpot];
+    else if([what_action isEqualToString:@"Directions"]){
+        [SpotActions navigateUserToTheSpot: infoOfCurrentlySelectedSpot];
     }
-    else if([what_action isEqualToString:@"Details..."]){
-//        SpotDetailsViewController *myNewVC = [[SpotDetailsViewController alloc] init];
-//       [self presentModalViewController:myNewVC animated:YES];
-//        SpotDetailsViewController *myNewVC = [[SpotDetailsViewController alloc] init];
-//        [self.navigationController pushViewController:myNewVC animated:YES];
+    else if([what_action isEqualToString:@"Show detail"]){
     
-        [self performSegueWithIdentifier:@"ShowSpotDetail" sender:self];
-
-//        SpotDetailsViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotDetail"];
-//        myController.dataModel = infoOfCurrentlySelectedSpot;
-//        [self.navigationController pushViewController: myController animated:YES];
-    
+        [self performSegueWithIdentifier:@"ShowSpotDetail"
+                                  sender:self];
     }
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
@@ -464,25 +357,12 @@ NSString * const SpotsEmoji = @"com.andilabs.SpotsEmoji";
                 controller.dataModel = infoOfCurrentlySelectedSpot;
     }
 }
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    NSLog(@"cos sie dzieje!");
-//    if([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
-//        NSLog(@"to sie dzieje!");
-////        UITableViewCell *cell = (UITableViewCell *) sender;
-////        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-////        NSDictionary *storiesDict =[topStories objectAtIndex:[indexPath row]];
-////        StoryModel *storyModel = [[StoryModel alloc] init];
-////        storyModel = storiesDict;
-//
-//        SpotDetailsViewController *controller = (SpotDetailsViewController *)segue.destinationViewController;
-//        NSLog(@"to wysylam: %@",infoOfCurrentlySelectedSpot);
-//          controller.dataModel = infoOfCurrentlySelectedSpot;
-//    }
-//}
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     infoOfCurrentlySelectedSpot = marker.userData;
-    [markerActionsMenu showInView:mapView_];
+//    [markerActionsMenu showInView:mapView_];
+    [self performSegueWithIdentifier:@"ShowSpotDetail" sender:self];
 }
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <GoogleMaps/GoogleMaps.h>
 @interface SpotDetailsViewController : UITableViewController
 @property(weak, nonatomic)  NSDictionary* dataModel;
 @end

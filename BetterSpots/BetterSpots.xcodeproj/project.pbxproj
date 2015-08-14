@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		827BF2BD4AD952205C2E7D83 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F28A3A1DF44F0D4144444CD /* libPods.a */; };
+		A9082FB01B7D505400013CAF /* SpotActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FAF1B7D505400013CAF /* SpotActions.m */; };
+		A9082FB11B7D505400013CAF /* SpotActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FAF1B7D505400013CAF /* SpotActions.m */; };
+		A9082FB21B7D505400013CAF /* SpotActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FAF1B7D505400013CAF /* SpotActions.m */; };
+		A9082FB31B7D505400013CAF /* SpotActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FAF1B7D505400013CAF /* SpotActions.m */; };
+		A9082FB41B7D505400013CAF /* SpotActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FAF1B7D505400013CAF /* SpotActions.m */; };
+		A9082FB71B7D544A00013CAF /* BetterSpotsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */; };
+		A9082FB81B7D544A00013CAF /* BetterSpotsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */; };
+		A9082FB91B7D544A00013CAF /* BetterSpotsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */; };
+		A9082FBA1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */; };
+		A9082FBB1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */; };
+		A9082FCC1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */; };
+		A9082FCD1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */; };
+		A9082FCE1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */; };
+		A9082FCF1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */; };
+		A9082FD01B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */; };
+		A9082FD31B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
+		A9082FD41B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
+		A9082FD51B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
+		A9082FD61B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
+		A9082FD71B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
 		A91C588A1B2E12F4009179E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE511B25D620007B108F /* ViewController.m */; };
 		A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4E1B25D620007B108F /* AppDelegate.m */; };
 		A91C588C1B2E12F4009179E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4B1B25D620007B108F /* main.m */; };
@@ -16,6 +36,11 @@
 		A91C58911B2E12F4009179E5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9345E591B25E3CA00EB682C /* Media.xcassets */; };
 		A91C58921B2E12F4009179E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A948EE6F1B25D818007B108F /* Podfile */; };
 		A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE651B25D621007B108F /* BetterSpotsTests.m */; };
+		A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
+		A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
+		A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
+		A96CFBB31B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
+		A96CFBB41B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96FA4C91B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */; };
 		A96FA4CA1B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */; };
 		A96FA4CC1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */; };
@@ -52,12 +77,35 @@
 		A995A3031B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
 		A995A3041B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
 		A995A3051B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */; };
+		A9A761031B7BF7D500C9D28A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A761021B7BF7D500C9D28A /* Reachability.m */; };
+		A9A761041B7BF7D500C9D28A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A761021B7BF7D500C9D28A /* Reachability.m */; };
+		A9A761051B7BF7D500C9D28A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A761021B7BF7D500C9D28A /* Reachability.m */; };
+		A9A761061B7BF7D500C9D28A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A761021B7BF7D500C9D28A /* Reachability.m */; };
+		A9A761071B7BF7D500C9D28A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A761021B7BF7D500C9D28A /* Reachability.m */; };
+		A9B6C6D61B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */; };
+		A9B6C6D71B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */; };
+		A9B6C6D81B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */; };
+		A9B6C6D91B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */; };
+		A9B6C6DA1B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */; };
+		A9B6C6DC1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
+		A9B6C6DD1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
+		A9B6C6DE1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
+		A9B6C6DF1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
+		A9B6C6E01B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06D1BCE2DD118008398C1BF6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1F28A3A1DF44F0D4144444CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA356E227CF230850943D3E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A9082FAE1B7D505400013CAF /* SpotActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotActions.h; sourceTree = "<group>"; };
+		A9082FAF1B7D505400013CAF /* SpotActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotActions.m; sourceTree = "<group>"; };
+		A9082FB51B7D544A00013CAF /* BetterSpotsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterSpotsCommon.h; sourceTree = "<group>"; };
+		A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterSpotsCommon.m; sourceTree = "<group>"; };
+		A9082FCA1B7E1EA900013CAF /* MyActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivityIndicatorView.h; sourceTree = "<group>"; };
+		A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivityIndicatorView.m; sourceTree = "<group>"; };
+		A9082FD11B7E61BC00013CAF /* SpotDetailsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotDetailsMapViewController.h; sourceTree = "<group>"; };
+		A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotDetailsMapViewController.m; sourceTree = "<group>"; };
 		A91C58971B2E12F4009179E5 /* EnabledspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnabledspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C58981B2E12F5009179E5 /* EnabledspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = EnabledspotEU.plist; path = /Users/andi/IOS/BetterSpots/EnabledspotEU.plist; sourceTree = "<absolute>"; };
 		A9345E591B25E3CA00EB682C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
@@ -71,6 +119,8 @@
 		A948EE641B25D621007B108F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A948EE651B25D621007B108F /* BetterSpotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetterSpotsTests.m; sourceTree = "<group>"; };
 		A948EE6F1B25D818007B108F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A96CFBAE1B7B60AE003E1FC1 /* BetterSpotsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterSpotsUtils.h; sourceTree = "<group>"; };
+		A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterSpotsUtils.m; sourceTree = "<group>"; };
 		A96FA4B31B77465000BB5BBA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A96FA4B51B77467100BB5BBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		A96FA4B71B77468300BB5BBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -93,6 +143,10 @@
 		A99124741B2F20C900BF9259 /* MomspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A995A2FF1B7A950C00CC50BB /* SpotDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotDetailsViewController.h; sourceTree = "<group>"; };
 		A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotDetailsViewController.m; sourceTree = "<group>"; };
+		A9A761011B7BF7D500C9D28A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A9A761021B7BF7D500C9D28A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-regular.ttf"; sourceTree = "<group>"; };
+		A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		A9D25A3F1B2B807000AF8DAE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		A9D25A521B2D74CE00AF8DAE /* MomspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = MomspotEU.plist; path = /Users/andi/IOS/BetterSpots/MomspotEU.plist; sourceTree = "<absolute>"; };
 		A9DBBE041B77427000F1BE57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -205,6 +259,9 @@
 		A948EE481B25D620007B108F /* BetterSpots */ = {
 			isa = PBXGroup;
 			children = (
+				A9B6C6CD1B7CC0B3000DB4B6 /* Resources */,
+				A9A761011B7BF7D500C9D28A /* Reachability.h */,
+				A9A761021B7BF7D500C9D28A /* Reachability.m */,
 				A9345E591B25E3CA00EB682C /* Media.xcassets */,
 				A948EE4D1B25D620007B108F /* AppDelegate.h */,
 				A948EE4E1B25D620007B108F /* AppDelegate.m */,
@@ -218,6 +275,16 @@
 				A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */,
 				A995A2FF1B7A950C00CC50BB /* SpotDetailsViewController.h */,
 				A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */,
+				A96CFBAE1B7B60AE003E1FC1 /* BetterSpotsUtils.h */,
+				A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */,
+				A9082FAE1B7D505400013CAF /* SpotActions.h */,
+				A9082FAF1B7D505400013CAF /* SpotActions.m */,
+				A9082FB51B7D544A00013CAF /* BetterSpotsCommon.h */,
+				A9082FB61B7D544A00013CAF /* BetterSpotsCommon.m */,
+				A9082FCA1B7E1EA900013CAF /* MyActivityIndicatorView.h */,
+				A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */,
+				A9082FD11B7E61BC00013CAF /* SpotDetailsMapViewController.h */,
+				A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -245,6 +312,23 @@
 				A948EE641B25D621007B108F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A9B6C6CD1B7CC0B3000DB4B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9B6C6CE1B7CC0C2000DB4B6 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A9B6C6CE1B7CC0C2000DB4B6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */,
+				A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,7 +472,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91C58901B2E12F4009179E5 /* Main.storyboard in Resources */,
+				A9B6C6D71B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A91C58911B2E12F4009179E5 /* Media.xcassets in Resources */,
+				A9B6C6DD1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A96FA4D31B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */,
 				A91C58921B2E12F4009179E5 /* Podfile in Resources */,
 			);
@@ -399,7 +485,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96FA4CF1B7747D100BB5BBA /* DogspotEUMedia.xcassets in Resources */,
+				A9B6C6D61B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A96FA4CC1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */,
+				A9B6C6DC1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A96FA4D21B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */,
 				A96FA4C91B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */,
 			);
@@ -410,7 +498,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A97DF5791B76A9CC004D0906 /* Main.storyboard in Resources */,
+				A9B6C6DA1B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A96FA4D01B7747D100BB5BBA /* DogspotEUMedia.xcassets in Resources */,
+				A9B6C6E01B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A97DF57A1B76A9CC004D0906 /* Media.xcassets in Resources */,
 				A97DF57B1B76A9CC004D0906 /* Podfile in Resources */,
 			);
@@ -421,7 +511,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A991245B1B2F1FF400BF9259 /* Main.storyboard in Resources */,
+				A9B6C6D81B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A96FA4CA1B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */,
+				A9B6C6DE1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A991245C1B2F1FF400BF9259 /* Media.xcassets in Resources */,
 				A991245D1B2F1FF400BF9259 /* Podfile in Resources */,
 			);
@@ -432,7 +524,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96FA4CD1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */,
+				A9B6C6D91B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A991246D1B2F20C900BF9259 /* Main.storyboard in Resources */,
+				A9B6C6DF1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A991246E1B2F20C900BF9259 /* Media.xcassets in Resources */,
 				A991246F1B2F20C900BF9259 /* Podfile in Resources */,
 			);
@@ -599,8 +693,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91C588A1B2E12F4009179E5 /* ViewController.m in Sources */,
+				A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A995A3021B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */,
+				A9082FB11B7D505400013CAF /* SpotActions.m in Sources */,
+				A9A761041B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A9082FB81B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
+				A9082FCD1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A9082FD41B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A91C588C1B2E12F4009179E5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,8 +709,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9082FB01B7D505400013CAF /* SpotActions.m in Sources */,
+				A9082FCC1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A9082FD31B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
+				A9082FB71B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A995A3011B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
+				A9A761031B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,8 +725,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A97DF5731B76A9CC004D0906 /* ViewController.m in Sources */,
+				A96CFBB41B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A995A3051B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A97DF5741B76A9CC004D0906 /* AppDelegate.m in Sources */,
+				A9082FB41B7D505400013CAF /* SpotActions.m in Sources */,
+				A9A761071B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A9082FBB1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
+				A9082FD01B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A9082FD71B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A97DF5751B76A9CC004D0906 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,8 +742,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99124551B2F1FF400BF9259 /* ViewController.m in Sources */,
+				A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A995A3031B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124561B2F1FF400BF9259 /* AppDelegate.m in Sources */,
+				A9082FB21B7D505400013CAF /* SpotActions.m in Sources */,
+				A9A761051B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A9082FB91B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
+				A9082FCE1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A9082FD51B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A99124571B2F1FF400BF9259 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,8 +759,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99124671B2F20C900BF9259 /* ViewController.m in Sources */,
+				A96CFBB31B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A995A3041B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124681B2F20C900BF9259 /* AppDelegate.m in Sources */,
+				A9082FB31B7D505400013CAF /* SpotActions.m in Sources */,
+				A9A761061B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A9082FBA1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
+				A9082FCF1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A9082FD61B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A99124691B2F20C900BF9259 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

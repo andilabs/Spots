@@ -28,6 +28,11 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Geolocation is needed to find dog friendly spots nearby!🐺♥️</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>glyphicons-regular.ttf</string>
+		<string>fontawesome-webfont.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -44,5 +49,14 @@
 	<string>🐺</string>
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://dogspot.eu/api/</string>
+	<key>com.andilabs.SpotsFacilities</key>
+	<dict>
+		<key>dedicated_dogs_menu</key>
+		<integer>1</integer>
+		<key>dog_snacks</key>
+		<integer>3</integer>
+		<key>fresh_water</key>
+		<integer>2</integer>
+	</dict>
 </dict>
 </plist>

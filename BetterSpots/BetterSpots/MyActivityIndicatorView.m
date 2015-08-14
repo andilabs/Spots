@@ -31,7 +31,7 @@
 
 -(void)configureView{
     
-    UIColor * spotLeadingColor = [UIColor colorWithHexString:@"#fcbd41"];
+    UIColor * spotLeadingColor = [BetterSpotsUtils getSpotsLeadingColor];
     [self setBackgroundColor: spotLeadingColor];
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]
                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

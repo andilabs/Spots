@@ -11,4 +11,6 @@
 extern NSString * const SpotsEndpointURL;
 extern NSString * const SpotsEmoji;
 extern NSString * const SpotsFacilites;
+extern NSString * const SpotsLeadingColor;
+
 extern NSString * const AppName;

@@ -23,5 +23,7 @@
 
 + (UIColor *)colorWithHex:(UInt32)col;
 + (UIColor *)colorWithHexString:(NSString *)str;
+
++ (UIColor *)getSpotsLeadingColor;
 @end
 

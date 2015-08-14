@@ -58,5 +58,7 @@
 		<key>fresh_water</key>
 		<integer>2</integer>
 	</dict>
+	<key>com.andilabs.SpotsLeadingColor</key>
+	<string>#fcbd41</string>
 </dict>
 </plist>

@@ -5,7 +5,7 @@
 //  Created by Andrzej Kostański on 08.06.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-
+#import "BetterSpotsUtils.h"
 #import "ViewController.h"
 #import "MyActivityIndicatorView.h"
 
@@ -45,19 +45,17 @@
 
 - (void)viewDidLoad {
     
+    // make background color of navigation bar with spot default color
+    self.navigationController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+    // make fonts on navigation bar white
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-
-
-    
-    markerActionsMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                            delegate:self
-                                   cancelButtonTitle:@"Cancel"
-                              destructiveButtonTitle:nil
-                                   otherButtonTitles:@"Show detail", @"Call", @"Share", @"Directions", @"Add as a Contact", nil];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     urlString = [infoDictionary objectForKey:SpotsEndpointURL];
     emojiString = [infoDictionary objectForKey:SpotsEmoji];
     appName = [infoDictionary objectForKey:AppName];
+
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
     
@@ -149,12 +147,12 @@
             if (ratingValue < 0){
                 ratingValue = 0;
             }
-            spotMarker.snippet = [NSString stringWithFormat:@"%@ %@\n%@\n\n%.0f meters away.",
+            spotMarker.snippet = [NSString stringWithFormat:@"%@ %@\n%@\n\n%@ away.",
                                   spot[@"address_street"],
                                   spot[@"address_number"],
                                   [@"" stringByPaddingToLength:[@"⭐️" length]*ratingValue
                                                     withString: @"⭐️" startingAtIndex:0],
-                                  [spot[@"distance"]doubleValue]*1000];
+                                  [SpotActions getFormattedDistanceWith:[spot[@"distance"]doubleValue]]];
             spotMarker.map = mapView_;
             
         }
@@ -303,12 +301,10 @@
                                           andMessage: @"But we can not fetch spots for you. Try again later."
                            inContextOfViewController: self];
         }
-        [self stopLocationManager]; // naive version, satisfy yourself with first result
-        
-//       better version will try getting better result for certain amount of time
-//        if (newLocation.horizontalAccuracy <= _locationManager.desiredAccuracy){
-//            [self stopLocationManager];
-//        }
+        [self stopLocationManager];
+        // naive version, satisfy yourself with first result
+        // better version will try getting better result for certain amount of time
+        // and checking newLocation.horizontalAccuracy <= _locationManager.desiredAccuracy
 
     }
 
@@ -318,36 +314,6 @@
 
 #pragma mark - user interactions with map
 
-
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString * what_action = [actionSheet buttonTitleAtIndex:buttonIndex];
-
-    if ([what_action isEqualToString:@"Call"])
-    {
-        [BetterSpotsUtils makePhoneCall:[infoOfCurrentlySelectedSpot valueForKey:@"phone_number"]];
-    }
-    else if([what_action isEqualToString:@"Add as a Contact"]){
-        [SpotActions addNewAddresBookContactWithContentOfTheSpot: infoOfCurrentlySelectedSpot
-                                       inContextOfViewController: self];
-    }
-    else if([what_action isEqualToString:@"Share"]){
-//        [SpotActions shareTheSpot: infoOfCurrentlySelectedSpot
-//        inContextOfViewController: self
-//                       forAppName: appName
-//                        withImage: nil];
-    }
-    else if([what_action isEqualToString:@"Directions"]){
-        [SpotActions navigateUserToTheSpot: infoOfCurrentlySelectedSpot];
-    }
-    else if([what_action isEqualToString:@"Show detail"]){
-    
-        [self performSegueWithIdentifier:@"ShowSpotDetail"
-                                  sender:self];
-    }
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
@@ -355,12 +321,12 @@
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
                 controller.dataModel = infoOfCurrentlySelectedSpot;
+
     }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     infoOfCurrentlySelectedSpot = marker.userData;
-//    [markerActionsMenu showInView:mapView_];
     [self performSegueWithIdentifier:@"ShowSpotDetail" sender:self];
 }
 

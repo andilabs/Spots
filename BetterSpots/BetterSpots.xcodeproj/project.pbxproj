@@ -28,6 +28,11 @@
 		A9082FD51B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
 		A9082FD61B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
 		A9082FD71B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */; };
+		A9082FDA1B7E883100013CAF /* InAppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD91B7E883100013CAF /* InAppWebViewController.m */; };
+		A9082FDB1B7E883100013CAF /* InAppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD91B7E883100013CAF /* InAppWebViewController.m */; };
+		A9082FDC1B7E883100013CAF /* InAppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD91B7E883100013CAF /* InAppWebViewController.m */; };
+		A9082FDD1B7E883100013CAF /* InAppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD91B7E883100013CAF /* InAppWebViewController.m */; };
+		A9082FDE1B7E883100013CAF /* InAppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9082FD91B7E883100013CAF /* InAppWebViewController.m */; };
 		A91C588A1B2E12F4009179E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE511B25D620007B108F /* ViewController.m */; };
 		A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4E1B25D620007B108F /* AppDelegate.m */; };
 		A91C588C1B2E12F4009179E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE4B1B25D620007B108F /* main.m */; };
@@ -106,6 +111,8 @@
 		A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivityIndicatorView.m; sourceTree = "<group>"; };
 		A9082FD11B7E61BC00013CAF /* SpotDetailsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotDetailsMapViewController.h; sourceTree = "<group>"; };
 		A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotDetailsMapViewController.m; sourceTree = "<group>"; };
+		A9082FD81B7E883100013CAF /* InAppWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppWebViewController.h; sourceTree = "<group>"; };
+		A9082FD91B7E883100013CAF /* InAppWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppWebViewController.m; sourceTree = "<group>"; };
 		A91C58971B2E12F4009179E5 /* EnabledspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnabledspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C58981B2E12F5009179E5 /* EnabledspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = EnabledspotEU.plist; path = /Users/andi/IOS/BetterSpots/EnabledspotEU.plist; sourceTree = "<absolute>"; };
 		A9345E591B25E3CA00EB682C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
@@ -285,6 +292,8 @@
 				A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */,
 				A9082FD11B7E61BC00013CAF /* SpotDetailsMapViewController.h */,
 				A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */,
+				A9082FD81B7E883100013CAF /* InAppWebViewController.h */,
+				A9082FD91B7E883100013CAF /* InAppWebViewController.m */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -697,6 +706,7 @@
 				A995A3021B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */,
 				A9082FB11B7D505400013CAF /* SpotActions.m in Sources */,
+				A9082FDB1B7E883100013CAF /* InAppWebViewController.m in Sources */,
 				A9A761041B7BF7D500C9D28A /* Reachability.m in Sources */,
 				A9082FB81B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCD1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
@@ -712,6 +722,7 @@
 				A9082FB01B7D505400013CAF /* SpotActions.m in Sources */,
 				A9082FCC1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
 				A9082FD31B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
+				A9082FDA1B7E883100013CAF /* InAppWebViewController.m in Sources */,
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
 				A9082FB71B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A995A3011B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
@@ -729,6 +740,7 @@
 				A995A3051B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A97DF5741B76A9CC004D0906 /* AppDelegate.m in Sources */,
 				A9082FB41B7D505400013CAF /* SpotActions.m in Sources */,
+				A9082FDE1B7E883100013CAF /* InAppWebViewController.m in Sources */,
 				A9A761071B7BF7D500C9D28A /* Reachability.m in Sources */,
 				A9082FBB1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FD01B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
@@ -746,6 +758,7 @@
 				A995A3031B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124561B2F1FF400BF9259 /* AppDelegate.m in Sources */,
 				A9082FB21B7D505400013CAF /* SpotActions.m in Sources */,
+				A9082FDC1B7E883100013CAF /* InAppWebViewController.m in Sources */,
 				A9A761051B7BF7D500C9D28A /* Reachability.m in Sources */,
 				A9082FB91B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCE1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
@@ -763,6 +776,7 @@
 				A995A3041B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A99124681B2F20C900BF9259 /* AppDelegate.m in Sources */,
 				A9082FB31B7D505400013CAF /* SpotActions.m in Sources */,
+				A9082FDD1B7E883100013CAF /* InAppWebViewController.m in Sources */,
 				A9A761061B7BF7D500C9D28A /* Reachability.m in Sources */,
 				A9082FBA1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCF1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,

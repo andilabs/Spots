@@ -10,7 +10,7 @@
 @import AddressBook;
 
 @implementation SpotActions
-#pragma mark - spots actions
+
 
 + (void)addNewAddresBookContactWithContentOfTheSpot: (NSDictionary *) theSpotInfoDict inContextOfViewController: (UIViewController *) uiViewController {
     // create person record
@@ -118,6 +118,16 @@
     }
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [uiViewController presentViewController:activityController animated:YES completion:nil];
+}
+
++ (NSString *)getFormattedDistanceWith: (double) distance {
+    if (distance > 1){
+        return [NSString stringWithFormat:@"%.2f km", distance];
+    }
+    else {
+        double distanceInMeters = distance * 1000;
+        return [NSString stringWithFormat:@"%.0f m", distanceInMeters];
+    }
 }
 
 @end

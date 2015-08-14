@@ -23,29 +23,22 @@
 }
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.title = [SpotActions getFormattedDistanceWith:[dataModel[@"distance"]doubleValue]];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[self.dataModel[@"location"][@"latitude"] doubleValue]
                                                             longitude:[self.dataModel[@"location"][@"longitude"]doubleValue]
                                                                  zoom:17];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = camera.target;
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.map = mapView;
-    
     self.view = mapView;
-    
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

@@ -8,6 +8,7 @@
 
 
 #import "SpotDetailsViewController.h"
+#import "InAppWebViewController.h"
 #import "SpotDetailsMapViewController.h"
 #import "BetterSpotsUtils.h"
 #import "SpotActions.h"
@@ -61,9 +62,13 @@
         NSLog(@"go to spotMapDetailView !");
 //        /[self performSegueWithIdentifier:@"ShowSpotDetailMap" sender:self];
     }
-    if (indexPath.section == 0 && indexPath.row == 2)
+    if (indexPath.section == 0 && indexPath.row == 4)
     {
-        
+        [BetterSpotsUtils makePhoneCall:[self.dataModel valueForKey:@"phone_number"]];
+    }
+    if (indexPath.section == 0 && indexPath.row == 8)
+    {
+        [SpotActions  addNewAddresBookContactWithContentOfTheSpot: self.dataModel inContextOfViewController:self];
     }
 }
 
@@ -164,6 +169,15 @@
         SpotDetailsMapViewController *controller = (SpotDetailsMapViewController *)navigationController.topViewController;
         controller.dataModel = self.dataModel;
     }
+    
+    if ([segue.identifier isEqualToString:@"showWebViewForUrl"]) {
+        NSLog(@"prepareForSegue in SpotDetailsViewController");
+        UINavigationController *navigationController = segue.destinationViewController;
+        InAppWebViewController *controller = (InAppWebViewController *)navigationController.topViewController;
+        controller.dataModel = self.dataModel;
+    }
+
+
 }
 
 @end

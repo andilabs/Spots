@@ -74,9 +74,9 @@
     controller.allowsAddingToAddressBook = YES;
     // current view must have a navigation controller
     [uiViewController.navigationController pushViewController:controller animated:YES];
-    UIImage *img = [UIImage imageNamed:@"marker-bad-kopia.png"];
+    UIImage *img = [UIImage imageNamed:@"marker-bad"];
     if ([[theSpotInfoDict valueForKey:@"is_enabled"] intValue] == 1){
-        img = [UIImage imageNamed:@"marker-ok-kopia.png"];
+        img = [UIImage imageNamed:@"marker-ok"];
     }
     
     

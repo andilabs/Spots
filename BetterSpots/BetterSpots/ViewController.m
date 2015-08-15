@@ -120,11 +120,11 @@
             spotMarker.userData = spot;
             switch ([spot[@"is_enabled"] intValue]){
                 case 0:
-                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad-kopia-v2"]
+                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad-v2"]
                                               scaledToSize:CGSizeMake(18, 45)];
                     break;
                 case 1:
-                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok-kopia-v2"]
+                    spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok-v2"]
                                               scaledToSize:CGSizeMake(18, 45)];
                     break;
             }

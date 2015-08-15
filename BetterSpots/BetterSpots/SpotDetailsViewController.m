@@ -96,9 +96,9 @@
     }
     
     // set allowance icon
-    UIImage * img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad-kopia.png"] scaledToSize:CGSizeMake(150 ,150)];
+    UIImage * img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad"] scaledToSize:CGSizeMake(150 ,150)];
     if ([[self.dataModel valueForKey:@"is_enabled"] intValue] == 1){
-        img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok-kopia.png"] scaledToSize:CGSizeMake(150,150)];
+        img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok"] scaledToSize:CGSizeMake(150,150)];
     }
     [self.enablenceIcon setImage:img];
 

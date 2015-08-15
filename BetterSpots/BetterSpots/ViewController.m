@@ -158,7 +158,7 @@
 -(void)promptUserAboutGeolocationDisabled{
     NSString * geoDisabledWarrning = [NSString  stringWithFormat:
                                       @"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location",
-                                      [BetterSpotsUtils getSpotsEmoji],
+                                      [BetterSpotsUtils getSpotsMainEmoji],
                                       [BetterSpotsUtils getSpotsAppName]];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Geolocation disabled!"
                                                                              message:geoDisabledWarrning

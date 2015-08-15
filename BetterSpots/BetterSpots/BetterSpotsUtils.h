@@ -27,7 +27,9 @@
 + (UIColor *)getSpotsLeadingColor;
 + (NSString *)getSpotsNearbyApiUrl;
 + (NSString *)getSpotsAppName;
-+ (NSString *)getSpotsEmoji;
++ (NSString *)getSpotsAllEmoji;
++ (NSString *)getSpotsMainEmoji;
++ (NSString *)getSpotsLoadingViewEmoji;
 + (NSArray *)getSpotsFacilities;
 @end
 

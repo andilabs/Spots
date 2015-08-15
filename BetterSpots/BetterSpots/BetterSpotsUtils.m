@@ -53,9 +53,16 @@
 + (NSString *)getSpotsAppName {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:AppName];
 }
-+ (NSString *)getSpotsEmoji {
++ (NSString *)getSpotsAllEmoji {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsEmoji];
 }
++ (NSString *)getSpotsMainEmoji {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsEmoji][0];
+}
++ (NSString *)getSpotsLoadingViewEmoji {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsEmoji][1];
+}
+
 + (NSArray *)getSpotsFacilities {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsFacilites];
 }

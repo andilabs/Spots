@@ -41,7 +41,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>com.andilabs.SpotsEmoji</key>
-	<string>♿️</string>
+	<array>
+		<string>♿️</string>
+		<string>🌀</string>
+	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://enabledspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>

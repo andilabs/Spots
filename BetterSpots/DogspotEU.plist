@@ -8,6 +8,8 @@
 	<string>DogspotRadar</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>com.andilabs.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -46,7 +48,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>com.andilabs.SpotsEmoji</key>
-	<string>🐺</string>
+	<array>
+		<string>🐺</string>
+		<string>🐶</string>
+	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://dogspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>

@@ -53,7 +53,7 @@
     
 //    label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
-    label.text = @"Searching nearby spots... \n🐶";
+    label.text = [NSString stringWithFormat: @"Searching nearby spots... \n %@", [BetterSpotsUtils getSpotsLoadingViewEmoji]];
     label.textAlignment = NSTextAlignmentCenter;
 
     [self addSubview:label];

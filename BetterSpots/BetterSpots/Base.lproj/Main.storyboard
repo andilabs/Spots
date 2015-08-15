@@ -62,15 +62,15 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="As1-0w-kBi" userLabel="enablenceIcon">
                                                     <rect key="frame" x="10" y="14" width="90" height="90"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spot adddressStreet xx" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNu-8P-eqt" userLabel="address">
-                                                    <rect key="frame" x="113" y="37" width="479" height="88"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spot name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-jy-chA">
+                                                    <rect key="frame" x="108" y="14" width="250" height="44.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spot name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-jy-chA">
-                                                    <rect key="frame" x="113" y="19" width="479" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spot adddressStreet xx" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNu-8P-eqt" userLabel="address">
+                                                    <rect key="frame" x="108" y="37" width="250" height="89"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -241,6 +241,7 @@
                         <outlet property="facilitiesLabel" destination="NI1-6w-uZG" id="ZrA-i4-USP"/>
                         <outlet property="nameLabel" destination="Ztn-jy-chA" id="OfT-nb-K5g"/>
                         <outlet property="phoneLabel" destination="B3J-NO-5bp" id="QRj-je-Nls"/>
+                        <outlet property="ratingLabel" destination="PBV-VQ-HZL" id="hVI-hz-pub"/>
                         <outlet property="spotAddressCell" destination="Qt5-m7-a3J" id="Qsb-JE-YQY"/>
                         <outlet property="spotEmailCell" destination="bk8-vM-Muf" id="e1U-wH-f01"/>
                         <outlet property="spotEmailIcon" destination="L4K-JT-bCG" id="X2E-Bd-G0q"/>

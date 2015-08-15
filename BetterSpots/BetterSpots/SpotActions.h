@@ -15,5 +15,6 @@
 + (void)addNewAddresBookContactWithContentOfTheSpot: (NSDictionary *) theSpotInfoDict inContextOfViewController: (UIViewController *) uiViewController;
 + (void)navigateUserToTheSpot: (NSDictionary *) theSpotInfoDict;
 + (void)shareTheSpot: (NSDictionary *) theSpotInfoDict inContextOfViewController: (UIViewController *) uiViewController forAppName: (NSString *)appName withImage:(UIImage*)image;
-+ (NSString *)getFormattedDistanceWith: (double) distance;
++ (NSString *)getFormattedDistanceWith: (double)distance;
++ (NSString *)getFAStarsFormattedRating: (double)rating;
 @end

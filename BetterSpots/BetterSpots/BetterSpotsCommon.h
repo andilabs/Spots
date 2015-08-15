@@ -14,3 +14,7 @@ extern NSString * const SpotsFacilites;
 extern NSString * const SpotsLeadingColor;
 
 extern NSString * const AppName;
+
+extern unichar const FontAwesomeStarFull;
+extern unichar const FontAwesomeStarHalfFull;
+extern unichar const FontAwesomeStarEmpty;

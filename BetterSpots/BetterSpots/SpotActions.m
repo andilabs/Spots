@@ -5,8 +5,10 @@
 //  Created by Andrzej Kostański on 14.08.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-
+#import "BetterSpotsCommon.h"
+#import "BetterSpotsUtils.h"
 #import "SpotActions.h"
+#import <math.h>
 @import AddressBook;
 
 @implementation SpotActions
@@ -120,7 +122,7 @@
     [uiViewController presentViewController:activityController animated:YES completion:nil];
 }
 
-+ (NSString *)getFormattedDistanceWith: (double) distance {
++ (NSString *)getFormattedDistanceWith: (double)distance {
     if (distance > 1){
         return [NSString stringWithFormat:@"%.2f km", distance];
     }
@@ -128,6 +130,39 @@
         double distanceInMeters = distance * 1000;
         return [NSString stringWithFormat:@"%.0f m", distanceInMeters];
     }
+}
+
++ (NSString *)getFAStarsFormattedRating: (double)rating {
+    
+    bool displayHalStar = NO;
+    int integerPartOfRating = (int)rating;
+    if (fmod(rating, 1.0) >= 0.5) {
+        displayHalStar = YES;
+    }
+    int emptyStarsCount = 5 - integerPartOfRating + (displayHalStar? -1:0 );
+    NSString * fullStars = [@"" stringByPaddingToLength: [[BetterSpotsUtils getFACharForSymbol: FontAwesomeStarFull] length] * integerPartOfRating
+                                             withString: [BetterSpotsUtils getFACharForSymbol: FontAwesomeStarFull] startingAtIndex:0];
+
+    NSLog(@"%d", emptyStarsCount);
+    NSString * emptyStars = [@"" stringByPaddingToLength: [[BetterSpotsUtils getFACharForSymbol: FontAwesomeStarEmpty] length] * emptyStarsCount
+                                             withString: [BetterSpotsUtils getFACharForSymbol: FontAwesomeStarEmpty] startingAtIndex:0];
+   
+    if (!displayHalStar){
+        NSString * finalStars = [NSString stringWithFormat:@"%@%@",
+                                       fullStars,
+                                       emptyStars
+                                       ];
+        return finalStars;
+    }
+    else{
+        NSString * withPartialStars = [NSString stringWithFormat:@"%@%@%@",
+                                       fullStars,
+                                       [BetterSpotsUtils getFACharForSymbol:FontAwesomeStarHalfFull],
+                                       emptyStars
+                                       ];
+        return withPartialStars;
+    }
+
 }
 
 @end

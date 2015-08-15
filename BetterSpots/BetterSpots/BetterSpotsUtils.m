@@ -67,6 +67,11 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsFacilites];
 }
 
++ (NSString *)getFACharForSymbol: (unichar)symbolCode {
+
+    return [NSString stringWithFormat:@"%C", symbolCode];
+}
+
 @end
 
 @implementation UIColor(MBCategory)

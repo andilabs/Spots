@@ -21,9 +21,6 @@
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (void)makePhoneCall: (NSString *) phoneNumber;
 
-+ (UIColor *)colorWithHex:(UInt32)col;
-+ (UIColor *)colorWithHexString:(NSString *)str;
-
 + (UIColor *)getSpotsLeadingColor;
 + (NSString *)getSpotsNearbyApiUrl;
 + (NSString *)getSpotsAppName;
@@ -31,5 +28,6 @@
 + (NSString *)getSpotsMainEmoji;
 + (NSString *)getSpotsLoadingViewEmoji;
 + (NSArray *)getSpotsFacilities;
++ (NSString *)getFACharForSymbol: (unichar)symbolCode;
 @end
 

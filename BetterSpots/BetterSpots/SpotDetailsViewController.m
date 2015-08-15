@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *webpageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *facilitiesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 
 @end
@@ -75,7 +76,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.facilitiesLabel.text = @"\u2022 fresh water served\n\u2022 snacks for dogs\n\u2022 dedicated dogs menu";
+
     
     // this lines removes empty header above first tableview section
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
@@ -109,6 +110,12 @@
                                                              [self.dataModel objectForKey:@"address_city"],
                                                              [self.dataModel objectForKey:@"address_country"]]];
     self.addressLabel.text = address;
+    
+    //set ratings
+    self.ratingLabel.text = [SpotActions getFAStarsFormattedRating:[self.dataModel[@"friendly_rate"]doubleValue]];
+    
+    // set facilities
+    self.facilitiesLabel.text = @"\u2022 fresh water served\n\u2022 snacks for dogs\n\u2022 dedicated dogs menu";
     
     // set contact details row if values recived from API
     if (![self.dataModel[@"phone_number"]  isEqual: @""]) {

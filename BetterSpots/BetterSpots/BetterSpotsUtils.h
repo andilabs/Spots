@@ -16,18 +16,32 @@
 
 
 @interface BetterSpotsUtils : NSObject
-
-+ (void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message inContextOfViewController: (UIViewController *) uiViewController;
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
-+ (void)makePhoneCall: (NSString *) phoneNumber;
-
+/*! Helper method for showing simple alert messages to the user in context of given UIViewController
+ 
+ */
++ (void)showAlertInfoWithTitle:(NSString *)title
+                    andMessage:(NSString *)message
+                   inContextOf:(UIViewController *)uiViewController;
++ (UIImage *)imageWithImage:(UIImage *)image
+               scaledToSize:(CGSize)newSize;
++ (void)makePhoneCall:(NSString *)phoneNumber;
 + (UIColor *)getSpotsLeadingColor;
 + (NSString *)getSpotsNearbyApiUrl;
 + (NSString *)getSpotsAppName;
 + (NSString *)getSpotsAllEmoji;
 + (NSString *)getSpotsMainEmoji;
 + (NSString *)getSpotsLoadingViewEmoji;
+
+/*! Returns target specific facilities from definitions in target's plist file
+ \returns list of strings e.g [@"fresh water", @"special menu for dogs"]
+ */
 + (NSArray *)getSpotsFacilities;
-+ (NSString *)getFACharForSymbol: (unichar)symbolCode;
+
+/*! For given unichar representing icon in Font-Awesome font returns string with this icon
+ \param unichar e.g 0xf005 representing star
+ \returns string with FA icon e.g star icon ready to use
+ */
++ (NSString *)getFACharForSymbol:(unichar)symbolCode;
+
 @end
 

@@ -59,7 +59,7 @@
     {
         [BetterSpotsUtils showAlertInfoWithTitle: @"No internet connection 😢"
                                       andMessage: @"We need internet to fetch spots for you."
-                       inContextOfViewController: self];
+                                     inContextOf: self];
     }
     else {
         MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(
@@ -121,22 +121,15 @@
             switch ([spot[@"is_enabled"] intValue]){
                 case 0:
                     spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad-v2"]
-                                              scaledToSize:CGSizeMake(18, 45)];
+                                              scaledToSize:CGSizeMake(20, 50)];
                     break;
                 case 1:
                     spotMarker.icon = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok-v2"]
-                                              scaledToSize:CGSizeMake(18, 45)];
+                                              scaledToSize:CGSizeMake(20, 50)];
                     break;
             }
             spotMarker.groundAnchor = CGPointMake(0.5, 1.0);
             int ratingValue = roundf([spot[@"friendly_rate"]floatValue]);
-//            NSString *numberString = [NSString stringWithFormat:@"%f", roundf([spot[@"friendly_rate"]floatValue])];
-//            NSLog(@"%@ %d %.2f",
-//                  spot[@"friendly_rate"],
-//                  (int)roundf([spot[@"friendly_rate"]floatValue]),
-//                  ((roundf([spot[@"friendly_rate"]floatValue])-[spot[@"friendly_rate"]floatValue]))
-//                  );
-//            NSLog(@"%@", numberString);
             if (ratingValue < 0){
                 ratingValue = 0;
             }
@@ -198,14 +191,14 @@
             default: {
                 [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
                                               andMessage: @"But we can not geolocate you. Try again later."
-                               inContextOfViewController: self];
+                                             inContextOf: self];
                 break;
             }
         }
     } else {
         [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
                                       andMessage: @"But we can not geolocate you. Try again later."
-                       inContextOfViewController: self];
+                                     inContextOf: self];
     }
     [self stopLocationManager];
     _lastLocationError = error;
@@ -285,12 +278,12 @@
         else if (currentSpots && [currentSpots count] == 0){
             [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
                                           andMessage: @"But we have no results for your current location"
-                           inContextOfViewController: self];
+                                         inContextOf: self];
         }
         else {
             [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
                                           andMessage: @"But we can not fetch spots for you. Try again later."
-                           inContextOfViewController: self];
+                                         inContextOf: self];
         }
         [self stopLocationManager];
         // naive version, satisfy yourself with first result

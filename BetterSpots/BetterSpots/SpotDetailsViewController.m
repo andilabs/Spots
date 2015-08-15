@@ -57,26 +57,59 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"section %ld row %ld", (long)indexPath.section, (long)indexPath.row);
-    if (indexPath.section == 0 && indexPath.row == 1)
-    {
-        NSLog(@"go to spotMapDetailView !");
-//        /[self performSegueWithIdentifier:@"ShowSpotDetailMap" sender:self];
-    }
+    // call
     if (indexPath.section == 0 && indexPath.row == 4)
     {
         [BetterSpotsUtils makePhoneCall:[self.dataModel valueForKey:@"phone_number"]];
     }
+    // send email
+    if (indexPath.section == 0 && indexPath.row == 7)
+    {
+        if ([MFMailComposeViewController canSendMail])
+        {
+            MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+            mail.mailComposeDelegate = self;
+            [mail setToRecipients:@[self.dataModel[@"email"]]];
+            [self presentViewController:mail animated:YES completion:NULL];
+        }
+        else
+        {
+            [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                          andMessage: @"But you have not configured email client"
+                                         inContextOf: self];
+        }
+    }
+    // add new contact to addressbook
     if (indexPath.section == 0 && indexPath.row == 8)
     {
         [SpotActions  addNewAddresBookContactWithContentOfTheSpot: self.dataModel inContextOfViewController:self];
     }
+    
 }
-
-
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
     // this lines removes empty header above first tableview section
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
@@ -115,8 +148,25 @@
     self.ratingLabel.text = [SpotActions getFAStarsFormattedRating:[self.dataModel[@"friendly_rate"]doubleValue]];
     
     // set facilities
-    self.facilitiesLabel.text = @"\u2022 fresh water served\n\u2022 snacks for dogs\n\u2022 dedicated dogs menu";
+    NSMutableString * facilitiesListing = [[NSMutableString alloc]initWithString:@""];
+    for (NSString * facility in [BetterSpotsUtils getSpotsFacilities]){
+        [facilitiesListing appendString:[NSString stringWithFormat:@"\u2022 %@\n", facility]];
+    }
+    self.facilitiesLabel.text = facilitiesListing;
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString: self.facilitiesLabel.attributedText];
+    [text addAttribute:NSForegroundColorAttributeName
+                 value:[UIColor colorWithHexString:@"#D8D8D8"]
+                 range:NSMakeRange(0, [self.facilitiesLabel.text length])];
     
+    for (NSString* facility in self.dataModel[@"facilities"]) {
+        if ([self.dataModel[@"facilities"][facility] boolValue]){
+            [text addAttribute:NSForegroundColorAttributeName
+                         value:[UIColor colorWithHexString:@"#3fb350"]
+                         range:[self.facilitiesLabel.text rangeOfString: facility]];
+        }
+    }
+    [self.facilitiesLabel setAttributedText: text];
+
     // set contact details row if values recived from API
     if (![self.dataModel[@"phone_number"]  isEqual: @""]) {
         self.phoneLabel.text = self.dataModel[@"phone_number"];

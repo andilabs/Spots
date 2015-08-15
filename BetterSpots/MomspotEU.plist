@@ -49,9 +49,9 @@
 	<string>http://momspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
-		<string>baby_changing</string>
-		<string>playroom</string>
-		<string>kids_menu</string>
+		<string>baby changing facilites</string>
+		<string>playroom for kids</string>
+		<string>kids menu</string>
 	</array>
 	<key>com.andilabs.SpotsLeadingColor</key>
 	<string>#eb386f</string>

@@ -56,9 +56,9 @@
 	<string>http://dogspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
-		<string>fresh_water</string>
-		<string>dog_snacks</string>
-		<string>dedicated_dogs_menu</string>
+		<string>fresh water served</string>
+		<string>dog treats</string>
+		<string>special menu for dogs</string>
 	</array>
 	<key>com.andilabs.SpotsLeadingColor</key>
 	<string>#fcbd41</string>

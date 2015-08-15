@@ -49,9 +49,9 @@
 	<string>http://enabledspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
-		<string>toilet_enabled</string>
-		<string>entrance_enabled</string>
-		<string>tables_enabled</string>
+		<string>enabled toilet</string>
+		<string>enabled entrance</string>
+		<string>enabled tables</string>
 	</array>
 	<key>com.andilabs.SpotsLeadingColor</key>
 	<string>#4f5fa7</string>

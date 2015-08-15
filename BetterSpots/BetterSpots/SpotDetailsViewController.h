@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
-@interface SpotDetailsViewController : UITableViewController
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+@interface SpotDetailsViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 @property(weak, nonatomic)  NSDictionary* dataModel;
 @end

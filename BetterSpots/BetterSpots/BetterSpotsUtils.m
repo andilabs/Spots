@@ -11,7 +11,7 @@
 
 @implementation BetterSpotsUtils
 
-+(void)showAlertInfoWithTitle: (NSString *)title andMessage: (NSString *)message inContextOfViewController: (UIViewController *) uiViewController{
++(void)showAlertInfoWithTitle:(NSString *)title andMessage:(NSString *)message inContextOf:(UIViewController *) uiViewController{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
@@ -35,7 +35,7 @@
     return newImage;
 }
 
-+ (void)makePhoneCall: (NSString *) phoneNumber {
++ (void)makePhoneCall:(NSString *)phoneNumber {
     NSString *cleanedPhoneNumber = [[NSString alloc] initWithString: [NSString stringWithFormat:@"telprompt:%@",
                                                                       [phoneNumber stringByReplacingOccurrencesOfString:@" "
                                                                                                              withString:@""]]];
@@ -67,10 +67,10 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsFacilites];
 }
 
-+ (NSString *)getFACharForSymbol: (unichar)symbolCode {
-
++ (NSString *)getFACharForSymbol:(unichar)symbolCode {
     return [NSString stringWithFormat:@"%C", symbolCode];
 }
+
 
 @end
 

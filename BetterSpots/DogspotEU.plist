@@ -50,14 +50,11 @@
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://dogspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
-	<dict>
-		<key>dedicated_dogs_menu</key>
-		<integer>1</integer>
-		<key>dog_snacks</key>
-		<integer>3</integer>
-		<key>fresh_water</key>
-		<integer>2</integer>
-	</dict>
+	<array>
+		<string>fresh_water</string>
+		<string>dog_snacks</string>
+		<string>dedicated_dogs_menu</string>
+	</array>
 	<key>com.andilabs.SpotsLeadingColor</key>
 	<string>#fcbd41</string>
 </dict>

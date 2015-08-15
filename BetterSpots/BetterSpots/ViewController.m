@@ -17,20 +17,21 @@
 @end
 
 @implementation ViewController {
+
+    NSMutableArray * currentSpots;
+    NSDictionary * infoOfCurrentlySelectedSpot;
+
     GMSMapView *mapView_;
     CLLocationManager *_locationManager;
     BOOL _updatingLocation;
     NSError *_lastLocationError;
     CLLocation *_location;
-    NSString *emojiString;
-    NSString *appName;
-    NSString *urlString;
+
     NSUserDefaults *defaults;
-    NSMutableArray * currentSpots;
-    UIActionSheet *markerActionsMenu;
-    NSDictionary * infoOfCurrentlySelectedSpot;
-    UIActivityIndicatorView * spinner;
+    
 }
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES
                                              animated:animated];
@@ -44,21 +45,14 @@
 }
 
 - (void)viewDidLoad {
-    
     // make background color of navigation bar with spot default color
     self.navigationController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
     // make fonts on navigation bar white
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    urlString = [infoDictionary objectForKey:SpotsEndpointURL];
-    emojiString = [infoDictionary objectForKey:SpotsEmoji];
-    appName = [infoDictionary objectForKey:AppName];
-
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
-    
     NetworkStatus status = [reachability currentReachabilityStatus];
     
     if(status == NotReachable)
@@ -90,7 +84,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -99,7 +92,7 @@
 -(NSMutableArray*)getNearbylSpotsWithLat:(float)lat andLon:(float)lon withinRadius:(int)radius
 {
     NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
-                                   urlString,
+                                   [BetterSpotsUtils getSpotsNearbyApiUrl],
                                    lat,
                                    lon,
                                    radius];
@@ -137,13 +130,13 @@
             }
             spotMarker.groundAnchor = CGPointMake(0.5, 1.0);
             int ratingValue = roundf([spot[@"friendly_rate"]floatValue]);
-            NSString *numberString = [NSString stringWithFormat:@"%f", roundf([spot[@"friendly_rate"]floatValue])];
-            NSLog(@"%@ %d %.2f",
-                  spot[@"friendly_rate"],
-                  (int)roundf([spot[@"friendly_rate"]floatValue]),
-                  ((roundf([spot[@"friendly_rate"]floatValue])-[spot[@"friendly_rate"]floatValue]))
-                  );
-            NSLog(@"%@", numberString);
+//            NSString *numberString = [NSString stringWithFormat:@"%f", roundf([spot[@"friendly_rate"]floatValue])];
+//            NSLog(@"%@ %d %.2f",
+//                  spot[@"friendly_rate"],
+//                  (int)roundf([spot[@"friendly_rate"]floatValue]),
+//                  ((roundf([spot[@"friendly_rate"]floatValue])-[spot[@"friendly_rate"]floatValue]))
+//                  );
+//            NSLog(@"%@", numberString);
             if (ratingValue < 0){
                 ratingValue = 0;
             }
@@ -165,8 +158,8 @@
 -(void)promptUserAboutGeolocationDisabled{
     NSString * geoDisabledWarrning = [NSString  stringWithFormat:
                                       @"We ♥️%@, but we can not search spots for you, because geolocation is disabled.\n\n Please go to Settings>%@ and enable geo location",
-                                      emojiString,
-                                      appName];
+                                      [BetterSpotsUtils getSpotsEmoji],
+                                      [BetterSpotsUtils getSpotsAppName]];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Geolocation disabled!"
                                                                              message:geoDisabledWarrning
                                                                       preferredStyle:UIAlertControllerStyleAlert];
@@ -227,7 +220,6 @@
 
     if ([CLLocationManager locationServicesEnabled]) {
         NSLog(@"starting updating location....");
-        [spinner startAnimating];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         [_locationManager startUpdatingLocation];
@@ -240,7 +232,6 @@
 {
     if (_updatingLocation) {
         NSLog(@"stoping update of loc");
-        [spinner stopAnimating];
         [_locationManager stopUpdatingLocation];
         _locationManager.delegate = nil;
         _updatingLocation = NO;

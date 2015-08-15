@@ -25,5 +25,9 @@
 + (UIColor *)colorWithHexString:(NSString *)str;
 
 + (UIColor *)getSpotsLeadingColor;
++ (NSString *)getSpotsNearbyApiUrl;
++ (NSString *)getSpotsAppName;
++ (NSString *)getSpotsEmoji;
++ (NSArray *)getSpotsFacilities;
 @end
 

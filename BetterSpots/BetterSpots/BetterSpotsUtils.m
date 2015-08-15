@@ -46,6 +46,20 @@
     return [UIColor colorWithHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsLeadingColor]];
 }
 
++ (NSString *)getSpotsNearbyApiUrl {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsEndpointURL];
+}
+
++ (NSString *)getSpotsAppName {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:AppName];
+}
++ (NSString *)getSpotsEmoji {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsEmoji];
+}
++ (NSArray *)getSpotsFacilities {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:SpotsFacilites];
+}
+
 @end
 
 @implementation UIColor(MBCategory)

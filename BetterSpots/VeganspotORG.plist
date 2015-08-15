@@ -44,5 +44,12 @@
 	<string>🌿</string>
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://veganspot.org/api/</string>
+	<key>com.andilabs.SpotsFacilities</key>
+	<array>
+		<string>vegan_menu</string>
+		<string>vegetarian_menu</string>
+	</array>
+	<key>com.andilabs.SpotsLeadingColor</key>
+	<string>#59b84d</string>
 </dict>
 </plist>

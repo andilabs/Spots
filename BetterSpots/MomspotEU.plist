@@ -44,5 +44,13 @@
 	<string>👶🍼</string>
 	<key>com.andilabs.SpotsEndpointURL</key>
 	<string>http://momspot.eu/api/</string>
+	<key>com.andilabs.SpotsFacilities</key>
+	<array>
+		<string>baby_changing</string>
+		<string>playroom</string>
+		<string>kids_menu</string>
+	</array>
+	<key>com.andilabs.SpotsLeadingColor</key>
+	<string>#eb386f</string>
 </dict>
 </plist>

@@ -21,10 +21,7 @@
 @property (nonatomic,retain) CLLocationManager *locationManager;
 
 -(NSMutableArray*)getNearbylSpotsWithLat: (float)lat andLon: (float) lon withinRadius: (int) radius;
-
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker;
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 

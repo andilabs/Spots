@@ -103,7 +103,7 @@
     [endingItem openInMapsWithLaunchOptions:launchOptions];
 }
 
-+ (void)shareTheSpot: (NSDictionary *) theSpotInfoDict inContextOfViewController: (UIViewController *) uiViewController forAppName: (NSString *)appName withImage:(UIImage *)image
++ (void)shareTheSpot: (NSDictionary *) theSpotInfoDict inContextOf: (UIViewController *) uiViewController forAppName: (NSString *)appName withImage:(UIImage *)image
 {
     NSMutableArray *sharingItems = [NSMutableArray new];
     NSString *positiveAdjective = @"";

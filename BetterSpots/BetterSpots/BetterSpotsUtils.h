@@ -17,11 +17,12 @@
 
 @interface BetterSpotsUtils : NSObject
 /*! Helper method for showing simple alert messages to the user in context of given UIViewController
- 
  */
 + (void)showAlertInfoWithTitle:(NSString *)title
                     andMessage:(NSString *)message
                    inContextOf:(UIViewController *)uiViewController;
+/*! Helper method for scaling images
+ */
 + (UIImage *)imageWithImage:(UIImage *)image
                scaledToSize:(CGSize)newSize;
 + (void)makePhoneCall:(NSString *)phoneNumber;
@@ -38,7 +39,7 @@
 + (NSArray *)getSpotsFacilities;
 
 /*! For given unichar representing icon in Font-Awesome font returns string with this icon
- \param unichar e.g 0xf005 representing star
+ \param symbolCode e.g 0xf005 representing star
  \returns string with FA icon e.g star icon ready to use
  */
 + (NSString *)getFACharForSymbol:(unichar)symbolCode;

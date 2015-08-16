@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface InAppWebViewController : UIViewController
-@property(weak, nonatomic)  NSDictionary* dataModel;
+@property(weak, nonatomic) NSString * urlToGo;
 @end

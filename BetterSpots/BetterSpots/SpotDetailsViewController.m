@@ -50,7 +50,7 @@
 
 
 - (IBAction)shareSpot:(id)sender{
-    [SpotActions shareTheSpot: self.dataModel inContextOfViewController: self forAppName: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] withImage: ((UIImageView*)self.spotThumbnailCell.backgroundView).image];
+    [SpotActions shareTheSpot: self.dataModel inContextOf: self forAppName: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] withImage: ((UIImageView*)self.spotThumbnailCell.backgroundView).image];
     NSLog(@"somebody wants share something");
 }
 
@@ -231,10 +231,15 @@
         NSLog(@"prepareForSegue in SpotDetailsViewController");
         UINavigationController *navigationController = segue.destinationViewController;
         InAppWebViewController *controller = (InAppWebViewController *)navigationController.topViewController;
-        controller.dataModel = self.dataModel;
+        controller.urlToGo = self.dataModel[@"www"];
     }
 
-
+    if ([segue.identifier isEqualToString:@"showWebViewForFacebook"]) {
+        NSLog(@"prepareForSegue in SpotDetailsViewController");
+        UINavigationController *navigationController = segue.destinationViewController;
+        InAppWebViewController *controller = (InAppWebViewController *)navigationController.topViewController;
+        controller.urlToGo = [NSString stringWithFormat:@"http://facebook.com/%@", self.dataModel[@"facebook"]];
+    }
 }
 
 @end

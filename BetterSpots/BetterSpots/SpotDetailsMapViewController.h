@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SpotDetailsMapViewController : UIViewController
-@property(weak, nonatomic)  NSDictionary* dataModel;
+@property(weak, nonatomic) NSDictionary* dataModel;
 
 @end

@@ -16,18 +16,23 @@
     UIWebView *webview;
 }
 
-@synthesize dataModel;
+@synthesize urlToGo;
 - (IBAction)openCurrentWebPageInSafari:(id)sender {
-    [[UIApplication sharedApplication] openURL: webview.request.URL.absoluteURL];
+    [[UIApplication sharedApplication] openURL:webview.request.URL.absoluteURL];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *image = [UIImage imageNamed: [[[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIcons"] objectForKey:@"CFBundlePrimaryIcon"] objectForKey:@"CFBundleIconFiles"]  objectAtIndex:0]];
+
+    UIImageView *imgView  = [[UIImageView alloc] initWithImage:image];
+    imgView.layer.cornerRadius = 5.0;
+    imgView.layer.masksToBounds = YES;
+    self.navigationItem.titleView = imgView;
     
     webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
-    NSString *url=self.dataModel[@"www"];
-    NSURL *nsurl=[NSURL URLWithString:url];
-    NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
+    NSLog(@"%@", self.urlToGo);
+    NSURLRequest *nsrequest=[NSURLRequest requestWithURL: [NSURL URLWithString:self.urlToGo]];
     [webview loadRequest:nsrequest];
     [self.view addSubview:webview];
     // Do any additional setup after loading the view.

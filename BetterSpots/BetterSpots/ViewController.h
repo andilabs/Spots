@@ -20,7 +20,9 @@
 @interface ViewController :  UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate, UINavigationControllerDelegate>
 @property (nonatomic,retain) CLLocationManager *locationManager;
 
--(NSMutableArray*)getNearbylSpotsWithLat: (float)lat andLon: (float) lon withinRadius: (int) radius;
+-(NSMutableArray*)getNearbylSpotsWithLat:(float)lat
+                                  andLon:(float)lon
+                            withinRadius:(int)radius;
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker;
 
 @end

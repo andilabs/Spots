@@ -10,6 +10,10 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+#import "SpotDetailsMapViewController.h"
+#import "BetterSpotsUtils.h"
+#import "SpotActions.h"
 @interface SpotDetailsViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 @property(weak, nonatomic)  NSDictionary* dataModel;
 @end

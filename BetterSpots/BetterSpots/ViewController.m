@@ -30,12 +30,20 @@
     NSUserDefaults *defaults;
     
 }
+- (void)appplicationIsActive:(NSNotification *)notification {
+    NSLog(@"Application Did Become Active");
+}
 
+- (void)applicationEnteredForeground:(NSNotification *)notification {
+    NSLog(@"Application Entered Foreground");
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES
                                              animated:animated];
     [super viewWillAppear:animated];
+    NSLog(@"hi! viewWillAppear");
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -44,7 +52,19 @@
     [super viewWillDisappear:animated];
 }
 
+
+
 - (void)viewDidLoad {
+    NSLog(@"hi! viewDidLoad");
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appplicationIsActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationEnteredForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     // make background color of navigation bar with spot default color
     self.navigationController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
     // make fonts on navigation bar white

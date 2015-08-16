@@ -169,9 +169,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="6Cf-Gz-vum" kind="show" identifier="showWebViewForFacebook" id="USL-vr-iho"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="qu9-Wy-2Vf" detailTextLabel="LhL-lX-USX" rowHeight="50" style="IBUITableViewCellStyleValue1" id="QQK-pZ-nJe" userLabel="spotWebpage">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -192,9 +189,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="6Cf-Gz-vum" kind="show" identifier="showWebViewForUrl" id="I4p-yi-Ght"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="L4K-JT-bCG" detailTextLabel="9YC-o4-3JF" rowHeight="50" style="IBUITableViewCellStyleValue1" id="bk8-vM-Muf" userLabel="spotEmail">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -294,31 +288,6 @@
             </objects>
             <point key="canvasLocation" x="4546" y="603"/>
         </scene>
-        <!--In App Web View Controller-->
-        <scene sceneID="6GD-Pl-N1P">
-            <objects>
-                <viewController id="5lt-VD-cQ6" customClass="InAppWebViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1nY-3y-1md"/>
-                        <viewControllerLayoutGuide type="bottom" id="NRL-hA-1ec"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0BJ-K5-ZxI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="gHr-Eh-hU8">
-                        <barButtonItem key="rightBarButtonItem" title="Open in Safari" id="45f-Kh-rf3">
-                            <connections>
-                                <action selector="openCurrentWebPageInSafari:" destination="5lt-VD-cQ6" id="1Tv-OF-gPW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FWX-JX-Ras" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4546" y="1525"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="nvi-qV-cQE">
             <objects>
@@ -373,26 +342,5 @@
             </objects>
             <point key="canvasLocation" x="3738" y="603"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="g8S-AY-0iP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Cf-Gz-vum" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rko-4K-fT3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5lt-VD-cQ6" kind="relationship" relationship="rootViewController" id="y7F-mF-6Xn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I5j-MK-csi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3746" y="1525"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="USL-vr-iho"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,12 +8,7 @@
 
 
 #import "SpotDetailsViewController.h"
-#import "InAppWebViewController.h"
-#import "SpotDetailsMapViewController.h"
-#import "BetterSpotsUtils.h"
-#import "SpotActions.h"
-#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
-
+#import "SVWebViewController.h"
 
 @interface SpotDetailsViewController ()
 
@@ -62,6 +57,48 @@
     {
         [BetterSpotsUtils makePhoneCall:[self.dataModel valueForKey:@"phone_number"]];
     }
+
+    // open facebook url in vebview
+    if (indexPath.section == 0 && indexPath.row == 5)
+    {
+        NSURL *URL = [NSURL URLWithString: [NSString stringWithFormat:@"http://facebook.com/%@", self.dataModel[@"facebook"]]];
+        SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
+        webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+        
+        
+        // make background color of navigation bar with spot default color
+        webViewController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+        // make fonts on navigation bar white
+        webViewController.navigationBar.barStyle = UIBarStyleBlack;
+        webViewController.navigationBar.tintColor = [UIColor whiteColor];
+        webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+   
+        [self presentViewController:webViewController animated:YES completion:NULL];
+        
+        
+    }
+    
+    // open www  url in vebview
+    if (indexPath.section == 0 && indexPath.row == 6)
+    {
+        NSURL *URL = [NSURL URLWithString:self.dataModel[@"www"]];
+        SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
+        webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+        
+        
+        // make background color of navigation bar with spot default color
+        webViewController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+        // make fonts on navigation bar white
+        webViewController.navigationBar.barStyle = UIBarStyleBlack;
+        webViewController.navigationBar.tintColor = [UIColor whiteColor];
+        webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+        webViewController.toolbar.barStyle = UIBarStyleBlack;
+        webViewController.toolbar.tintColor = [UIColor whiteColor];
+        
+        [self presentViewController:webViewController animated:YES completion:NULL];
+        
+    }
+    
     // send email
     if (indexPath.section == 0 && indexPath.row == 7)
     {
@@ -79,6 +116,7 @@
                                          inContextOf: self];
         }
     }
+
     // add new contact to addressbook
     if (indexPath.section == 0 && indexPath.row == 8)
     {
@@ -225,20 +263,6 @@
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsMapViewController *controller = (SpotDetailsMapViewController *)navigationController.topViewController;
         controller.dataModel = self.dataModel;
-    }
-    
-    if ([segue.identifier isEqualToString:@"showWebViewForUrl"]) {
-        NSLog(@"prepareForSegue in SpotDetailsViewController");
-        UINavigationController *navigationController = segue.destinationViewController;
-        InAppWebViewController *controller = (InAppWebViewController *)navigationController.topViewController;
-        controller.urlToGo = self.dataModel[@"www"];
-    }
-
-    if ([segue.identifier isEqualToString:@"showWebViewForFacebook"]) {
-        NSLog(@"prepareForSegue in SpotDetailsViewController");
-        UINavigationController *navigationController = segue.destinationViewController;
-        InAppWebViewController *controller = (InAppWebViewController *)navigationController.topViewController;
-        controller.urlToGo = [NSString stringWithFormat:@"http://facebook.com/%@", self.dataModel[@"facebook"]];
     }
 }
 

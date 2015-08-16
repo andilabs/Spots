@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NJKWebViewProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SVWebViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,12 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10620CA64D37095000E421CE60DFB24D</key>
+		<key>44D7F34C304D5EFC735FFB4B69C25DD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C54DF48A02BAD8AD0F9B5AC0AF4D3C9</key>
+		<key>72BCFE77DDA53B31289FF9DE995BF2A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC052464C5947CB448B8E5F922B1B83F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5CA6760DB65B7962A3E87EEA6658C24</key>
 		<dict>
 			<key>primary</key>
 			<true/>

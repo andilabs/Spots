@@ -117,6 +117,7 @@
                                    lon,
                                    radius];
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:locaticonBasedUrl]];
+    
     if (data) {
         NSError * myErr;
         NSMutableArray * spots = [NSJSONSerialization JSONObjectWithData:data

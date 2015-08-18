@@ -91,10 +91,16 @@
         // make fonts on navigation bar white
         webViewController.navigationBar.barStyle = UIBarStyleBlack;
         webViewController.navigationBar.tintColor = [UIColor whiteColor];
-        webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
-        webViewController.toolbar.barStyle = UIBarStyleBlack;
-        webViewController.toolbar.tintColor = [UIColor whiteColor];
         
+        webViewController.navigationBar.backgroundColor = [UIColor whiteColor];
+        webViewController.navigationBar.tintColor = [UIColor whiteColor];
+        webViewController.navigationBar.translucent = NO;
+        
+        
+//        webViewController.toolbar.barStyle = UIBarStyleBlack;
+        webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+        webViewController.toolbar.tintColor = [UIColor whiteColor];
+
         [self presentViewController:webViewController animated:YES completion:NULL];
         
     }

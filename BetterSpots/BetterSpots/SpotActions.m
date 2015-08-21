@@ -124,7 +124,7 @@
 
 + (NSString *)getFormattedDistanceWith: (double)distance {
     if (distance > 1){
-        return [NSString stringWithFormat:@"%.2f km", distance];
+        return [NSString stringWithFormat:@"%.1f km", distance];
     }
     else {
         double distanceInMeters = distance * 1000;

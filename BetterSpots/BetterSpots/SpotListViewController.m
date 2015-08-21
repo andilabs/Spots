@@ -69,14 +69,23 @@
                   placeholderImage:nil
        usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         locationCell.spotThumbnail.layer.cornerRadius = locationCell.spotThumbnail.bounds.size.width / 2.0f;
+        locationCell.spotThumbnail.layer.borderWidth = 1;
+        UIColor * allowanceColor = [UIColor colorWithHexString:@"#d72526"];
+        NSLog(@"%d", [[spot valueForKey:@"is_enabled"] intValue]);
+        if ([[spot valueForKey:@"is_enabled"] intValue] == 1){
+            allowanceColor = [UIColor colorWithHexString:@"#3ab449"];
+        }
+        [locationCell.spotThumbnail.layer setBorderColor: allowanceColor.CGColor];
         locationCell.spotThumbnail.clipsToBounds = YES;
     }
     else {
         UIImage * img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad"] scaledToSize:CGSizeMake(150 ,150)];
         if ([[spot valueForKey:@"is_enabled"] intValue] == 1){
             img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok"] scaledToSize:CGSizeMake(150,150)];
+           
         }
         [locationCell.spotThumbnail  setImage:img];
+        
     }
     
 }

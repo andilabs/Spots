@@ -95,6 +95,7 @@
                                     <outlet property="spotDistanceLabel" destination="XS0-KG-LUb" id="Fx1-HJ-aIv"/>
                                     <outlet property="spotNameLabel" destination="nJm-gb-gUt" id="4yh-l6-NF7"/>
                                     <outlet property="spotThumbnail" destination="HPZ-fl-2bt" id="Az5-cq-Pv6"/>
+                                    <segue destination="wiI-Bp-bVN" kind="show" identifier="ShowSpotDetailFromList" id="xpy-Tu-dvh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -355,7 +356,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUW-Dx-Wzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2876" y="995"/>
+            <point key="canvasLocation" x="4732" y="-933"/>
         </scene>
         <!--Spot Details Map View Controller-->
         <scene sceneID="KHW-8P-kf7">
@@ -521,4 +522,7 @@
         <image name="fa-list" width="100" height="100"/>
         <image name="fa-map" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xpy-Tu-dvh"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 //
 
 #import "SpotListViewController.h"
+#import "SpotDetailsViewController.h"
 #import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
 
 @interface SpotListViewController ()
@@ -78,17 +79,23 @@
         [locationCell.spotThumbnail  setImage:img];
     }
     
-//    if (image == nil) {
-//        image = [UIImage imageNamed:@"No Photo"];
-//    }
-    
-//
-
-    
 }
 
 
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowSpotDetailFromList"]) {
+        NSLog(@"prepareForSegue in SpotDetailsViewController");
+
+        SpotDetailsViewController *controller = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSDictionary * spot = [spots objectAtIndex:indexPath.row];
+        NSLog(@"spot %@", spot);
+        controller.dataModel = spot;
+    }
+}
 
 
 /*

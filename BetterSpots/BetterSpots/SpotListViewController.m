@@ -62,6 +62,20 @@
     locationCell.spotAddressLabel.text = [spot objectForKey:@"address_street"];
     locationCell.spotDistanceLabel.text =[SpotActions getFormattedDistanceWith:[spot[@"distance"]doubleValue]];
 
+    if ([spot valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
+        
+        [locationCell.spotThumbnail setImageWithURL:[NSURL URLWithString:spot[@"thumbnail_venue_photo"]]
+                  placeholderImage:nil
+       usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        locationCell.spotThumbnail.layer.cornerRadius = locationCell.spotThumbnail.bounds.size.width / 2.0f;
+        locationCell.spotThumbnail.clipsToBounds = YES;
+    }
+    
+//    if (image == nil) {
+//        image = [UIImage imageNamed:@"No Photo"];
+//    }
+    
+//
 
     
 }

@@ -94,7 +94,7 @@
                                     <outlet property="spotAddressLabel" destination="XJs-2y-WoW" id="dUI-yI-BkB"/>
                                     <outlet property="spotDistanceLabel" destination="XS0-KG-LUb" id="Fx1-HJ-aIv"/>
                                     <outlet property="spotNameLabel" destination="nJm-gb-gUt" id="4yh-l6-NF7"/>
-                                    <outlet property="spotThumbnail" destination="kMb-Ad-v5x" id="BOb-LK-blt"/>
+                                    <outlet property="spotThumbnail" destination="HPZ-fl-2bt" id="Az5-cq-Pv6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

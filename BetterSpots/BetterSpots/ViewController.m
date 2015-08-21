@@ -8,6 +8,8 @@
 #import "BetterSpotsUtils.h"
 #import "ViewController.h"
 #import "MyActivityIndicatorView.h"
+#import "MyManager.h"
+
 
 @interface ViewController()
 @property (nonatomic) Reachability *hostReachability;
@@ -123,6 +125,8 @@
         NSMutableArray * spots = [NSJSONSerialization JSONObjectWithData:data
                                                                    options:kNilOptions
                                                                      error:&myErr];
+        MyManager *sharedManager = [MyManager sharedManager];
+        [sharedManager init: spots];
         return spots;
     }
     else {

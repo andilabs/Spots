@@ -244,6 +244,10 @@
 {
     UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
+    if (cell == self.spotThumbnailCell && [self.dataModel valueForKey: @"thumbnail_venue_photo"] == [NSNull null]) {
+        return 0;
+    }
+    
     if (cell == self.spotPhoneNumberCell && [self.dataModel[@"phone_number"]  isEqual: @""]){
         return 0;
     }

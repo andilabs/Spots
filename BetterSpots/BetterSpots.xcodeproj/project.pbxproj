@@ -35,6 +35,21 @@
 		A91C58901B2E12F4009179E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A948EE531B25D620007B108F /* Main.storyboard */; };
 		A91C58911B2E12F4009179E5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9345E591B25E3CA00EB682C /* Media.xcassets */; };
 		A91C58921B2E12F4009179E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A948EE6F1B25D818007B108F /* Podfile */; };
+		A93851B31B87AA5A009AADF2 /* SpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B21B87AA5A009AADF2 /* SpotListViewController.m */; };
+		A93851B41B87AA5A009AADF2 /* SpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B21B87AA5A009AADF2 /* SpotListViewController.m */; };
+		A93851B51B87AA5A009AADF2 /* SpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B21B87AA5A009AADF2 /* SpotListViewController.m */; };
+		A93851B61B87AA5A009AADF2 /* SpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B21B87AA5A009AADF2 /* SpotListViewController.m */; };
+		A93851B71B87AA5A009AADF2 /* SpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B21B87AA5A009AADF2 /* SpotListViewController.m */; };
+		A93851BA1B87AB95009AADF2 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B91B87AB95009AADF2 /* SpotCell.m */; };
+		A93851BB1B87AB95009AADF2 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B91B87AB95009AADF2 /* SpotCell.m */; };
+		A93851BC1B87AB95009AADF2 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B91B87AB95009AADF2 /* SpotCell.m */; };
+		A93851BD1B87AB95009AADF2 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B91B87AB95009AADF2 /* SpotCell.m */; };
+		A93851BE1B87AB95009AADF2 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851B91B87AB95009AADF2 /* SpotCell.m */; };
+		A93851C81B87B475009AADF2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851C71B87B475009AADF2 /* MyManager.m */; };
+		A93851C91B87B475009AADF2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851C71B87B475009AADF2 /* MyManager.m */; };
+		A93851CA1B87B475009AADF2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851C71B87B475009AADF2 /* MyManager.m */; };
+		A93851CB1B87B475009AADF2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851C71B87B475009AADF2 /* MyManager.m */; };
+		A93851CC1B87B475009AADF2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A93851C71B87B475009AADF2 /* MyManager.m */; };
 		A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A948EE651B25D621007B108F /* BetterSpotsTests.m */; };
 		A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
@@ -109,6 +124,14 @@
 		A91C58971B2E12F4009179E5 /* EnabledspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnabledspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C58981B2E12F5009179E5 /* EnabledspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = EnabledspotEU.plist; path = /Users/andi/IOS/BetterSpots/EnabledspotEU.plist; sourceTree = "<absolute>"; };
 		A9345E591B25E3CA00EB682C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		A93851B11B87AA5A009AADF2 /* SpotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotListViewController.h; sourceTree = "<group>"; };
+		A93851B21B87AA5A009AADF2 /* SpotListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotListViewController.m; sourceTree = "<group>"; };
+		A93851B81B87AB95009AADF2 /* SpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCell.h; sourceTree = "<group>"; };
+		A93851B91B87AB95009AADF2 /* SpotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotCell.m; sourceTree = "<group>"; };
+		A93851C61B87B475009AADF2 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
+		A93851C71B87B475009AADF2 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
+		A93851CD1B87D276009AADF2 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "Pods/../build/Debug-iphoneos/libSDWebImage.a"; sourceTree = "<group>"; };
+		A93851CE1B87D276009AADF2 /* libSVWebViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVWebViewController.a; path = "Pods/../build/Debug-iphoneos/libSVWebViewController.a"; sourceTree = "<group>"; };
 		A948EE4B1B25D620007B108F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A948EE4D1B25D620007B108F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A948EE4E1B25D620007B108F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -210,6 +233,8 @@
 		175B526FF794203C62EFB31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A93851CD1B87D276009AADF2 /* libSDWebImage.a */,
+				A93851CE1B87D276009AADF2 /* libSVWebViewController.a */,
 				A96FA4D41B77698000BB5BBA /* AddressBook.framework */,
 				A96FA4D51B77698000BB5BBA /* AddressBookUI.framework */,
 				A96FA4C31B7746FA00BB5BBA /* QuartzCore.framework */,
@@ -285,6 +310,12 @@
 				A9082FCB1B7E1EA900013CAF /* MyActivityIndicatorView.m */,
 				A9082FD11B7E61BC00013CAF /* SpotDetailsMapViewController.h */,
 				A9082FD21B7E61BC00013CAF /* SpotDetailsMapViewController.m */,
+				A93851B11B87AA5A009AADF2 /* SpotListViewController.h */,
+				A93851B21B87AA5A009AADF2 /* SpotListViewController.m */,
+				A93851B81B87AB95009AADF2 /* SpotCell.h */,
+				A93851B91B87AB95009AADF2 /* SpotCell.m */,
+				A93851C61B87B475009AADF2 /* MyManager.h */,
+				A93851C71B87B475009AADF2 /* MyManager.m */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -698,8 +729,11 @@
 				A91C588B1B2E12F4009179E5 /* AppDelegate.m in Sources */,
 				A9082FB11B7D505400013CAF /* SpotActions.m in Sources */,
 				A9A761041B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A93851B41B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
+				A93851BB1B87AB95009AADF2 /* SpotCell.m in Sources */,
 				A9082FB81B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCD1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A93851C91B87B475009AADF2 /* MyManager.m in Sources */,
 				A9082FD41B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A91C588C1B2E12F4009179E5 /* main.m in Sources */,
 			);
@@ -709,14 +743,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A93851B31B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
 				A9082FB01B7D505400013CAF /* SpotActions.m in Sources */,
 				A9082FCC1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
 				A9082FD31B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
+				A93851C81B87B475009AADF2 /* MyManager.m in Sources */,
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
 				A9082FB71B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A995A3011B7A950C00CC50BB /* SpotDetailsViewController.m in Sources */,
 				A9A761031B7BF7D500C9D28A /* Reachability.m in Sources */,
 				A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
+				A93851BA1B87AB95009AADF2 /* SpotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,8 +767,11 @@
 				A97DF5741B76A9CC004D0906 /* AppDelegate.m in Sources */,
 				A9082FB41B7D505400013CAF /* SpotActions.m in Sources */,
 				A9A761071B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A93851B71B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
+				A93851BE1B87AB95009AADF2 /* SpotCell.m in Sources */,
 				A9082FBB1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FD01B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A93851CC1B87B475009AADF2 /* MyManager.m in Sources */,
 				A9082FD71B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A97DF5751B76A9CC004D0906 /* main.m in Sources */,
 			);
@@ -747,8 +787,11 @@
 				A99124561B2F1FF400BF9259 /* AppDelegate.m in Sources */,
 				A9082FB21B7D505400013CAF /* SpotActions.m in Sources */,
 				A9A761051B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A93851B51B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
+				A93851BC1B87AB95009AADF2 /* SpotCell.m in Sources */,
 				A9082FB91B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCE1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A93851CA1B87B475009AADF2 /* MyManager.m in Sources */,
 				A9082FD51B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A99124571B2F1FF400BF9259 /* main.m in Sources */,
 			);
@@ -764,8 +807,11 @@
 				A99124681B2F20C900BF9259 /* AppDelegate.m in Sources */,
 				A9082FB31B7D505400013CAF /* SpotActions.m in Sources */,
 				A9A761061B7BF7D500C9D28A /* Reachability.m in Sources */,
+				A93851B61B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
+				A93851BD1B87AB95009AADF2 /* SpotCell.m in Sources */,
 				A9082FBA1B7D544A00013CAF /* BetterSpotsCommon.m in Sources */,
 				A9082FCF1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
+				A93851CB1B87B475009AADF2 /* MyManager.m in Sources */,
 				A9082FD61B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A99124691B2F20C900BF9259 /* main.m in Sources */,
 			);
@@ -936,6 +982,10 @@
 				INFOPLIST_FILE = DogspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = DogspotEU;
 			};
 			name = Debug;
@@ -949,6 +999,10 @@
 				INFOPLIST_FILE = DogspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = DogspotEU;
 			};
 			name = Release;

@@ -70,6 +70,13 @@
         locationCell.spotThumbnail.layer.cornerRadius = locationCell.spotThumbnail.bounds.size.width / 2.0f;
         locationCell.spotThumbnail.clipsToBounds = YES;
     }
+    else {
+        UIImage * img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad"] scaledToSize:CGSizeMake(150 ,150)];
+        if ([[spot valueForKey:@"is_enabled"] intValue] == 1){
+            img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok"] scaledToSize:CGSizeMake(150,150)];
+        }
+        [locationCell.spotThumbnail  setImage:img];
+    }
     
 //    if (image == nil) {
 //        image = [UIImage imageNamed:@"No Photo"];

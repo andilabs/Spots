@@ -10,6 +10,7 @@
 #import "SpotCell.h"
 #import "MyManager.h"
 #import "SpotActions.h"
+#import "BetterSpotsUtils.h"
 @interface SpotListViewController : UITableViewController
 @property(weak, nonatomic) NSMutableArray* spots;
 

@@ -16,14 +16,34 @@
 
 @implementation SpotListViewController
 @synthesize spots;
+@synthesize filteredSpots;
+@synthesize spotsSearchBar;
 
-
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
     MyManager *sharedManager = [MyManager sharedManager];
     spots = sharedManager.spots;
-    NSLog(@"%@",spots);
-    [super viewDidLoad];
+    
+    // Don't show the scope bar or cancel button until editing begins
+    [spotsSearchBar setShowsScopeBar:NO];
+    [spotsSearchBar sizeToFit];
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [[self tableView] bounds];
+    newBounds.origin.y = newBounds.origin.y + spotsSearchBar.bounds.size.height;
+    [[self tableView] setBounds:newBounds];
+    filteredSpots = [NSMutableArray arrayWithCapacity:[spots count]];
+    
+    // Reload the table
+    [[self tableView] reloadData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,19 +64,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.spots count];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [filteredSpots count];
+    }
+    else
+    {
+        return [spots count];
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Spot"];
-    [self configureCell:cell atIndexPath:indexPath];
-
+    [self configureCell:cell atIndexPath:indexPath withinTableView:tableView];
+    
     return cell;
 }
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withinTableView: (UITableView*)tableView
 {
     SpotCell *locationCell = (SpotCell *)cell;
-    NSDictionary *spot = [spots objectAtIndex:indexPath.row];
+//    NSDictionary *spot = [spots objectAtIndex:indexPath.row];
+  
+    NSDictionary * spot = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+       spot = [filteredSpots objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        spot  = [spots objectAtIndex:indexPath.row];
+    }
     
     locationCell.spotNameLabel.text = [spot objectForKey:@"name"];
 
@@ -150,5 +187,62 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark Content Filtering
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    // Update the filtered array based on the search text and scope.
+    
+    // Remove all objects from the filtered search array
+    [self.filteredSpots removeAllObjects];
+    
+    // Filter the array using NSPredicate
+    NSLog(@"%@", searchText);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"( name == %@)",searchText];
+    NSArray *tempArray = [spots filteredArrayUsingPredicate:predicate];
+    
+//    if(![scope isEqualToString:@"All"]) {
+//        // Further filter the array with the scope
+//        NSPredicate *scopePredicate = [NSPredicate predicateWithFormat:@"SELF.category contains[c] %@",scope];
+//        tempArray = [tempArray filteredArrayUsingPredicate:scopePredicate];
+//    }
+    
+    filteredSpots = [NSMutableArray arrayWithArray:tempArray];
+}
+
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSLog(@"%@", searchString);
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+//{
+//    // Tells the table data source to reload when scope bar selection changes
+//    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+//    
+//    // Return YES to cause the search result table view to be reloaded.
+//    return YES;
+//}
+
+#pragma mark - Search Button
+
+- (IBAction)goToSearch:(id)sender
+{
+    // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
+    // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
+    [spotsSearchBar becomeFirstResponder];
+}
 
 @end

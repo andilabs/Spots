@@ -553,6 +553,7 @@
                                     <outlet property="spotDistanceLabel" destination="51c-Fl-8B4" id="7eL-JZ-cxF"/>
                                     <outlet property="spotNameLabel" destination="2Pp-ob-ODt" id="VL2-SC-bjm"/>
                                     <outlet property="spotThumbnail" destination="sAg-xk-dma" id="vym-gR-I3n"/>
+                                    <segue destination="wiI-Bp-bVN" kind="show" identifier="ShowSpotDetailFromFavList" id="j5E-v2-93q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -576,6 +577,6 @@
         <image name="fa-map" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xpy-Tu-dvh"/>
+        <segue reference="j5E-v2-93q"/>
     </inferredMetricsTieBreakers>
 </document>

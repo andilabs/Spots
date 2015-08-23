@@ -5,7 +5,7 @@
 //  Created by Andrzej Kostański on 22.08.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-
+#import "SpotDetailsViewController.h"
 #import "FavouritesSpotListViewController.h"
 
 #import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
@@ -14,16 +14,15 @@
 
 @end
 
-@implementation FavouritesSpotListViewController
+@implementation FavouritesSpotListViewController{
+    MyManager *sharedManager;
+}
 
-//@synthesize favouritesSpots;
-//NSMutableDictionary * favSpot;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 
-//    sharedManager = [MyManager sharedManager];
-//    favouritesSpots = sharedManager.favouritesSpots;
+    sharedManager = [MyManager sharedManager];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -46,13 +45,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
-    MyManager * shM = [MyManager sharedManager];
-    NSDictionary * item;
-    for (item in shM.favouritesSpots){
-        NSLog(@"name = %@", item[@"name"]);
-    }
-    return [shM.favouritesSpots count];
+//   
+//    MyManager * shM = [MyManager sharedManager];
+//    NSDictionary * item;
+//    for (item in shM.favouritesSpots){
+//        NSLog(@"name = %@", item[@"name"]);
+//    }
+    return [sharedManager.favouritesSpots count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -64,8 +63,8 @@
 }
 - (void)configureCell:(SpotCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    MyManager * shM = [MyManager sharedManager];
-    NSMutableDictionary * favSpot  = [shM.favouritesSpots objectAtIndex:indexPath.row];
+//    MyManager * shM = [MyManager sharedManager];
+    NSMutableDictionary * favSpot  = [sharedManager.favouritesSpots objectAtIndex:indexPath.row];
     NSLog(@"%@", [favSpot objectForKey:@"name"]);
     SpotCell *locationCell = (SpotCell *)cell;
     
@@ -98,6 +97,24 @@
     }
     
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowSpotDetailFromFavList"]) {
+        SpotDetailsViewController *controller = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+//        MyManager * shM = [MyManager sharedManager];
+//        NSMutableDictionary * favSpot  = [shM.favouritesSpots objectAtIndex:indexPath.row];
+        controller.dataModel = [sharedManager.favouritesSpots objectAtIndex:indexPath.row];
+    }
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [sharedManager removeSpotWithPKfromFav:[sharedManager.favouritesSpots objectAtIndex:indexPath.row]];
+    
+    NSArray *indexPaths = @[indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 @end

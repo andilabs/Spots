@@ -269,7 +269,7 @@
 }
 
 
-
+// Hide table cells for which we dont have data by setting its height to 0
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -293,7 +293,6 @@
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

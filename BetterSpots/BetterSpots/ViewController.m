@@ -82,6 +82,9 @@
         [BetterSpotsUtils showAlertInfoWithTitle: @"No internet connection 😢"
                                       andMessage: @"We need internet to fetch spots for you."
                                      inContextOf: self];
+        MyManager *sharedManager = [MyManager sharedManager];
+        [sharedManager loadSpots];
+         currentSpots = sharedManager.spots;
     }
     else {
         MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(
@@ -127,6 +130,8 @@
                                                                      error:&myErr];
         MyManager *sharedManager = [MyManager sharedManager];
         [sharedManager init: spots];
+        [sharedManager saveSpots];
+        [sharedManager loadSpots];
         return spots;
     }
     else {
@@ -326,7 +331,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
-        NSLog(@"prepareForSegue in ViewController");
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
                 controller.dataModel = infoOfCurrentlySelectedSpot;

@@ -11,10 +11,21 @@
 
 @interface MyManager : NSObject {
     NSMutableArray *spots;
+    NSMutableArray *favouritesSpots;
 }
 
 @property (nonatomic, retain) NSMutableArray *spots;
-
+@property (nonatomic, retain) NSMutableArray *favouritesSpots;
+@property (nonatomic, retain) NSMutableOrderedSet * favPKs;
+@property (nonatomic, retain) NSMutableDictionary * favDict;
 + (id)sharedManager;
 - (id)init: (NSMutableArray * )fetchedSpots;
+- (void)addSpot:(NSDictionary *)spot;
+- (void)saveSpots;
+- (void)loadSpots;
+-(void)removeSpotWithPK:(int)pk;
+-(void)addSpotToFav:(NSDictionary *)spot;
+-(void)removeSpotWithPKfromFav:(NSDictionary *)spot;
+
+//-(void)removeSpotWithPKfromFav:(int)pk;
 @end

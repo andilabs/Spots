@@ -143,7 +143,6 @@
     NSString * fullStars = [@"" stringByPaddingToLength: [[BetterSpotsUtils getFACharForSymbol: FontAwesomeStarFull] length] * integerPartOfRating
                                              withString: [BetterSpotsUtils getFACharForSymbol: FontAwesomeStarFull] startingAtIndex:0];
 
-    NSLog(@"%d", emptyStarsCount);
     NSString * emptyStars = [@"" stringByPaddingToLength: [[BetterSpotsUtils getFACharForSymbol: FontAwesomeStarEmpty] length] * emptyStarsCount
                                              withString: [BetterSpotsUtils getFACharForSymbol: FontAwesomeStarEmpty] startingAtIndex:0];
    

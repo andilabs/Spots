@@ -9,6 +9,7 @@
 
 #import "SpotDetailsViewController.h"
 #import "SVWebViewController.h"
+#import "MyManager.h"
 
 @interface SpotDetailsViewController ()
 
@@ -34,19 +35,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *facilitiesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UIButton *favouritesAddRemoveButton;
+
 
 
 @end
 
 @implementation SpotDetailsViewController{
     GMSMapView * mapViewAsCellBackground;
+    MyManager * sharedManager;
 }
 @synthesize dataModel;
 
 
 - (IBAction)shareSpot:(id)sender{
     [SpotActions shareTheSpot: self.dataModel inContextOf: self forAppName: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] withImage: ((UIImageView*)self.spotThumbnailCell.backgroundView).image];
-    NSLog(@"somebody wants share something");
 }
 
 
@@ -129,6 +132,24 @@
         [SpotActions  addNewAddresBookContactWithContentOfTheSpot: self.dataModel inContextOfViewController:self];
     }
     
+    // add to OR remove from favourites
+
+    if (indexPath.section == 0 && indexPath.row == 9)
+    {
+        if ([sharedManager.favouritesSpots containsObject:self.dataModel]){
+            [sharedManager removeSpotWithPKfromFav:self.dataModel];
+
+//            [sharedManager removeSpotWithPKfromFav:[[self.dataModel valueForKey:@"pk"] intValue]];
+            [self.favouritesAddRemoveButton setTitle:@"Add to favourites" forState:UIControlStateNormal];
+            self.favouritesAddRemoveButton.tintColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0];
+        }
+        else {
+            [sharedManager addSpotToFav:self.dataModel];
+            [self.favouritesAddRemoveButton setTitle:@"Remove from favourites" forState:UIControlStateNormal];
+            self.favouritesAddRemoveButton.tintColor = [UIColor redColor];
+
+        }
+    }
 }
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -154,7 +175,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
+    sharedManager = [MyManager sharedManager];
+
     // this lines removes empty header above first tableview section
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
     
@@ -231,6 +254,13 @@
         self.spotEmailIcon.text = [NSString stringWithFormat:@"%C", 0xf003];
     }
     
+    // configure layout of AddRemoveButton
+    if ([sharedManager.favouritesSpots containsObject:self.dataModel]){
+        [self.favouritesAddRemoveButton setTitle:@"Remove from favourites" forState:UIControlStateNormal];
+        self.favouritesAddRemoveButton.tintColor = [UIColor redColor];
+//
+    }
+    
 }
 
 
@@ -260,7 +290,7 @@
     if (cell == self.spotEmailCell && [self.dataModel[@"email"] isEqual: @""]){
         return 0;
     }
-
+    
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
@@ -269,7 +299,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetailMap"]) {
-        NSLog(@"prepareForSegue in SpotDetailsViewController");
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsMapViewController *controller = (SpotDetailsMapViewController *)navigationController.topViewController;
         controller.dataModel = self.dataModel;

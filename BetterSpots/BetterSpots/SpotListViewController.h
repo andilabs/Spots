@@ -11,8 +11,7 @@
 #import "MyManager.h"
 #import "SpotActions.h"
 #import "BetterSpotsUtils.h"
-@interface SpotListViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
-@property(weak, nonatomic) NSMutableArray* spots;
-@property (strong,nonatomic) NSMutableArray *filteredSpots;
-@property IBOutlet UISearchBar *spotsSearchBar;
+@interface SpotListViewController : UITableViewController
+
+@property(strong, nonatomic) NSMutableArray* spots;
 @end

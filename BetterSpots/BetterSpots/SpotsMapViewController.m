@@ -9,16 +9,14 @@
 #import "SpotsMapViewController.h"
 
 
-
 @interface SpotsMapViewController()
 @property (nonatomic) Reachability *hostReachability;
 @property (nonatomic) Reachability *internetReachability;
 @property (nonatomic) Reachability *wifiReachability;
-
 @end
 
-@implementation SpotsMapViewController {
 
+@implementation SpotsMapViewController {
     NSMutableArray * currentSpots;
     NSDictionary * infoOfCurrentlySelectedSpot;
     GMSMapView *mapView_;

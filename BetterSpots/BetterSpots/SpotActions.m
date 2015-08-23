@@ -5,11 +5,11 @@
 //  Created by Andrzej Kostański on 14.08.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-#import "BetterSpotsCommon.h"
-#import "BetterSpotsUtils.h"
+
 #import "SpotActions.h"
-#import <math.h>
+
 @import AddressBook;
+
 
 @implementation SpotActions
 

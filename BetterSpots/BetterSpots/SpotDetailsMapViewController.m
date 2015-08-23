@@ -7,16 +7,15 @@
 //
 
 #import "SpotDetailsMapViewController.h"
-#import "SpotActions.h"
-#import <GoogleMaps/GoogleMaps.h>
+
 
 @interface SpotDetailsMapViewController ()
 
 @end
 
+
 @implementation SpotDetailsMapViewController
 @synthesize dataModel;
-
 
 - (IBAction)getDirectionsToSpot:(id)sender {
     [SpotActions navigateUserToTheSpot: self.dataModel];

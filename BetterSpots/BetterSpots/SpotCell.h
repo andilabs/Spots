@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface SpotCell : UITableViewCell
 @property (nonatomic, weak) IBOutlet UIImageView *spotThumbnail;
 @property (weak, nonatomic) IBOutlet UILabel *spotNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *spotAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *spotDistanceLabel;
-
 @end

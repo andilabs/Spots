@@ -6,10 +6,15 @@
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
 
+#import <math.h>
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <MapKit/MapKit.h>
+
+#import "BetterSpotsCommon.h"
+#import "BetterSpotsUtils.h"
+
 
 @interface SpotActions : NSObject
 + (void)addNewAddresBookContactWithContentOfTheSpot:(NSDictionary *)theSpotInfoDict

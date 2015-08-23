@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+
 #import "SpotCell.h"
 #import "MyManager.h"
 #import "SpotActions.h"
 #import "BetterSpotsUtils.h"
-@interface SpotListViewController : UITableViewController
+#import "SpotDetailsViewController.h"
 
+
+@interface SpotListViewController : UITableViewController
 @property(strong, nonatomic) NSMutableArray* spots;
 @end

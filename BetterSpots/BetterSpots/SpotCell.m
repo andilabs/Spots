@@ -8,8 +8,8 @@
 
 #import "SpotCell.h"
 
-@implementation SpotCell
 
+@implementation SpotCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

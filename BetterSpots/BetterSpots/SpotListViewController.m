@@ -7,12 +7,12 @@
 //
 
 #import "SpotListViewController.h"
-#import "SpotDetailsViewController.h"
-#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+
 
 @interface SpotListViewController ()
 
 @end
+
 
 @implementation SpotListViewController
 @synthesize spots;

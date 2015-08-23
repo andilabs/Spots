@@ -11,9 +11,13 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+
 #import "SpotDetailsMapViewController.h"
 #import "BetterSpotsUtils.h"
 #import "SpotActions.h"
+#import "SVWebViewController.h"
+#import "MyManager.h"
+
 @interface SpotDetailsViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 @property(weak, nonatomic)  NSDictionary* dataModel;
 @end

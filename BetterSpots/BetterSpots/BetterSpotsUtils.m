@@ -5,7 +5,7 @@
 //  Created by Andrzej Kostański on 12.08.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-#import "BetterSpotsCommon.h"
+
 #import "BetterSpotsUtils.h"
 
 

@@ -9,6 +9,7 @@
 
 #import <foundation/Foundation.h>
 
+
 @interface MyManager : NSObject {
     NSMutableArray *spots;
     NSMutableArray *favouritesSpots;

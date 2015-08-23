@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "BetterSpotsUtils.h"
+
+
 @interface MoreAndSettingsViewController : UITableViewController
 
 @end

@@ -6,13 +6,10 @@
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
 
-
 #import "SpotDetailsViewController.h"
-#import "SVWebViewController.h"
-#import "MyManager.h"
+
 
 @interface SpotDetailsViewController ()
-
 @property (weak, nonatomic) IBOutlet UITableViewCell *spotThumbnailCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *spotAddressCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *spotPhoneNumberCell;
@@ -25,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *spotWebpageIcon;
 @property (weak, nonatomic) IBOutlet UILabel *spotEmailIcon;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *enablenceIcon;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -36,15 +32,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *facilitiesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favouritesAddRemoveButton;
-
-
-
 @end
+
 
 @implementation SpotDetailsViewController{
     GMSMapView * mapViewAsCellBackground;
     MyManager * sharedManager;
 }
+
 @synthesize dataModel;
 
 

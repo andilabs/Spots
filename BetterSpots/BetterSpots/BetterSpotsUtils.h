@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BetterSpotsCommon.h"
+
 @interface UIColor(MBCategory)
 + (UIColor *)colorWithHex:(UInt32)col;
 + (UIColor *)colorWithHexString:(NSString *)str;

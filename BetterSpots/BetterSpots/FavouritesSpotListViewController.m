@@ -5,14 +5,14 @@
 //  Created by Andrzej Kostański on 22.08.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-#import "SpotDetailsViewController.h"
+
 #import "FavouritesSpotListViewController.h"
 
-#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
 
 @interface FavouritesSpotListViewController ()
 
 @end
+
 
 @implementation FavouritesSpotListViewController{
     MyManager *sharedManager;

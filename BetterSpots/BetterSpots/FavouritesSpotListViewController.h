@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+
 #import "SpotActions.h"
 #import "BetterSpotsUtils.h"
 #import "MyManager.h"
 #import "SpotCell.h"
+#import "SpotDetailsViewController.h"
+
+
 @interface FavouritesSpotListViewController : UITableViewController
-//@property(strong, nonatomic) NSMutableArray* favouritesSpots;
 
 @end

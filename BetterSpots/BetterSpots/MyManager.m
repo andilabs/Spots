@@ -8,12 +8,14 @@
 
 #import "MyManager.h"
 
+
 @implementation MyManager
 
 @synthesize spots;
 @synthesize favouritesSpots;
 @synthesize favDict;
 @synthesize favPKs;
+
 #pragma mark Singleton Methods
 
 + (id)sharedManager {
@@ -32,11 +34,9 @@
     return self;
 }
 
-- (id)initFav: (NSMutableArray * )spots {
-    NSLog(@"initFav");
+- (id)initFav: (NSMutableArray * )_spots {
     if (self = [super init]) {
-        NSLog(@"initFav if (self = [super init])  TRUE");
-        favouritesSpots = spots;
+        favouritesSpots = _spots;
     }
     return self;
 }
@@ -57,7 +57,6 @@
 }
 
 -(void)addSpotToFav:(NSDictionary *)spot{
-    NSLog(@"-(void)addSpotToFav:(NSDictionary *)spot");
     NSMutableArray *current_spots = [NSMutableArray arrayWithArray:favouritesSpots];
     [current_spots insertObject:spot atIndex:0];
     [self initFav:current_spots];
@@ -109,8 +108,6 @@
 
 - (void)saveFavouritesSpots
 {
-    NSLog(@"- (void)saveFavouritesSpots");
-    NSLog(@" count: %d", [favouritesSpots count]);
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver encodeObject:favouritesSpots forKey:@"FavouritesSpots"];
@@ -126,7 +123,6 @@
         NSData *data = [[NSData alloc] initWithContentsOfFile:path];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         favouritesSpots = [unarchiver decodeObjectForKey:@"FavouritesSpots"];
-        NSLog(@"loaded: ", favouritesSpots);
         [unarchiver finishDecoding];
     }
 }

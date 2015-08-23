@@ -9,6 +9,7 @@
 #import "MyActivityIndicatorView.h"
 #import "BetterSpotsUtils.h"
 
+
 @implementation MyActivityIndicatorView
 
 /*

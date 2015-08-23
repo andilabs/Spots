@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../Downloads/sopot.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:../../Downloads/berlin.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:../../Downloads/warsaw2.gpx">
+   </FileRef>
+   <FileRef
       location = "group:/Users/andi/Spots/BetterSpots/BetterSpots.xcodeproj">
    </FileRef>
    <FileRef

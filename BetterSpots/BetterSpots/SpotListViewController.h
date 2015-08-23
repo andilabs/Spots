@@ -18,4 +18,5 @@
 
 @interface SpotListViewController : UITableViewController
 @property(strong, nonatomic) NSMutableArray* spots;
+@property(strong, nonatomic) NSArray *filteredSpots;
 @end

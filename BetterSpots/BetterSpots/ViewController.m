@@ -41,8 +41,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES
-                                             animated:animated];
+//    [self.navigationController setNavigationBarHidden:YES
+//                                             animated:animated];
     [super viewWillAppear:animated];
     NSLog(@"hi! viewWillAppear");
 
@@ -57,6 +57,25 @@
 
 
 - (void)viewDidLoad {
+    // make background color of navigation bar with spot default color
+//    webViewController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+    // make fonts on navigation bar white
+//    webViewController.navigationBar.barStyle = UIBarStyleBlack;
+//    webViewController.navigationBar.tintColor = [UIColor whiteColor];
+//    webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+    CGRect frame = CGRectMake(0, 0, 400, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Lobster" size:26];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = [[BetterSpotsUtils getSpotsAppName] stringByReplacingOccurrencesOfString:@"Radar" withString:@""];
+    // emboss in the same way as the native title
+//[label setShadowColor:[UIColor darkGrayColor]];
+//[label setShadowOffset:CGSizeMake(0, -0.2)];
+     self.navigationItem.titleView = label;
+    [BetterSpotsUtils setUpColorsForNavigationViewController:self.navigationController];
+    
     NSLog(@"hi! viewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appplicationIsActive:)
@@ -67,11 +86,7 @@
                                              selector:@selector(applicationEnteredForeground:)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
-    // make background color of navigation bar with spot default color
-    self.navigationController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
-    // make fonts on navigation bar white
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
     
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
@@ -87,12 +102,7 @@
          currentSpots = sharedManager.spots;
     }
     else {
-        MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(
-                                                                                                                    0,
-                                                                                                                    0,
-                                                                                                                    self.view.frame.size.width,
-                                                                                                                    self.view.frame.size.height
-                                                                                                                    )];
+        MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
         self.view = activityIndicatorView;
         [self startLocationManager];
     }

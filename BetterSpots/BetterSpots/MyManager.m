@@ -33,7 +33,9 @@
 }
 
 - (id)initFav: (NSMutableArray * )spots {
+    NSLog(@"initFav");
     if (self = [super init]) {
+        NSLog(@"initFav if (self = [super init])  TRUE");
         favouritesSpots = spots;
     }
     return self;
@@ -51,27 +53,22 @@
     NSArray *tempArray = [spots filteredArrayUsingPredicate:predicate];
     [current_spots removeObject:[tempArray objectAtIndex:0]];
     [self init:current_spots];
+   
 }
 
 -(void)addSpotToFav:(NSDictionary *)spot{
+    NSLog(@"-(void)addSpotToFav:(NSDictionary *)spot");
     NSMutableArray *current_spots = [NSMutableArray arrayWithArray:favouritesSpots];
     [current_spots addObject:spot];
     [self initFav:current_spots];
+    [self saveFavouritesSpots];
 }
 
--(void)removeSpotWithPKfromFav:(NSDictionary *)spot {
+-(void)removeSpotFromFavourites:(NSDictionary *)spot {
     [favouritesSpots removeObject:spot];
+    [self saveFavouritesSpots];
 }
-//-(void)removeSpotWithPKfromFav:(int)pk {
-//    
-//    NSMutableArray *notDiscardedItems = [NSMutableArray array];
-//    NSDictionary *item;
-//    for (item in favouritesSpots) {
-//        if ([[item objectForKey:@"pk"]intValue]!=pk)
-//            [notDiscardedItems addObject:item];
-//    }
-//    [self initFav:notDiscardedItems];
-//}
+
 
 - (NSString *)documentsDirectory
 {
@@ -83,6 +80,11 @@
 - (NSString *)dataFilePath
 {
     return [[self documentsDirectory] stringByAppendingPathComponent:@"Spots.plist"];
+}
+
+- (NSString *)dataFilePathFavourites
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"FavouritesSpots.plist"];
 }
 
 - (void)saveSpots
@@ -101,6 +103,30 @@
         NSData *data = [[NSData alloc] initWithContentsOfFile:path];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         spots = [unarchiver decodeObjectForKey:@"Spots"];
+        [unarchiver finishDecoding];
+    }
+}
+
+- (void)saveFavouritesSpots
+{
+    NSLog(@"- (void)saveFavouritesSpots");
+    NSLog(@" count: %d", [favouritesSpots count]);
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:favouritesSpots forKey:@"FavouritesSpots"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePathFavourites] atomically:YES];
+}
+
+- (void)loadFavouritesSpots
+{
+    NSLog(@"- (void)loadFavouritesSpots");
+    NSString *path = [self dataFilePathFavourites];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        favouritesSpots = [unarchiver decodeObjectForKey:@"FavouritesSpots"];
+        NSLog(@"loaded: ", favouritesSpots);
         [unarchiver finishDecoding];
     }
 }

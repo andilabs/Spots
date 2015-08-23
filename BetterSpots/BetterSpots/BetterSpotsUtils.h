@@ -43,6 +43,6 @@
  \returns string with FA icon e.g star icon ready to use
  */
 + (NSString *)getFACharForSymbol:(unichar)symbolCode;
-
++ (void)setUpColorsForNavigationViewController: (UINavigationController*)controller;
 @end
 

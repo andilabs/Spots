@@ -70,7 +70,13 @@
 + (NSString *)getFACharForSymbol:(unichar)symbolCode {
     return [NSString stringWithFormat:@"%C", symbolCode];
 }
-
++ (void)setUpColorsForNavigationViewController: (UINavigationController*)controller{
+    // make background color of navigation bar with spot default color
+    controller.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
+    // make fonts on navigation bar white
+    controller.navigationBar.barStyle = UIBarStyleBlack;
+    controller.navigationBar.tintColor = [UIColor whiteColor];
+}
 
 @end
 

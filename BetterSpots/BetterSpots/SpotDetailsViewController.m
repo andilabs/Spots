@@ -137,7 +137,7 @@
     if (indexPath.section == 0 && indexPath.row == 9)
     {
         if ([sharedManager.favouritesSpots containsObject:self.dataModel]){
-            [sharedManager removeSpotWithPKfromFav:self.dataModel];
+            [sharedManager removeSpotFromFavourites:self.dataModel];
 
 //            [sharedManager removeSpotWithPKfromFav:[[self.dataModel valueForKey:@"pk"] intValue]];
             [self.favouritesAddRemoveButton setTitle:@"Add to favourites" forState:UIControlStateNormal];

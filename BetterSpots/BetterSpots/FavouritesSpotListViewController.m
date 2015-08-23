@@ -20,10 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [BetterSpotsUtils setUpColorsForNavigationViewController:self.navigationController];
+    self.navigationItem.title = @"Favourites";
     sharedManager = [MyManager sharedManager];
+    [sharedManager initFav:[NSMutableArray array]];
+    [sharedManager saveSpots];
+    [sharedManager loadFavouritesSpots];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    if ([sharedManager.favouritesSpots count] > 0) {
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    }
 }
 -(void) viewWillAppear:(BOOL)animated{
  // potrzebne żeby tableview się ogarnęło a nie próbowało być mądrzejsze niż jest (wyświetlanie złych spotów)
@@ -90,7 +97,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [sharedManager removeSpotWithPKfromFav:[sharedManager.favouritesSpots objectAtIndex:indexPath.row]];
+    [sharedManager removeSpotFromFavourites:[sharedManager.favouritesSpots objectAtIndex:indexPath.row]];
     NSArray *indexPaths = @[indexPath];
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }

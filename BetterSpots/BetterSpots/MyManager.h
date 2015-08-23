@@ -20,12 +20,15 @@
 @property (nonatomic, retain) NSMutableDictionary * favDict;
 + (id)sharedManager;
 - (id)init: (NSMutableArray * )fetchedSpots;
+- (id) initFav: (NSMutableArray *)favSpots;
 - (void)addSpot:(NSDictionary *)spot;
 - (void)saveSpots;
 - (void)loadSpots;
+- (void)saveFavouritesSpots;
+- (void)loadFavouritesSpots;
 -(void)removeSpotWithPK:(int)pk;
 -(void)addSpotToFav:(NSDictionary *)spot;
--(void)removeSpotWithPKfromFav:(NSDictionary *)spot;
+-(void)removeSpotFromFavourites:(NSDictionary *)spot;
 
 //-(void)removeSpotWithPKfromFav:(int)pk;
 @end

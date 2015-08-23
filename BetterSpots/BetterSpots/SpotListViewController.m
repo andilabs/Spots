@@ -29,6 +29,8 @@ NSMutableDictionary * spot;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [BetterSpotsUtils setUpColorsForNavigationViewController:self.navigationController];
+    self.navigationItem.title = @"Nearby";
     MyManager *sharedManager = [MyManager sharedManager];
     spots = sharedManager.spots;
 }
@@ -72,7 +74,7 @@ NSMutableDictionary * spot;
         [locationCell.spotThumbnail  setImage:nil];
     }
     locationCell.spotThumbnail.layer.cornerRadius = locationCell.spotThumbnail.bounds.size.width / 2.0f;
-    locationCell.spotThumbnail.layer.borderWidth = 2;
+    locationCell.spotThumbnail.layer.borderWidth = 1.5;
 
     UIColor * allowanceColor = [UIColor colorWithHexString:@"#d72526"];
     if ([[spot valueForKey:@"is_enabled"] intValue] == 1){

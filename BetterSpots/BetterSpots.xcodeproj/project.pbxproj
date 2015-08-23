@@ -56,6 +56,10 @@
 		A95D29C71B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */; };
 		A95D29C81B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */; };
 		A95D29C91B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */; };
+		A95D29CB1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
+		A95D29CC1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
+		A95D29CD1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
+		A95D29CE1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
 		A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
@@ -149,6 +153,7 @@
 		A948EE6F1B25D818007B108F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A95D29C31B88D2C500848F1B /* FavouritesSpotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesSpotListViewController.h; sourceTree = "<group>"; };
 		A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesSpotListViewController.m; sourceTree = "<group>"; };
+		A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		A96CFBAE1B7B60AE003E1FC1 /* BetterSpotsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterSpotsUtils.h; sourceTree = "<group>"; };
 		A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterSpotsUtils.m; sourceTree = "<group>"; };
 		A96FA4B31B77465000BB5BBA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -365,6 +370,7 @@
 		A9B6C6CE1B7CC0C2000DB4B6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */,
 				A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */,
 				A9B6C6D01B7CC106000DB4B6 /* glyphicons-regular.ttf */,
 			);
@@ -514,6 +520,7 @@
 				A91C58901B2E12F4009179E5 /* Main.storyboard in Resources */,
 				A9B6C6D71B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A91C58911B2E12F4009179E5 /* Media.xcassets in Resources */,
+				A95D29CB1B8A197500848F1B /* Lobster-Regular.ttf in Resources */,
 				A9B6C6DD1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A96FA4D31B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */,
 				A91C58921B2E12F4009179E5 /* Podfile in Resources */,
@@ -540,6 +547,7 @@
 				A97DF5791B76A9CC004D0906 /* Main.storyboard in Resources */,
 				A9B6C6DA1B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A96FA4D01B7747D100BB5BBA /* DogspotEUMedia.xcassets in Resources */,
+				A95D29CE1B8A197500848F1B /* Lobster-Regular.ttf in Resources */,
 				A9B6C6E01B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A97DF57A1B76A9CC004D0906 /* Media.xcassets in Resources */,
 				A97DF57B1B76A9CC004D0906 /* Podfile in Resources */,
@@ -553,6 +561,7 @@
 				A991245B1B2F1FF400BF9259 /* Main.storyboard in Resources */,
 				A9B6C6D81B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A96FA4CA1B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */,
+				A95D29CC1B8A197500848F1B /* Lobster-Regular.ttf in Resources */,
 				A9B6C6DE1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A991245C1B2F1FF400BF9259 /* Media.xcassets in Resources */,
 				A991245D1B2F1FF400BF9259 /* Podfile in Resources */,
@@ -566,6 +575,7 @@
 				A96FA4CD1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */,
 				A9B6C6D91B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
 				A991246D1B2F20C900BF9259 /* Main.storyboard in Resources */,
+				A95D29CD1B8A197500848F1B /* Lobster-Regular.ttf in Resources */,
 				A9B6C6DF1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A991246E1B2F20C900BF9259 /* Media.xcassets in Resources */,
 				A991246F1B2F20C900BF9259 /* Podfile in Resources */,

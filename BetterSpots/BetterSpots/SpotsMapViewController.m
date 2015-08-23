@@ -5,30 +5,27 @@
 //  Created by Andrzej Kostański on 08.06.2015.
 //  Copyright (c) 2015 Andrzej Kostański. All rights reserved.
 //
-#import "BetterSpotsUtils.h"
-#import "ViewController.h"
-#import "MyActivityIndicatorView.h"
-#import "MyManager.h"
+
+#import "SpotsMapViewController.h"
 
 
-@interface ViewController()
+
+@interface SpotsMapViewController()
 @property (nonatomic) Reachability *hostReachability;
 @property (nonatomic) Reachability *internetReachability;
 @property (nonatomic) Reachability *wifiReachability;
 
 @end
 
-@implementation ViewController {
+@implementation SpotsMapViewController {
 
     NSMutableArray * currentSpots;
     NSDictionary * infoOfCurrentlySelectedSpot;
-
     GMSMapView *mapView_;
     CLLocationManager *_locationManager;
     BOOL _updatingLocation;
     NSError *_lastLocationError;
     CLLocation *_location;
-
     NSUserDefaults *defaults;
     
 }
@@ -41,8 +38,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [self.navigationController setNavigationBarHidden:YES
-//                                             animated:animated];
     [super viewWillAppear:animated];
     NSLog(@"hi! viewWillAppear");
 
@@ -57,23 +52,8 @@
 
 
 - (void)viewDidLoad {
-    // make background color of navigation bar with spot default color
-//    webViewController.navigationBar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
-    // make fonts on navigation bar white
-//    webViewController.navigationBar.barStyle = UIBarStyleBlack;
-//    webViewController.navigationBar.tintColor = [UIColor whiteColor];
-//    webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
-    CGRect frame = CGRectMake(0, 0, 400, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"Lobster" size:26];
-    label.textAlignment = UITextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    label.text = [[BetterSpotsUtils getSpotsAppName] stringByReplacingOccurrencesOfString:@"Radar" withString:@""];
-    // emboss in the same way as the native title
-//[label setShadowColor:[UIColor darkGrayColor]];
-//[label setShadowOffset:CGSizeMake(0, -0.2)];
-     self.navigationItem.titleView = label;
+    self.navigationItem.title = @"Map";
+    [BetterSpotsUtils setupBrandingForNavigationItem:self.navigationItem];
     [BetterSpotsUtils setUpColorsForNavigationViewController:self.navigationController];
     
     NSLog(@"hi! viewDidLoad");
@@ -312,6 +292,8 @@
         
         self.view = mapView_;
         mapView_.delegate = self;
+        mapView_.padding = UIEdgeInsetsMake(50.0, 0.0, 50.0, 0.0);
+
         if (currentSpots && [currentSpots count] > 0){
             [self drawMarkersOnMap: currentSpots];
         }
@@ -344,7 +326,6 @@
         UINavigationController *navigationController = segue.destinationViewController;
         SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
                 controller.dataModel = infoOfCurrentlySelectedSpot;
-
     }
 }
 

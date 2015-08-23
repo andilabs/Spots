@@ -175,7 +175,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     sharedManager = [MyManager sharedManager];
 
     // this lines removes empty header above first tableview section

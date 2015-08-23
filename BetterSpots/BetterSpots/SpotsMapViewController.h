@@ -14,10 +14,12 @@
 #import "Reachability.h"
 #import "SpotActions.h"
 #import "BetterSpotsCommon.h"
+#import "BetterSpotsUtils.h"
+#import "MyActivityIndicatorView.h"
+#import "MyManager.h"
 
 
-
-@interface ViewController :  UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate, UINavigationControllerDelegate>
+@interface SpotsMapViewController :  UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate, UINavigationControllerDelegate>
 @property (nonatomic,retain) CLLocationManager *locationManager;
 
 -(NSMutableArray*)getNearbylSpotsWithLat:(float)lat

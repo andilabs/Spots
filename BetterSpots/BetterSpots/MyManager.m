@@ -59,7 +59,7 @@
 -(void)addSpotToFav:(NSDictionary *)spot{
     NSLog(@"-(void)addSpotToFav:(NSDictionary *)spot");
     NSMutableArray *current_spots = [NSMutableArray arrayWithArray:favouritesSpots];
-    [current_spots addObject:spot];
+    [current_spots insertObject:spot atIndex:0];
     [self initFav:current_spots];
     [self saveFavouritesSpots];
 }

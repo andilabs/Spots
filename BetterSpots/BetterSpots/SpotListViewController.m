@@ -19,6 +19,10 @@
 
 NSMutableDictionary * spot;
 
+- (IBAction)showSearch:(id)sender {
+   [self.searchDisplayController.searchBar becomeFirstResponder];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -29,6 +33,15 @@ NSMutableDictionary * spot;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Don't show the scope bar or cancel button until editing begins
+    [self.searchDisplayController.searchBar setShowsScopeBar:NO];
+    [self.searchDisplayController.searchBar sizeToFit];
+    
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [[self tableView] bounds];
+    newBounds.origin.y = newBounds.origin.y + self.searchDisplayController.searchBar.bounds.size.height;
+    [[self tableView] setBounds:newBounds];
+
     [BetterSpotsUtils setUpColorsForNavigationViewController:self.navigationController];
     self.navigationItem.title = @"Nearby";
     MyManager *sharedManager = [MyManager sharedManager];

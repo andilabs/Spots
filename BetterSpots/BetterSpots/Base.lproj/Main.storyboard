@@ -79,7 +79,13 @@
                             <outlet property="delegate" destination="R14-XM-Rwm" id="7yJ-7D-hny"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="IC3-SW-iMN"/>
+                    <navigationItem key="navigationItem" id="IC3-SW-iMN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="hwL-KB-sHU">
+                            <connections>
+                                <action selector="showSearch:" destination="R14-XM-Rwm" id="CFB-Fh-K8J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="YAF-9I-8tE" id="3Yp-3z-z83"/>
                     </connections>

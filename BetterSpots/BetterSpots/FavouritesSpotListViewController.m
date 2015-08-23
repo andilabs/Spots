@@ -20,14 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
     sharedManager = [MyManager sharedManager];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void) viewWillAppear:(BOOL)animated{
  // potrzebne żeby tableview się ogarnęło a nie próbowało być mądrzejsze niż jest (wyświetlanie złych spotów)
@@ -45,35 +41,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//   
-//    MyManager * shM = [MyManager sharedManager];
-//    NSDictionary * item;
-//    for (item in shM.favouritesSpots){
-//        NSLog(@"name = %@", item[@"name"]);
-//    }
     return [sharedManager.favouritesSpots count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     SpotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FavouritesSpot"];
-    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 - (void)configureCell:(SpotCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-//    MyManager * shM = [MyManager sharedManager];
     NSMutableDictionary * favSpot  = [sharedManager.favouritesSpots objectAtIndex:indexPath.row];
-    NSLog(@"%@", [favSpot objectForKey:@"name"]);
     SpotCell *locationCell = (SpotCell *)cell;
-    
     locationCell.spotNameLabel.text = [favSpot objectForKey:@"name"];
     locationCell.spotAddressLabel.text = [favSpot objectForKey:@"address_street"];
     locationCell.spotDistanceLabel.text =[SpotActions getFormattedDistanceWith:[favSpot[@"distance"]doubleValue]];
     
     if ([favSpot valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
-        
         [locationCell.spotThumbnail setImageWithURL:[NSURL URLWithString:favSpot[@"thumbnail_venue_photo"]]
                                    placeholderImage:nil
                         usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -90,10 +74,8 @@
         UIImage * img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-bad"] scaledToSize:CGSizeMake(150 ,150)];
         if ([[favSpot valueForKey:@"is_enabled"] intValue] == 1){
             img = [BetterSpotsUtils imageWithImage:[UIImage imageNamed:@"marker-ok"] scaledToSize:CGSizeMake(150,150)];
-            
         }
         [locationCell.spotThumbnail  setImage:img];
-        
     }
     
 }
@@ -102,17 +84,13 @@
     if ([segue.identifier isEqualToString:@"ShowSpotDetailFromFavList"]) {
         SpotDetailsViewController *controller = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-//        MyManager * shM = [MyManager sharedManager];
-//        NSMutableDictionary * favSpot  = [shM.favouritesSpots objectAtIndex:indexPath.row];
         controller.dataModel = [sharedManager.favouritesSpots objectAtIndex:indexPath.row];
     }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [sharedManager removeSpotWithPKfromFav:[sharedManager.favouritesSpots objectAtIndex:indexPath.row]];
-    
     NSArray *indexPaths = @[indexPath];
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }

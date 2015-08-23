@@ -115,23 +115,27 @@ NSMutableDictionary * spot;
 #pragma mark - searching / filtering
 
 - (void)searchForText:(NSString *)searchText scope: (int)scopeOption {
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"( name CONTAINS[cd] %@)",searchText];
+    NSPredicate *predicate = nil;
+    NSLog(@"%d", scopeOption);
+    if (scopeOption == 0){
+        predicate = [NSPredicate predicateWithFormat:@"( name CONTAINS[cd] %@ )",searchText];
+    }
+    else {
+        predicate = [NSPredicate predicateWithFormat:@"( name CONTAINS[cd] %@ AND spot_type == %d )",searchText, scopeOption];
+    }
     
     self.filteredSpots = [spots filteredArrayUsingPredicate:predicate];
 
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
-    // here grep from controller.searchBar.selectedScopeButtonIndex -> spot type [cafe, rest etc..]
-    [self searchForText:searchString scope:1];
+    [self searchForText:searchString scope:(int)controller.searchBar.selectedScopeButtonIndex];
     return YES;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-    // here grep from searchOption -> spot type [cafe, rest etc..]
     NSString * searchString = controller.searchBar.text;
-    [self searchForText:searchString scope:1];
+    [self searchForText:searchString scope:(int)searchOption];
     return YES;
 }
 - (void) searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView

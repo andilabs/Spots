@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" showsCancelButton="YES" showsScopeBar="YES" id="div-Un-73q">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" showsScopeBar="YES" id="div-Un-73q">
                             <rect key="frame" x="0.0" y="64" width="600" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -414,7 +414,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Lhj-uV-GAj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="orA-he-VIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36h-7E-qhW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eTl-U6-cy6">
@@ -426,6 +425,7 @@
                         <segue destination="wiI-Bp-bVN" kind="relationship" relationship="rootViewController" id="ycE-i9-1d3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orA-he-VIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4202" y="-379"/>
         </scene>

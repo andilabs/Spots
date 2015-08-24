@@ -30,6 +30,6 @@
 -(void)removeSpotWithPK:(int)pk;
 -(void)addSpotToFav:(NSDictionary *)spot;
 -(void)removeSpotFromFavourites:(NSDictionary *)spot;
-
+-(BOOL)isInFavouritesSpotWithPK:(int)pk;
 //-(void)removeSpotWithPKfromFav:(int)pk;
 @end

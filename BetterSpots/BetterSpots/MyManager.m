@@ -57,15 +57,28 @@
 }
 
 -(void)addSpotToFav:(NSDictionary *)spot{
-    NSMutableArray *current_spots = [NSMutableArray arrayWithArray:favouritesSpots];
+    if (![self isInFavouritesSpotWithPK:[spot[@"pk"] intValue]]){
+    NSMutableArray *current_spots = [NSMutableArray arrayWithArray:self.favouritesSpots];
     [current_spots insertObject:spot atIndex:0];
     [self initFav:current_spots];
     [self saveFavouritesSpots];
+    }
 }
 
 -(void)removeSpotFromFavourites:(NSDictionary *)spot {
-    [favouritesSpots removeObject:spot];
-    [self saveFavouritesSpots];
+     if ([self isInFavouritesSpotWithPK:[spot[@"pk"] intValue]]){
+         NSMutableArray *current_spots = [NSMutableArray arrayWithArray:self.favouritesSpots];
+         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pk != %d", [spot[@"pk"] intValue]];
+         NSArray *tempArray = [self.favouritesSpots filteredArrayUsingPredicate:predicate];
+         [self initFav:(NSMutableArray*)tempArray];
+         [self saveFavouritesSpots];
+    }
+}
+
+-(BOOL)isInFavouritesSpotWithPK:(int)pk {
+    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"pk == %d", pk];
+    NSArray *temp = [self.favouritesSpots filteredArrayUsingPredicate:filterPredicate];
+    return [temp count];
 }
 
 

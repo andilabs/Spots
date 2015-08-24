@@ -131,7 +131,7 @@
 
     if (indexPath.section == 0 && indexPath.row == 9)
     {
-        if ([sharedManager.favouritesSpots containsObject:self.dataModel]){
+        if ([sharedManager isInFavouritesSpotWithPK: [self.dataModel[@"pk"]intValue]]){
             [sharedManager removeSpotFromFavourites:self.dataModel];
 
 //            [sharedManager removeSpotWithPKfromFav:[[self.dataModel valueForKey:@"pk"] intValue]];
@@ -250,7 +250,7 @@
     }
     
     // configure layout of AddRemoveButton
-    if ([sharedManager.favouritesSpots containsObject:self.dataModel]){
+    if ([sharedManager isInFavouritesSpotWithPK: [self.dataModel[@"pk"]intValue]]){
         [self.favouritesAddRemoveButton setTitle:@"Remove from favourites" forState:UIControlStateNormal];
         self.favouritesAddRemoveButton.tintColor = [UIColor redColor];
 //

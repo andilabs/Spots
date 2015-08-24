@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
-
+#import "MyManager.h"
 @interface AppDelegate ()
 
 @end
@@ -18,7 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager loadFavouritesSpots];
     [GMSServices provideAPIKey:@"AIzaSyAPxL3AIuiKNwNirCDh2q2C4QIYmf5IhTM"];
     return YES;
 }

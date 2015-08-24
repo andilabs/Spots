@@ -33,10 +33,7 @@ NSMutableDictionary * spot;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Don't show the scope bar or cancel button until editing begins
-    [self.searchDisplayController.searchBar setShowsScopeBar:NO];
-    [self.searchDisplayController.searchBar sizeToFit];
-    
+
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self tableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.searchDisplayController.searchBar.bounds.size.height;
@@ -129,14 +126,13 @@ NSMutableDictionary * spot;
 
 - (void)searchForText:(NSString *)searchText scope: (int)scopeOption {
     NSPredicate *predicate = nil;
-    NSLog(@"%d", scopeOption);
+
     if (scopeOption == 0){
         predicate = [NSPredicate predicateWithFormat:@"( name CONTAINS[cd] %@ )",searchText];
     }
     else {
         predicate = [NSPredicate predicateWithFormat:@"( name CONTAINS[cd] %@ AND spot_type == %d )",searchText, scopeOption];
     }
-    
     self.filteredSpots = [spots filteredArrayUsingPredicate:predicate];
 
 }
@@ -151,6 +147,8 @@ NSMutableDictionary * spot;
     [self searchForText:searchString scope:(int)searchOption];
     return YES;
 }
+
+
 - (void) searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
     tableView.rowHeight = 78;

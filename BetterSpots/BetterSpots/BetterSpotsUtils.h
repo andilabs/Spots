@@ -47,5 +47,6 @@
 + (NSString *)getFACharForSymbol:(unichar)symbolCode;
 + (void)setUpColorsForNavigationViewController: (UINavigationController*)controller;
 + (void)setupBrandingForNavigationItem: (UINavigationItem*)navigationItem;
+
 @end
 

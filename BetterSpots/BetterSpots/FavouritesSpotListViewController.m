@@ -7,7 +7,7 @@
 //
 
 #import "FavouritesSpotListViewController.h"
-
+#import "SpotsMapViewController.h"
 
 @interface FavouritesSpotListViewController ()
 
@@ -15,6 +15,7 @@
 
 
 @implementation FavouritesSpotListViewController{
+    CLLocation *_currentLocation;
     MyManager *sharedManager;
 }
 
@@ -62,8 +63,15 @@
     SpotCell *locationCell = (SpotCell *)cell;
     locationCell.spotNameLabel.text = [favSpot objectForKey:@"name"];
     locationCell.spotAddressLabel.text = [favSpot objectForKey:@"address_street"];
-    locationCell.spotDistanceLabel.text =[SpotActions getFormattedDistanceWith:[favSpot[@"distance"]doubleValue]];
     
+    CLLocation * spotLocation = [[CLLocation alloc] initWithLatitude:[favSpot[@"location"][@"latitude"] doubleValue] longitude:[favSpot[@"location"][@"longitude"] doubleValue]];
+
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _currentLocation = [[CLLocation alloc] initWithLatitude:appDelegate.currentLocation.coordinate.latitude longitude:appDelegate.currentLocation.coordinate.longitude];
+
+    int dist = [SpotActions getDistanceInMetersFrom:spotLocation to:_currentLocation];
+    locationCell.spotDistanceLabel.text =[SpotActions getFormattedDistanceWith:dist/1000.0];
+
     if ([favSpot valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
         [locationCell.spotThumbnail setImageWithURL:[NSURL URLWithString:favSpot[@"thumbnail_venue_photo"]]
                                    placeholderImage:nil

@@ -7,14 +7,16 @@
 //
 
 #import "SpotDetailsMapViewController.h"
-
+#import "AppDelegate.h"
 
 @interface SpotDetailsMapViewController ()
 
 @end
 
 
-@implementation SpotDetailsMapViewController
+@implementation SpotDetailsMapViewController{
+    CLLocation * _currentLocation;
+}
 @synthesize dataModel;
 
 - (IBAction)getDirectionsToSpot:(id)sender {
@@ -25,6 +27,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [SpotActions getFormattedDistanceWith:[dataModel[@"distance"]doubleValue]];
+
+    CLLocation * spotLocation = [[CLLocation alloc] initWithLatitude:[dataModel[@"location"][@"latitude"] doubleValue] longitude:[dataModel[@"location"][@"longitude"] doubleValue]];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _currentLocation = [[CLLocation alloc] initWithLatitude:appDelegate.currentLocation.coordinate.latitude longitude:appDelegate.currentLocation.coordinate.longitude];
+    
+    int dist = [SpotActions getDistanceInMetersFrom:spotLocation to:_currentLocation];
+    self.title =[SpotActions getFormattedDistanceWith:dist/1000.0];
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[self.dataModel[@"location"][@"latitude"] doubleValue]
                                                             longitude:[self.dataModel[@"location"][@"longitude"]doubleValue]
                                                                  zoom:17];

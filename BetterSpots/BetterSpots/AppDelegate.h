@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, GMSMapViewDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) CLLocationManager *myLocationManager;
+@property (nonatomic, strong) CLLocation *currentLocation;
 @end
 

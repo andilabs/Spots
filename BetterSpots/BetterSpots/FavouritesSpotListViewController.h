@@ -14,7 +14,7 @@
 #import "MyManager.h"
 #import "SpotCell.h"
 #import "SpotDetailsViewController.h"
-
+#import "AppDelegate.h"
 
 @interface FavouritesSpotListViewController : UITableViewController
 

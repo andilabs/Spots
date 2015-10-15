@@ -123,7 +123,10 @@
 }
 
 + (NSString *)getFormattedDistanceWith: (double)distance {
-    if (distance > 1){
+    if (distance > 10){
+        return [NSString stringWithFormat:@"%.0f km", distance];
+    }
+    else if (distance > 1){
         return [NSString stringWithFormat:@"%.1f km", distance];
     }
     else {
@@ -162,6 +165,11 @@
         return withPartialStars;
     }
 
+}
+
++(int)getDistanceInMetersFrom: (CLLocation*)locationA to: (CLLocation*)locationB{
+    CLLocationDistance distance = [locationA distanceFromLocation:locationB];
+    return (int)distance;
 }
 
 @end

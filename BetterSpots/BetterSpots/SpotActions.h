@@ -24,6 +24,7 @@
          inContextOf:(UIViewController *)uiViewController
           forAppName:(NSString *)appName
            withImage:(UIImage *)image;
++ (int)getDistanceInMetersFrom: (CLLocation*)locationA to: (CLLocation*)locationB;
 + (NSString *)getFormattedDistanceWith:(double)distance;
 + (NSString *)getFAStarsFormattedRating:(double)rating;
 @end

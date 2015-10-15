@@ -7,12 +7,14 @@
 //
 
 #import "SpotsMapViewController.h"
-
+#import "AppDelegate.h"
 
 @interface SpotsMapViewController()
 @property (nonatomic) Reachability *hostReachability;
 @property (nonatomic) Reachability *internetReachability;
 @property (nonatomic) Reachability *wifiReachability;
+@property (strong, nonatomic) CLLocation *currentLocation;
+
 @end
 
 
@@ -29,6 +31,10 @@
 }
 - (void)appplicationIsActive:(NSNotification *)notification {
     NSLog(@"Application Did Become Active");
+    NSLog(@"from manager: %2f, %2f", self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude);
+    NSLog(@"from _location: %2f, %2f", _location.coordinate.latitude, _location.coordinate.longitude);
+    int dist = [SpotActions getDistanceInMetersFrom:self.locationManager.location to:_location];
+    NSLog(@"distance in meters is: %d", dist);
 }
 
 - (void)applicationEnteredForeground:(NSNotification *)notification {
@@ -83,6 +89,8 @@
         MyActivityIndicatorView * activityIndicatorView = [[MyActivityIndicatorView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
         self.view = activityIndicatorView;
         [self startLocationManager];
+
+        
     }
 }
 
@@ -270,10 +278,13 @@
         [defaults setFloat: newLocation.coordinate.latitude forKey:@"starLatitude"];
         [defaults setFloat: newLocation.coordinate.longitude forKey:@"starLongitude"];
         [defaults synchronize];
-
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        CLLocation * newLoc = [[CLLocation alloc] initWithLatitude:[defaults floatForKey:@"starLatitude"] longitude:[defaults floatForKey:@"starLongitude"]];
+        appDelegate.currentLocation = newLoc;
+//        _currentLocation = [[CLLocation alloc] initWithLatitude:appDelegate.currentLocation.coordinate.latitude longitude:appDelegate.currentLocation.coordinate.longitude];
         currentSpots = [NSMutableArray arrayWithArray:[self getNearbylSpotsWithLat:[defaults floatForKey:@"starLatitude"]
                                                                        andLon:[defaults floatForKey:@"starLongitude"]
-                                                                   withinRadius:8000]];
+                                                                   withinRadius:10000]];
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[defaults floatForKey:@"starLatitude"]
                                                                 longitude:[defaults floatForKey:@"starLongitude"]

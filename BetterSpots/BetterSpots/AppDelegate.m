@@ -13,15 +13,33 @@
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    CLLocation * currentLocation_;
+    CLLocationManager * myLocationManager_;
+}
+
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    if([CLLocationManager locationServicesEnabled])
+    {
+        currentLocation_ = [[CLLocation alloc] init];
+        
+        myLocationManager_ = [[CLLocationManager alloc] init];
+        myLocationManager_.delegate = self;
+        [myLocationManager_ startUpdatingLocation];
+    }
+    
     // Override point for customization after application launch.
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager loadFavouritesSpots];
     [GMSServices provideAPIKey:@"AIzaSyAPxL3AIuiKNwNirCDh2q2C4QIYmf5IhTM"];
     return YES;
+}
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    currentLocation_ = newLocation;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

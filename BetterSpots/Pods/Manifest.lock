@@ -34,4 +34,4 @@ SPEC CHECKSUMS:
   SVWebViewController: 67c54473b5d49bc8f75a2b11d96a49cf4370b3e3
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

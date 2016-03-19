@@ -69,8 +69,8 @@
 		A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB31B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB41B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
-		A96FA4C91B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */; };
-		A96FA4CA1B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */; };
+		A96FA4C91B7747B200BB5BBA /* VeganspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotEUMedia.xcassets */; };
+		A96FA4CA1B7747B200BB5BBA /* VeganspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4C81B7747B200BB5BBA /* VeganspotEUMedia.xcassets */; };
 		A96FA4CC1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */; };
 		A96FA4CD1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */; };
 		A96FA4CF1B7747D100BB5BBA /* DogspotEUMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */; };
@@ -176,7 +176,7 @@
 		A96FA4BF1B7746E800BB5BBA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A96FA4C11B7746EF00BB5BBA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A96FA4C31B7746FA00BB5BBA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = VeganspotORGMedia.xcassets; sourceTree = "<group>"; };
+		A96FA4C81B7747B200BB5BBA /* VeganspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = VeganspotEUMedia.xcassets; sourceTree = "<group>"; };
 		A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MomspotEUMedia.xcassets; sourceTree = "<group>"; };
 		A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DogspotEUMedia.xcassets; sourceTree = "<group>"; };
 		A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EnabledspotEUMedia.xcassets; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		A97DF5801B76A9CC004D0906 /* DogspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A97DF5811B76A9CC004D0906 /* DogspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DogspotEU.plist; path = /Users/andi/Spots/BetterSpots/DogspotEU.plist; sourceTree = "<absolute>"; };
 		A99124621B2F1FF400BF9259 /* VeganspotORG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeganspotORG.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A99124631B2F1FF400BF9259 /* VeganspotORG.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = VeganspotORG.plist; path = /Users/andi/IOS/BetterSpots/VeganspotORG.plist; sourceTree = "<absolute>"; };
+		A99124631B2F1FF400BF9259 /* VeganspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = VeganspotEU.plist; path = /Users/andi/IOS/BetterSpots/VeganspotEU.plist; sourceTree = "<absolute>"; };
 		A99124741B2F20C900BF9259 /* MomspotEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomspotEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A995A2FF1B7A950C00CC50BB /* SpotDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotDetailsViewController.h; sourceTree = "<group>"; };
 		A995A3001B7A950C00CC50BB /* SpotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotDetailsViewController.m; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 				175B526FF794203C62EFB31B /* Frameworks */,
 				A9D25A521B2D74CE00AF8DAE /* MomspotEU.plist */,
 				A91C58981B2E12F5009179E5 /* EnabledspotEU.plist */,
-				A99124631B2F1FF400BF9259 /* VeganspotORG.plist */,
+				A99124631B2F1FF400BF9259 /* VeganspotEU.plist */,
 				A97DF5811B76A9CC004D0906 /* DogspotEU.plist */,
 			);
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 				A948EE511B25D620007B108F /* SpotsMapViewController.m */,
 				A948EE531B25D620007B108F /* Main.storyboard */,
 				A948EE491B25D620007B108F /* Supporting Files */,
-				A96FA4C81B7747B200BB5BBA /* VeganspotORGMedia.xcassets */,
+				A96FA4C81B7747B200BB5BBA /* VeganspotEUMedia.xcassets */,
 				A96FA4CB1B7747C100BB5BBA /* MomspotEUMedia.xcassets */,
 				A96FA4CE1B7747D100BB5BBA /* DogspotEUMedia.xcassets */,
 				A96FA4D11B77487A00BB5BBA /* EnabledspotEUMedia.xcassets */,
@@ -425,6 +425,7 @@
 				A948EE5C1B25D621007B108F /* Frameworks */,
 				A948EE5D1B25D621007B108F /* Resources */,
 				0DCAF9A8B28EF8D401611DBF /* Copy Pods Resources */,
+				52366E73E3540E5EAF239BCB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -454,9 +455,9 @@
 			productReference = A97DF5801B76A9CC004D0906 /* DogspotEU.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A99124521B2F1FF400BF9259 /* VeganspotORG */ = {
+		A99124521B2F1FF400BF9259 /* VeganspotEU */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A991245F1B2F1FF400BF9259 /* Build configuration list for PBXNativeTarget "VeganspotORG" */;
+			buildConfigurationList = A991245F1B2F1FF400BF9259 /* Build configuration list for PBXNativeTarget "VeganspotEU" */;
 			buildPhases = (
 				A99124531B2F1FF400BF9259 /* Check Pods Manifest.lock */,
 				A99124541B2F1FF400BF9259 /* Sources */,
@@ -468,7 +469,7 @@
 			);
 			dependencies = (
 			);
-			name = VeganspotORG;
+			name = VeganspotEU;
 			productName = BetterSpots;
 			productReference = A99124621B2F1FF400BF9259 /* VeganspotORG.app */;
 			productType = "com.apple.product-type.application";
@@ -501,9 +502,21 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Andrzej Kostański";
 				TargetAttributes = {
+					A91C58871B2E12F4009179E5 = {
+						DevelopmentTeam = 7TAS64DQ5T;
+					};
 					A948EE5E1B25D621007B108F = {
 						CreatedOnToolsVersion = 6.3;
 						TestTargetID = A948EE451B25D620007B108F;
+					};
+					A97DF5701B76A9CC004D0906 = {
+						DevelopmentTeam = 7TAS64DQ5T;
+					};
+					A99124521B2F1FF400BF9259 = {
+						DevelopmentTeam = 7TAS64DQ5T;
+					};
+					A99124641B2F20C900BF9259 = {
+						DevelopmentTeam = 7TAS64DQ5T;
 					};
 				};
 			};
@@ -522,7 +535,7 @@
 			targets = (
 				A948EE5E1B25D621007B108F /* BetterSpotsTests */,
 				A91C58871B2E12F4009179E5 /* EnabledspotEU */,
-				A99124521B2F1FF400BF9259 /* VeganspotORG */,
+				A99124521B2F1FF400BF9259 /* VeganspotEU */,
 				A99124641B2F20C900BF9259 /* MomspotEU */,
 				A97DF5701B76A9CC004D0906 /* DogspotEU */,
 			);
@@ -553,7 +566,7 @@
 				A96FA4CC1B7747C100BB5BBA /* MomspotEUMedia.xcassets in Resources */,
 				A9B6C6DC1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A96FA4D21B77487A00BB5BBA /* EnabledspotEUMedia.xcassets in Resources */,
-				A96FA4C91B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */,
+				A96FA4C91B7747B200BB5BBA /* VeganspotEUMedia.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +590,7 @@
 			files = (
 				A991245B1B2F1FF400BF9259 /* Main.storyboard in Resources */,
 				A9B6C6D81B7CC106000DB4B6 /* glyphicons-regular.ttf in Resources */,
-				A96FA4CA1B7747B200BB5BBA /* VeganspotORGMedia.xcassets in Resources */,
+				A96FA4CA1B7747B200BB5BBA /* VeganspotEUMedia.xcassets in Resources */,
 				A95D29CC1B8A197500848F1B /* Lobster-Regular.ttf in Resources */,
 				A9B6C6DE1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */,
 				A991245C1B2F1FF400BF9259 /* Media.xcassets in Resources */,
@@ -630,6 +643,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		52366E73E3540E5EAF239BCB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A91C58881B2E12F4009179E5 /* Check Pods Manifest.lock */ = {
@@ -887,10 +915,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = EnabledspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = EnabledspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = EnabledspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = EnabledspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -900,10 +932,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = EnabledspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = EnabledspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = EnabledspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = EnabledspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1029,6 +1065,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DogspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = DogspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DogspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1037,6 +1076,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = DogspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1046,6 +1086,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DogspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = DogspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DogspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1054,6 +1097,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = DogspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1063,10 +1107,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = VeganspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = VeganspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VeganspotORG.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andilabs.VeganspotEU;
 				PRODUCT_NAME = VeganspotORG;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1076,10 +1125,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = VeganspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = VeganspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VeganspotORG.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andilabs.VeganspotEU;
 				PRODUCT_NAME = VeganspotORG;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1089,10 +1143,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = MomspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = MomspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MomspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MomspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1102,10 +1160,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = MomspotAppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = MomspotLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MomspotEU.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MomspotEU;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1148,7 +1210,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A991245F1B2F1FF400BF9259 /* Build configuration list for PBXNativeTarget "VeganspotORG" */ = {
+		A991245F1B2F1FF400BF9259 /* Build configuration list for PBXNativeTarget "VeganspotEU" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A99124601B2F1FF400BF9259 /* Debug */,

@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.andilabs.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -52,7 +52,7 @@
 		<string>Ⓥ</string>
 	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
-	<string>http://veganspot.org/api/</string>
+	<string>http://veganspot.eu/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
 		<string>vegan menu</string>

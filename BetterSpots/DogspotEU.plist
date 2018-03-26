@@ -54,7 +54,7 @@
 		<string>🐶</string>
 	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
-	<string>http://dogspot.eu/api/</string>
+	<string>http://127.0.0.1:9000/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
 		<string>fresh water served</string>

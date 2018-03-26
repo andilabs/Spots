@@ -112,18 +112,21 @@
 
 -(NSMutableArray*)getNearbylSpotsWithLat:(float)lat andLon:(float)lon withinRadius:(int)radius
 {
-    NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@nearby/%.5f/%.5f/%.d",
+    NSString * locaticonBasedUrl =[NSString stringWithFormat: @"%@spots/?location_0=%.5f&location_1=%.5f&location_2=%.d",
                                    [BetterSpotsUtils getSpotsNearbyApiUrl],
                                    lat,
                                    lon,
                                    radius];
+    NSLog(@"%@", locaticonBasedUrl);
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:locaticonBasedUrl]];
     
     if (data) {
         NSError * myErr;
-        NSMutableArray * spots = [NSJSONSerialization JSONObjectWithData:data
+        NSMutableArray * spots = [[NSJSONSerialization JSONObjectWithData:data
                                                                    options:kNilOptions
-                                                                     error:&myErr];
+                                                                    error:&myErr] objectForKey:@"results"];
+        NSLog(@"%d", [spots count]);
+        
         MyManager *sharedManager = [MyManager sharedManager];
         [sharedManager init: spots];
         [sharedManager saveSpots];

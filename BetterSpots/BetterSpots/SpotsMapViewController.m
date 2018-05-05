@@ -334,16 +334,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"ShowSpotDetail"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        SpotDetailsViewController *controller = (SpotDetailsViewController *)navigationController.topViewController;
-                controller.dataModel = infoOfCurrentlySelectedSpot;
+    if ([segue.identifier isEqualToString:@"ShowSpotDetailFromMap"]) {
+        SpotDetailsViewController *controller = (SpotDetailsViewController *)segue.destinationViewController;
+        controller.dataModel = infoOfCurrentlySelectedSpot;
     }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     infoOfCurrentlySelectedSpot = marker.userData;
-    [self performSegueWithIdentifier:@"ShowSpotDetail" sender:self];
+    [self performSegueWithIdentifier:@"ShowSpotDetailFromMap" sender:self];
 }
 
 

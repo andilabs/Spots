@@ -6,6 +6,10 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>MomspotRadar</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict/>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleGetInfoString</key>
@@ -22,10 +26,18 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict/>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -54,7 +66,7 @@
 		<string>🍼</string>
 	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
-	<string>http://momspot.eu/api/</string>
+	<string>http://127.0.0.1:9000/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
 		<string>baby changing facilites</string>

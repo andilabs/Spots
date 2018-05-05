@@ -87,6 +87,8 @@
     CFRelease(person);
 }
 
+
+
 + (void)navigateUserToTheSpot: (NSDictionary *) theSpotInfoDict {
     double lat = [theSpotInfoDict[@"location"][@"latitude"] doubleValue];
     double lng = [theSpotInfoDict[@"location"][@"longitude"] doubleValue];
@@ -101,6 +103,7 @@
     NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
     [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
     [endingItem openInMapsWithLaunchOptions:launchOptions];
+
 }
 
 + (void)shareTheSpot: (NSDictionary *) theSpotInfoDict inContextOf: (UIViewController *) uiViewController forAppName: (NSString *)appName withImage:(UIImage *)image

@@ -34,7 +34,7 @@
     // Override point for customization after application launch.
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager loadFavouritesSpots];
-    [GMSServices provideAPIKey:@"AIzaSyAPxL3AIuiKNwNirCDh2q2C4QIYmf5IhTM"];
+    [GMSServices provideAPIKey:@"AIzaSyDCGp5BZIX39iAXmKWZzXj0TvbK3R92S2g"];
     return YES;
 }
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation

@@ -60,10 +60,6 @@
 		A95D29CC1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
 		A95D29CD1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
 		A95D29CE1B8A197500848F1B /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */; };
-		A95D29D11B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */; };
-		A95D29D21B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */; };
-		A95D29D31B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */; };
-		A95D29D41B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */; };
 		A96CFBB01B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
 		A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */; };
@@ -120,11 +116,6 @@
 		A9B6C6DE1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
 		A9B6C6DF1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
 		A9B6C6E01B7CC4AD000DB4B6 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6C6DB1B7CC4AD000DB4B6 /* fontawesome-webfont.ttf */; };
-		A9E368591BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */; };
-		A9E3685A1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */; };
-		A9E3685B1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */; };
-		A9E3685C1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */; };
-		A9E3685D1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,8 +154,6 @@
 		A95D29C31B88D2C500848F1B /* FavouritesSpotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesSpotListViewController.h; sourceTree = "<group>"; };
 		A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesSpotListViewController.m; sourceTree = "<group>"; };
 		A95D29CA1B8A197500848F1B /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
-		A95D29CF1B8A4C7A00848F1B /* MoreAndSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreAndSettingsViewController.h; sourceTree = "<group>"; };
-		A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreAndSettingsViewController.m; sourceTree = "<group>"; };
 		A96CFBAE1B7B60AE003E1FC1 /* BetterSpotsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterSpotsUtils.h; sourceTree = "<group>"; };
 		A96CFBAF1B7B60AE003E1FC1 /* BetterSpotsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterSpotsUtils.m; sourceTree = "<group>"; };
 		A96FA4B31B77465000BB5BBA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -196,8 +185,6 @@
 		A9D25A3F1B2B807000AF8DAE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		A9D25A521B2D74CE00AF8DAE /* MomspotEU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = MomspotEU.plist; path = /Users/andi/IOS/BetterSpots/MomspotEU.plist; sourceTree = "<absolute>"; };
 		A9DBBE041B77427000F1BE57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A9E368571BC0201B00B080CC /* RadiusSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadiusSettingsViewController.h; sourceTree = "<group>"; };
-		A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadiusSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +296,6 @@
 		A948EE481B25D620007B108F /* BetterSpots */ = {
 			isa = PBXGroup;
 			children = (
-				A9E368571BC0201B00B080CC /* RadiusSettingsViewController.h */,
-				A9E368581BC0201B00B080CC /* RadiusSettingsViewController.m */,
 				A9B6C6CD1B7CC0B3000DB4B6 /* Resources */,
 				A9A761011B7BF7D500C9D28A /* Reachability.h */,
 				A9A761021B7BF7D500C9D28A /* Reachability.m */,
@@ -345,8 +330,6 @@
 				A93851C71B87B475009AADF2 /* MyManager.m */,
 				A95D29C31B88D2C500848F1B /* FavouritesSpotListViewController.h */,
 				A95D29C41B88D2C500848F1B /* FavouritesSpotListViewController.m */,
-				A95D29CF1B8A4C7A00848F1B /* MoreAndSettingsViewController.h */,
-				A95D29D01B8A4C7A00848F1B /* MoreAndSettingsViewController.m */,
 			);
 			path = BetterSpots;
 			sourceTree = "<group>";
@@ -787,8 +770,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95D29D11B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */,
-				A9E3685A1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */,
 				A91C588A1B2E12F4009179E5 /* SpotsMapViewController.m in Sources */,
 				A96CFBB11B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A95D29C61B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */,
@@ -813,7 +794,6 @@
 				A93851B31B87AA5A009AADF2 /* SpotListViewController.m in Sources */,
 				A9082FB01B7D505400013CAF /* SpotActions.m in Sources */,
 				A9082FCC1B7E1EA900013CAF /* MyActivityIndicatorView.m in Sources */,
-				A9E368591BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */,
 				A9082FD31B7E61BC00013CAF /* SpotDetailsMapViewController.m in Sources */,
 				A93851C81B87B475009AADF2 /* MyManager.m in Sources */,
 				A948EE661B25D621007B108F /* BetterSpotsTests.m in Sources */,
@@ -830,8 +810,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95D29D41B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */,
-				A9E3685D1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */,
 				A97DF5731B76A9CC004D0906 /* SpotsMapViewController.m in Sources */,
 				A96CFBB41B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A95D29C91B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */,
@@ -853,8 +831,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95D29D21B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */,
-				A9E3685B1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */,
 				A99124551B2F1FF400BF9259 /* SpotsMapViewController.m in Sources */,
 				A96CFBB21B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A95D29C71B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */,
@@ -876,8 +852,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95D29D31B8A4C7A00848F1B /* MoreAndSettingsViewController.m in Sources */,
-				A9E3685C1BC0201B00B080CC /* RadiusSettingsViewController.m in Sources */,
 				A99124671B2F20C900BF9259 /* SpotsMapViewController.m in Sources */,
 				A96CFBB31B7B60AE003E1FC1 /* BetterSpotsUtils.m in Sources */,
 				A95D29C81B88D2C500848F1B /* FavouritesSpotListViewController.m in Sources */,

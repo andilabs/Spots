@@ -51,13 +51,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // call
-    if (indexPath.section == 0 && indexPath.row == 4)
+    if (indexPath.section == 0 && indexPath.row == 3)
     {
         [BetterSpotsUtils makePhoneCall:[self.dataModel valueForKey:@"phone_number"]];
     }
 
     // open facebook url in vebview
-    if (indexPath.section == 0 && indexPath.row == 5)
+    if (indexPath.section == 0 && indexPath.row == 4)
     {
         NSURL *URL = [NSURL URLWithString: [NSString stringWithFormat:@"http://facebook.com/%@", self.dataModel[@"facebook"]]];
         SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
@@ -77,7 +77,7 @@
     }
     
     // open www  url in vebview
-    if (indexPath.section == 0 && indexPath.row == 6)
+    if (indexPath.section == 0 && indexPath.row == 5)
     {
         NSURL *URL = [NSURL URLWithString:self.dataModel[@"www"]];
         SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
@@ -104,7 +104,7 @@
     }
     
     // send email
-    if (indexPath.section == 0 && indexPath.row == 7)
+    if (indexPath.section == 0 && indexPath.row == 6)
     {
         if ([MFMailComposeViewController canSendMail])
         {
@@ -122,14 +122,14 @@
     }
 
     // add new contact to addressbook
-    if (indexPath.section == 0 && indexPath.row == 8)
+    if (indexPath.section == 0 && indexPath.row == 7)
     {
         [SpotActions  addNewAddresBookContactWithContentOfTheSpot: self.dataModel inContextOfViewController:self];
     }
     
     // add to OR remove from favourites
 
-    if (indexPath.section == 0 && indexPath.row == 9)
+    if (indexPath.section == 0 && indexPath.row == 8)
     {
         if ([sharedManager isInFavouritesSpotWithPK: [self.dataModel[@"pk"]intValue]]){
             [sharedManager removeSpotFromFavourites:self.dataModel];
@@ -210,41 +210,41 @@
     self.ratingLabel.text = [SpotActions getFAStarsFormattedRating:[self.dataModel[@"friendly_rate"]doubleValue]];
     
     // set facilities
-    NSMutableString * facilitiesListing = [[NSMutableString alloc]initWithString:@""];
-    for (NSString * facility in [BetterSpotsUtils getSpotsFacilities]){
-        [facilitiesListing appendString:[NSString stringWithFormat:@"\u2022 %@\n", facility]];
-    }
-    self.facilitiesLabel.text = facilitiesListing;
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString: self.facilitiesLabel.attributedText];
-    [text addAttribute:NSForegroundColorAttributeName
-                 value:[UIColor colorWithHexString:@"#D8D8D8"]
-                 range:NSMakeRange(0, [self.facilitiesLabel.text length])];
+//    NSMutableString * facilitiesListing = [[NSMutableString alloc]initWithString:@""];
+//    for (NSString * facility in [BetterSpotsUtils getSpotsFacilities]){
+//        [facilitiesListing appendString:[NSString stringWithFormat:@"\u2022 %@\n", facility]];
+//    }
+//    self.facilitiesLabel.text = facilitiesListing;
+//    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString: self.facilitiesLabel.attributedText];
+//    [text addAttribute:NSForegroundColorAttributeName
+//                 value:[UIColor colorWithHexString:@"#D8D8D8"]
+//                 range:NSMakeRange(0, [self.facilitiesLabel.text length])];
     
-    for (NSString* facility in self.dataModel[@"facilities"]) {
-        if ([self.dataModel[@"facilities"][facility] boolValue]){
-            [text addAttribute:NSForegroundColorAttributeName
-                         value:[UIColor colorWithHexString:@"#3fb350"]
-                         range:[self.facilitiesLabel.text rangeOfString: facility]];
-        }
-    }
-    [self.facilitiesLabel setAttributedText: text];
+//    for (NSString* facility in self.dataModel[@"facilities"]) {
+//        if ([self.dataModel[@"facilities"][facility] boolValue]){
+//            [text addAttribute:NSForegroundColorAttributeName
+//                         value:[UIColor colorWithHexString:@"#3fb350"]
+//                         range:[self.facilitiesLabel.text rangeOfString: facility]];
+//        }
+//    }
+//    [self.facilitiesLabel setAttributedText: text];
 
     // set contact details row if values recived from API
-    if (![self.dataModel[@"phone_number"]  isEqual: @""]) {
+    if ([self.dataModel valueForKey: @"phone_number"] != [NSNull null] &&![self.dataModel[@"phone_number"]  isEqual: @""]) {
         self.phoneLabel.text = self.dataModel[@"phone_number"];
         self.spotPhoneIcon.text = [NSString stringWithFormat:@"%C", 0xf095];
     }
-    if (![self.dataModel[@"www"]  isEqual: @""]) {
+    if ([self.dataModel valueForKey: @"www"] != [NSNull null] &&![self.dataModel[@"www"]  isEqual: @""]) {
         self.webpageLabel.text = self.dataModel[@"www"];
         self.spotWebpageIcon.text = [NSString stringWithFormat:@"%C", 0xf0ac];
     }
     
-    if (![self.dataModel[@"facebook"]  isEqual: @""]) {
+    if ([self.dataModel valueForKey: @"facebook"] != [NSNull null] &&![self.dataModel[@"facebook"]  isEqual: @""]) {
         self.facebookFanpageNameLabel.text = [NSString stringWithFormat:@"/%@", self.dataModel[@"facebook"]];
         self.spotFacebookIcon.text = [NSString stringWithFormat:@"%C", 0xf09a];
     }
-
-    if (![self.dataModel[@"email"]  isEqual: @""]) {
+    
+    if ([self.dataModel valueForKey: @"email"] != [NSNull null] && ![self.dataModel[@"email"]  isEqual: @""]) {
         self.emailLabel.text = self.dataModel[@"email"];
         self.spotEmailIcon.text = [NSString stringWithFormat:@"%C", 0xf003];
     }
@@ -289,12 +289,10 @@
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowSpotDetailMap"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        SpotDetailsMapViewController *controller = (SpotDetailsMapViewController *)navigationController.topViewController;
+        SpotDetailsMapViewController *controller = (SpotDetailsMapViewController *)segue.destinationViewController;
         controller.dataModel = self.dataModel;
     }
 }

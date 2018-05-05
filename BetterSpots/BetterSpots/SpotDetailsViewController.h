@@ -21,3 +21,4 @@
 @interface SpotDetailsViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 @property(weak, nonatomic)  NSDictionary* dataModel;
 @end
+

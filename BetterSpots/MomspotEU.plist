@@ -40,6 +40,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Geolocation is needed To find moms friendly spots nearby! 👶🍼♥️</string>
 	<key>UIAppFonts</key>
@@ -66,7 +68,7 @@
 		<string>🍼</string>
 	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
-	<string>http://127.0.0.1:9000/api/</string>
+	<string>http://10.102.20.197:9000/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
 		<string>baby changing facilites</string>

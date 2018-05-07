@@ -80,6 +80,7 @@
     if (indexPath.section == 0 && indexPath.row == 5)
     {
         NSURL *URL = [NSURL URLWithString:self.dataModel[@"www"]];
+//        [[UIApplication sharedApplication] openURL:URL];
         SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
         webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
         
@@ -95,10 +96,10 @@
         webViewController.navigationBar.translucent = NO;
         
         
-//        webViewController.toolbar.barStyle = UIBarStyleBlack;
+        //        webViewController.toolbar.barStyle = UIBarStyleBlack;
         webViewController.toolbar.barTintColor = [BetterSpotsUtils getSpotsLeadingColor];
         webViewController.toolbar.tintColor = [UIColor whiteColor];
-
+        
         [self presentViewController:webViewController animated:YES completion:NULL];
         
     }
@@ -146,6 +147,11 @@
         }
     }
 }
+
+- (bool)valueNotNullAndNotEmptyStirngForKey:(NSString *) key insideDict: (NSDictionary *) dict{
+    return [dict valueForKey: key] != [NSNull null] && ![self.dataModel[key] isEqual: @""];
+}
+
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     switch (result) {
@@ -184,7 +190,7 @@
     
     //set thumbnail
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,0,0)];
-    if ([self.dataModel valueForKey: @"thumbnail_venue_photo"] != [NSNull null]) {
+    if ([self valueNotNullAndNotEmptyStirngForKey: @"thumbnail_venue_photo" insideDict: self.dataModel]) {
         [imageView setImageWithURL:[NSURL URLWithString:self.dataModel[@"thumbnail_venue_photo"]]
                   placeholderImage:nil
        usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -230,21 +236,21 @@
 //    [self.facilitiesLabel setAttributedText: text];
 
     // set contact details row if values recived from API
-    if ([self.dataModel valueForKey: @"phone_number"] != [NSNull null] &&![self.dataModel[@"phone_number"]  isEqual: @""]) {
+    if ([self valueNotNullAndNotEmptyStirngForKey: @"phone_number" insideDict: self.dataModel]) {
         self.phoneLabel.text = self.dataModel[@"phone_number"];
         self.spotPhoneIcon.text = [NSString stringWithFormat:@"%C", 0xf095];
     }
-    if ([self.dataModel valueForKey: @"www"] != [NSNull null] &&![self.dataModel[@"www"]  isEqual: @""]) {
+    if ([self valueNotNullAndNotEmptyStirngForKey: @"www" insideDict: self.dataModel]) {
         self.webpageLabel.text = self.dataModel[@"www"];
         self.spotWebpageIcon.text = [NSString stringWithFormat:@"%C", 0xf0ac];
     }
     
-    if ([self.dataModel valueForKey: @"facebook"] != [NSNull null] &&![self.dataModel[@"facebook"]  isEqual: @""]) {
+    if ([self valueNotNullAndNotEmptyStirngForKey: @"facebook" insideDict: self.dataModel]) {
         self.facebookFanpageNameLabel.text = [NSString stringWithFormat:@"/%@", self.dataModel[@"facebook"]];
         self.spotFacebookIcon.text = [NSString stringWithFormat:@"%C", 0xf09a];
     }
     
-    if ([self.dataModel valueForKey: @"email"] != [NSNull null] && ![self.dataModel[@"email"]  isEqual: @""]) {
+    if ([self valueNotNullAndNotEmptyStirngForKey: @"email" insideDict: self.dataModel]) {
         self.emailLabel.text = self.dataModel[@"email"];
         self.spotEmailIcon.text = [NSString stringWithFormat:@"%C", 0xf003];
     }
@@ -253,7 +259,6 @@
     if ([sharedManager isInFavouritesSpotWithPK: [self.dataModel[@"pk"]intValue]]){
         [self.favouritesAddRemoveButton setTitle:@"Remove from favourites" forState:UIControlStateNormal];
         self.favouritesAddRemoveButton.tintColor = [UIColor redColor];
-//
     }
     
 }
@@ -269,20 +274,20 @@
 {
     UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
-    if (cell == self.spotThumbnailCell && [self.dataModel valueForKey: @"thumbnail_venue_photo"] == [NSNull null]) {
+    if (cell == self.spotThumbnailCell && ![self valueNotNullAndNotEmptyStirngForKey: @"thumbnail_venue_photo" insideDict: self.dataModel]) {
         return 0;
     }
     
-    if (cell == self.spotPhoneNumberCell && [self.dataModel[@"phone_number"]  isEqual: @""]){
+    if (cell == self.spotPhoneNumberCell && ![self valueNotNullAndNotEmptyStirngForKey: @"phone_number" insideDict: self.dataModel]){
         return 0;
     }
-    if (cell == self.spotFacebookCell && [self.dataModel[@"facebook"]  isEqual: @""]){
+    if (cell == self.spotFacebookCell && ![self valueNotNullAndNotEmptyStirngForKey: @"facebook" insideDict: self.dataModel]){
         return 0;
     }
-    if (cell == self.spotWebpageCell && [self.dataModel[@"www"]  isEqual: @""]){
+    if (cell == self.spotWebpageCell && ![self valueNotNullAndNotEmptyStirngForKey: @"www" insideDict: self.dataModel]){
         return 0;
     }
-    if (cell == self.spotEmailCell && [self.dataModel[@"email"] isEqual: @""]){
+    if (cell == self.spotEmailCell && ![self valueNotNullAndNotEmptyStirngForKey: @"email" insideDict: self.dataModel]){
         return 0;
     }
     

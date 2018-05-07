@@ -121,7 +121,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XzA-rk-UMv"/>
+                    <navigationItem key="navigationItem" id="XzA-rk-UMv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="1Js-xP-2zH">
+                            <connections>
+                                <action selector="updateSpotsForUserLocation:" destination="vXZ-lx-hvc" id="bO7-Mb-WXb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="wiI-Bp-bVN" kind="show" identifier="ShowSpotDetailFromMap" id="x85-O1-PPv"/>
                     </connections>
@@ -400,11 +406,11 @@
             </objects>
             <point key="canvasLocation" x="7442" y="-1545"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Map-->
         <scene sceneID="nvi-qV-cQE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36Y-oy-LaC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="fa-map" id="cRY-kv-eGT">
+                    <tabBarItem key="tabBarItem" title="Map" image="fa-map" id="cRY-kv-eGT">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -442,11 +448,11 @@
             </objects>
             <point key="canvasLocation" x="944" y="-945"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nearby-->
         <scene sceneID="Oe6-w4-siV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eUj-xX-HkQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="fa-list" id="bTY-rm-Rfw">
+                    <tabBarItem key="tabBarItem" title="Nearby" image="fa-list" id="bTY-rm-Rfw">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -463,11 +469,11 @@
             </objects>
             <point key="canvasLocation" x="2192" y="-2121"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favourites-->
         <scene sceneID="APc-fd-VwU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hfn-4u-HVt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="fa-heart" id="Tfu-9h-f0Y">
+                    <tabBarItem key="tabBarItem" title="Favourites" image="fa-heart" id="Tfu-9h-f0Y">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>

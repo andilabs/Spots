@@ -15,6 +15,7 @@
 @property (nonatomic) Reachability *wifiReachability;
 @property (strong, nonatomic) CLLocation *currentLocation;
 
+
 @end
 
 
@@ -28,6 +29,28 @@
     CLLocation *_location;
     NSUserDefaults *defaults;
     
+}
+- (IBAction)updateSpotsForUserLocation:(id)sender {
+    CGPoint point = mapView_.center;
+    CLLocationCoordinate2D coor = [mapView_.projection coordinateForPoint:point];
+    NSLog(@"refresh %f, %f", coor.latitude, coor.longitude);
+    currentSpots = [NSMutableArray arrayWithArray:[self getNearbylSpotsWithLat:coor.latitude
+                                                                        andLon:coor.longitude
+                                                                  withinRadius:10000]];
+    
+    if (currentSpots && [currentSpots count] > 0){
+        [self drawMarkersOnMap: currentSpots];
+    }
+    else if (currentSpots && [currentSpots count] == 0){
+        [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                      andMessage: @"But we have no results for your current location"
+                                     inContextOf: self];
+    }
+    else {
+        [BetterSpotsUtils showAlertInfoWithTitle: @"We are very sad 😢"
+                                      andMessage: @"But we can not fetch spots for you. Try again later."
+                                     inContextOf: self];
+    }
 }
 - (void)appplicationIsActive:(NSNotification *)notification {
     NSLog(@"Application Did Become Active");
@@ -344,6 +367,5 @@
     infoOfCurrentlySelectedSpot = marker.userData;
     [self performSegueWithIdentifier:@"ShowSpotDetailFromMap" sender:self];
 }
-
 
 @end

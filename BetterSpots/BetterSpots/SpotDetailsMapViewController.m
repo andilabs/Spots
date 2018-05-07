@@ -20,32 +20,22 @@
 @synthesize dataModel;
 
 
-//-(void)openActionSheet:(id)sender {
-//    //give the user a choice of Apple or Google Maps
-//    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Apple Maps",@"Google Maps", nil];
-//    [sheet showInView:self.view];
-//}
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    double latitude = [self.dataModel[@"location"][@"latitude"] doubleValue];
-    double longitude = [self.dataModel[@"location"][@"longitude"] doubleValue];
+
     
     //coordinates for the place we want to display
-    CLLocationCoordinate2D rdOfficeLocation = CLLocationCoordinate2DMake(31.20691,121.477847);
     if (buttonIndex==0) {
-        //Apple Maps, using the MKMapItem class
-        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:rdOfficeLocation addressDictionary:nil];
-        MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
-        item.name = @"ReignDesign Office";
-        [item openInMapsWithLaunchOptions:nil];
+        [SpotActions navigateUserToTheSpot: self.dataModel];
     } else if (buttonIndex==1) {
-        //Google Maps
-        if ([[UIApplication sharedApplication] canOpenURL:
-             [NSURL URLWithString:@"comgooglemaps://"]]) {
-            NSLog(@"YES WE CAN");
-            
+        double latitude = [self.dataModel[@"location"][@"latitude"] doubleValue];
+        double longitude = [self.dataModel[@"location"][@"longitude"] doubleValue];
+
+        //Google Maps native
+        if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
             NSURL *gMapsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%.6f,%.6f&center=%.6f,%.6f&zoom=15&views=traffic", latitude, longitude, latitude, longitude]];
             [[UIApplication sharedApplication] openURL: gMapsUrl];
         } else {
+        // Google Maps web
             [[UIApplication sharedApplication] openURL:
              [NSURL URLWithString:[NSString stringWithFormat:@"https://maps.google.com/maps?&z=15&q=%.6f+%.6f&ll=%.6f+%.6f", latitude, longitude, latitude, longitude]]];
     }
@@ -53,9 +43,8 @@
 }
 
 - (IBAction)getDirectionsToSpot:(id)sender {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Apple Maps",@"Google Maps", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Apple Maps",@"Google Maps", nil];
     [sheet showInView:self.view];
-//    [SpotActions navigateUserToTheSpot: self.dataModel];
 }
 
 

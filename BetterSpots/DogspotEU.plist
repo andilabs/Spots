@@ -28,6 +28,11 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Geolocation is needed to find dog friendly spots nearby!🐺♥️</string>
 	<key>UIAppFonts</key>
@@ -54,7 +59,7 @@
 		<string>🐶</string>
 	</array>
 	<key>com.andilabs.SpotsEndpointURL</key>
-	<string>http://192.168.0.7:9000/api/</string>
+	<string>http://127.0.0.1:9000/api/</string>
 	<key>com.andilabs.SpotsFacilities</key>
 	<array>
 		<string>fresh water served</string>

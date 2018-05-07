@@ -11,6 +11,7 @@
 
 @implementation BetterSpotsUtils
 
+
 +(void)showAlertInfoWithTitle:(NSString *)title andMessage:(NSString *)message inContextOf:(UIViewController *) uiViewController{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
@@ -79,7 +80,7 @@
 }
 
 + (void)setupBrandingForNavigationItem: (UINavigationItem*)navigationItem {
-    CGRect frame = CGRectMake(0, 0, 400, 44);
+    CGRect frame = CGRectMake(0, 0, 0, 44);
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont fontWithName:@"Lobster" size:26];
@@ -87,6 +88,7 @@
     label.textColor = [UIColor whiteColor];
     label.text = [[BetterSpotsUtils getSpotsAppName] stringByReplacingOccurrencesOfString:@"Radar" withString:@""];
     navigationItem.titleView = label;
+    
 }
 
 @end
